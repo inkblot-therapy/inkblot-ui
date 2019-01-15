@@ -14,6 +14,7 @@ export interface ButtonProps {
   /** Tertiary Button */
   tertiary?: boolean;
   /** Renders a disabled button and prevents onClick */
+  label?: string;
 }
 
 const Button: React.SFC<ButtonProps> = ({
@@ -23,9 +24,10 @@ const Button: React.SFC<ButtonProps> = ({
   primary = false,
   secondary = false,
   tertiary = true,
+  label,
 }) => (
   <StyledButton disabled={disabled} onClick={onClick}>
-    {children}
+    {label}
   </StyledButton>
 );
 

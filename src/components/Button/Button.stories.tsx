@@ -13,9 +13,11 @@ stories.add(
   wInfo()(() => (
     <Button
       disabled={boolean('Disabled', false)}
+      label="RIP X"
+      primary={boolean('Primary', false)}
+      secondary={boolean('Secondary', false)}
+      tertiary={boolean('Tertiary', true)}
       onClick={action('onClick')}
-    >
-      {text('Label', 'Default')}
-    </Button>
+    />
   )),
 );
