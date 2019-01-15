@@ -26,7 +26,13 @@ const Button: React.SFC<ButtonProps> = ({
   tertiary = true,
   label,
 }) => (
-  <StyledButton disabled={disabled} onClick={onClick}>
+  <StyledButton
+    disabled={disabled}
+    primary={primary}
+    secondary={secondary}
+    tertiary={tertiary}
+    onClick={onClick}
+  >
     {label}
   </StyledButton>
 );

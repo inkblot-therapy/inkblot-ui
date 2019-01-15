@@ -20,10 +20,22 @@ const StyledButton = styled<{
   height: 40px;
   padding: 0.25em 1em;
   margin: 0 1em;
-  background-color: ${({ disabled, theme }) =>
-    disabled
-      ? theme.buttonColors.disabledColor
-      : theme.buttonColors.tertiaryColor};
+  background-color: ${({ disabled, tertiary, theme }) => {
+    if (disabled) {
+      return theme.buttonColors.disabledColor;
+    } else {
+      return theme.buttonColors.tertiaryColor;
+    }
+  }};
+  background-image: ${({ primary, secondary theme }) => {
+    if (primary) {
+      return theme.buttonColors.primaryColor;
+    } else if (secondary) {
+      return theme.buttonColors.secondaryColor;
+    } else {
+      return 'none';
+    }
+  }};
   border: 2px solid
     ${({ disabled, theme }) =>
       disabled ? theme.colors.disabledColor : theme.colors.primaryColor};
