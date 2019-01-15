@@ -16,21 +16,21 @@ const StyledButton = styled<{
   font-weight: bold;
   letter-spacing: 0.5px;
   color: ${({ disabled, primary, secondary, tertiary, theme }) => {
-    if (tertiary) {
-      return theme.button.textColor.tertiary;
+    if (disabled) {
+      return theme.button.textColor.disabled;
     } else if (primary) {
       return theme.button.textColor.primary;
     } else if (secondary) {
       return theme.button.textColor.secondary;
     } else {
-      return theme.button.textColor.disabled;
+      return theme.button.textColor.tertiary;
     }
   }};
   background-color: ${({ disabled, tertiary, theme }) => {
-    if (tertiary) {
-      return theme.button.backgroundColor.tertiary;
-    } else {
+    if (disabled) {
       return theme.button.backgroundColor.disabled;
+    } else {
+      return theme.button.backgroundColor.tertiary;
     }
   }};
   background-image: ${({ primary, secondary, theme }) => {
