@@ -8,7 +8,6 @@ const StyledButton = styled<{
 }>('button')`
   border-radius: 20px;
   cursor: ${({ disabled }) => (!disabled ? 'pointer' : 'not-allowed')};
-  min-width: 180px;
   height: 40px;
   padding: 10px 40px;
   font-family: "Barlow", sans-serif;
