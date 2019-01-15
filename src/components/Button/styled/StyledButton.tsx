@@ -7,6 +7,7 @@ const StyledButton = styled<{
   tertiary: boolean;
 }>('button')`
   border-radius: 20px;
+  cursor: pointer;
   min-width: 180px;
   height: 40px;
   padding: 10px 40px;
@@ -15,21 +16,21 @@ const StyledButton = styled<{
   font-weight: bold;
   letter-spacing: 0.5px;
   color: ${({ disabled, primary, secondary, tertiary, theme }) => {
-    if (disabled) {
-      return theme.button.textColor.disabled;
+    if (tertiary) {
+      return theme.button.textColor.tertiary;
     } else if (primary) {
       return theme.button.textColor.primary;
     } else if (secondary) {
       return theme.button.textColor.secondary;
     } else {
-      return theme.button.textColor.tertiary;
+      return theme.button.textColor.disabled;
     }
   }};
   background-color: ${({ disabled, tertiary, theme }) => {
-    if (disabled) {
-      return theme.button.backgroundColor.disabled;
-    } else {
+    if (tertiary) {
       return theme.button.backgroundColor.tertiary;
+    } else {
+      return theme.button.backgroundColor.disabled;
     }
   }};
   background-image: ${({ primary, secondary, theme }) => {

@@ -13,7 +13,7 @@ stories.add(
   wInfo()(() => (
     <Button
       disabled={boolean('Disabled', false)}
-      label="Button Text"
+      label={text('Label', 'RIP X, HE WAS A VISONARY')}
       primary={boolean('Primary', false)}
       secondary={boolean('Secondary', false)}
       tertiary={boolean('Tertiary', true)}
