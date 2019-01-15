@@ -8,11 +8,19 @@ export interface ThemeInterface {
 }
 
 const theme: ThemeInterface = {
-  buttonColors: {
-    disabledColor: '#ecf2f4',
-    primaryColor: 'linear-gradient(to left, #e938cc, #fc587f)',
-    secondaryColor: 'linear-gradient(to left, #24a47a, #41ddcc)',
-    tertiaryColor: '#ffffff',
+  button: {
+    backgroundColor: {
+      disabled: '#ecf2f4',
+      primary: 'linear-gradient(to left, #e938cc, #fc587f)',
+      secondary: 'linear-gradient(to left, #24a47a, #41ddcc)',
+      tertiary: '#ffffff',
+    },
+    textColor: {
+      disabled: 'rgba(15, 32, 69, 0.25)',
+      primary: '#ffffff',
+      secondary: '#ffffff',
+      tertiary: '#2e5fca',
+    },
   },
   colors: {
     disabledColor: '#ecf2f4',

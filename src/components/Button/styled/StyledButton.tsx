@@ -1,14 +1,5 @@
 import styled from '../../../utils/styled-components';
 
-// function typeOf(type, theme) {
-//   console.log(type, 'haga');
-//   if (type.primary) {
-//     return `background-image: ${theme.buttonColors.primaryColor}`;
-//   } else {
-//     // statement(s) will execute if the boolean expression is false
-//   }
-// }
-
 const StyledButton = styled<{
   disabled: boolean;
   primary: boolean;
@@ -16,29 +7,43 @@ const StyledButton = styled<{
   tertiary: boolean;
 }>('button')`
   border-radius: 20px;
-  width: 180px;
+  min-width: 180px;
   height: 40px;
-  padding: 0.25em 1em;
-  margin: 0 1em;
-  background-color: ${({ disabled, tertiary, theme }) => {
+  padding: 10px 40px;
+  font-family: "Barlow", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: ${({ disabled, primary, secondary, tertiary, theme }) => {
     if (disabled) {
-      return theme.buttonColors.disabledColor;
+      return theme.button.textColor.disabled;
+    } else if (primary) {
+      return theme.button.textColor.primary;
+    } else if (secondary) {
+      return theme.button.textColor.secondary;
     } else {
-      return theme.buttonColors.tertiaryColor;
+      return theme.button.textColor.tertiary;
     }
   }};
-  background-image: ${({ primary, secondary theme }) => {
+  background-color: ${({ disabled, tertiary, theme }) => {
+    if (disabled) {
+      return theme.button.backgroundColor.disabled;
+    } else {
+      return theme.button.backgroundColor.tertiary;
+    }
+  }};
+  background-image: ${({ primary, secondary, theme }) => {
     if (primary) {
-      return theme.buttonColors.primaryColor;
+      return theme.button.backgroundColor.primary;
     } else if (secondary) {
-      return theme.buttonColors.secondaryColor;
+      return theme.button.backgroundColor.secondary;
     } else {
       return 'none';
     }
   }};
-  border: 2px solid
-    ${({ disabled, theme }) =>
-      disabled ? theme.colors.disabledColor : theme.colors.primaryColor};
+  border: none;
+  box-shadow: ${({ tertiary, theme }) =>
+    tertiary && '0 0 10px 0 rgba(99, 140, 177, 0.2)'};
 `;
 
 export default StyledButton;

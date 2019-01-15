@@ -13,16 +13,16 @@ const ColorBox = styled<{ color: string }, 'div'>('div')`
 `;
 
 const ColorName = styled<{}, 'div'>('div')`
-  background: #FFF;
+  background: #fff;
   height: 50px;
   color: #999;
   font-size: 16px;
   font-weight: bold;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Barlow", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #EEE;
+  border: 1px solid #eee;
   border-top: 0;
 `;
 
@@ -31,18 +31,13 @@ const Wrapper = styled<{}, 'div'>('div')`
   display: inline-block;
   width: 200px;
   height: 250px;
-  background: #FFF;
+  background: #fff;
 `;
 
-const Color: React.SFC<ColorProps> = ({
-  color,
-  name,
-}) => (
+const Color: React.SFC<ColorProps> = ({ color, name }) => (
   <Wrapper>
     <ColorBox color={color} />
-    <ColorName>
-      {name}
-    </ColorName>
+    <ColorName>{name}</ColorName>
   </Wrapper>
 );
 

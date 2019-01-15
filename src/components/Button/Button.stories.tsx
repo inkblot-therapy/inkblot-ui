@@ -13,7 +13,7 @@ stories.add(
   wInfo()(() => (
     <Button
       disabled={boolean('Disabled', false)}
-      label="RIP X"
+      label="Button Text"
       primary={boolean('Primary', false)}
       secondary={boolean('Secondary', false)}
       tertiary={boolean('Tertiary', true)}
