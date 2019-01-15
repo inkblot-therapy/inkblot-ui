@@ -13,10 +13,10 @@ const buttonTextColors = Object.keys(theme.button.textColor).map((key) => (
   <Color name={key} color={theme.button.textColor[key]} />
 ));
 
-stories.add('Button Background Colors', () => (
+stories.add('button.backgroundColor', () => (
   <React.Fragment>{buttonBackgroundColors}</React.Fragment>
 ));
 
-stories.add('Button Text Colors', () => (
+stories.add('button.textColor', () => (
   <React.Fragment>{buttonTextColors}</React.Fragment>
 ));
