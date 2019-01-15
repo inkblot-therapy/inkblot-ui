@@ -36,7 +36,7 @@ const Wrapper = styled<{}, 'div'>('div')`
 
 const Color: React.SFC<ColorProps> = ({ color, name }) => (
   <Wrapper>
-    <ColorBox color={color} />
+    <ColorBox color={color} onClick={() => alert(color)} />
     <ColorName>{name}</ColorName>
   </Wrapper>
 );
