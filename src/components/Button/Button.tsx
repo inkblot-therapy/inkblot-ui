@@ -13,31 +13,51 @@ export interface ButtonProps {
   secondary?: boolean;
   /** Tertiary Button */
   tertiary?: boolean;
-  label?: string;
+  /** You Only Click Once (YOCO) */
+  singleClick?: boolean;
+  /** Label of the Button */
+  label: string;
   /** Extra styles */
   style?: object;
 }
 
-const Button: React.SFC<ButtonProps> = ({
-  children,
-  disabled = false,
-  onClick,
-  primary = false,
-  secondary = false,
-  tertiary = true,
-  label,
-  style,
-}) => (
-  <StyledButton
-    disabled={disabled}
-    primary={primary}
-    secondary={secondary}
-    tertiary={tertiary}
-    onClick={!disabled && onClick}
-    style={...style}
-  >
-    {label}
-  </StyledButton>
-);
+interface MyState {
+  click: number; // like this
+}
+
+class Button extends React.Component<ButtonProps, {}> {
+  public static defaultProps = {
+    disabled: false,
+    label: 'default',
+    onClick: (f) => f,
+    primary: false,
+    secondary: false,
+    singleClick: true,
+    style: {},
+    tertiary: true,
+  };
+  public state: MyState = {
+    disableClick: false,
+  };
+
+  public click = () => {
+    if (this.state.disableClick && this.props.singleClick) {
+      return;
+    }
+    this.props.onClick();
+    this.setState((state) => ({
+      disableClick: true,
+    }));
+  }
+
+  public render(): JSX.Element {
+    const { disabled, label } = this.props;
+    return (
+      <StyledButton {...this.props} onClick={!disabled ? this.click : (f) => f}>
+        {label}
+      </StyledButton>
+    );
+  }
+}
 
 export default Button;

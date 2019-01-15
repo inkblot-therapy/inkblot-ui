@@ -17,7 +17,8 @@ stories.add(
       secondary={boolean('Secondary', false)}
       tertiary={boolean('Tertiary', true)}
       disabled={boolean('Disabled', false)}
-      onClick={action('onClick')}
+      singleClick={boolean('Single Click', true)}
+      onClick={action('clicked')}
     />
   )),
 );
@@ -31,7 +32,8 @@ stories.add(
       secondary={boolean('Secondary', false)}
       tertiary={boolean('Tertiary', false)}
       disabled={boolean('Disabled', false)}
-      onClick={action('onClick')}
+      singleClick={boolean('Single Click', true)}
+      onClick={action('clicked')}
     />
   )),
 );
@@ -40,11 +42,12 @@ stories.add(
   wInfo()(() => (
     <Button
       label={text('Label', 'RIP X, HE WAS A VISONARY')}
-      onClick={action('onClick')}
       primary={boolean('Primary', false)}
       secondary={boolean('Secondary', true)}
       tertiary={boolean('Tertiary', false)}
       disabled={boolean('Disabled', false)}
+      singleClick={boolean('Single Click', true)}
+      onClick={action('clicked')}
     />
   )),
 );
@@ -53,11 +56,12 @@ stories.add(
   wInfo()(() => (
     <Button
       label={text('Label', 'RIP X, HE WAS A VISONARY')}
-      onClick={action('onClick')}
       primary={boolean('Primary', false)}
       secondary={boolean('Secondary', false)}
       tertiary={boolean('Tertiary', false)}
       disabled={boolean('Disabled', true)}
+      singleClick={boolean('Single Click', true)}
+      onClick={action('clicked')}
     />
   )),
 );
@@ -66,12 +70,13 @@ stories.add(
   'disabled',
   wInfo()(() => (
     <Button
-      onClick={action('onClick')}
       label={text('Label', 'RIP X, HE WAS A VISONARY')}
       primary={boolean('Primary', false)}
       secondary={boolean('Secondary', false)}
       tertiary={boolean('Tertiary', false)}
       disabled={boolean('Disabled', true)}
+      singleClick={boolean('Single Click', true)}
+      onClick={action('clicked')}
     />
   )),
 );
