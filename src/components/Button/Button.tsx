@@ -13,8 +13,8 @@ export interface ButtonProps {
   secondary?: boolean;
   /** Tertiary Button */
   tertiary?: boolean;
-  /** Renders a disabled button and prevents onClick */
   label?: string;
+  /** Extra styles */
   style?: object;
 }
 
@@ -33,7 +33,7 @@ const Button: React.SFC<ButtonProps> = ({
     primary={primary}
     secondary={secondary}
     tertiary={tertiary}
-    onClick={onClick}
+    onClick={!disabled && onClick}
     style={...style}
   >
     {label}
