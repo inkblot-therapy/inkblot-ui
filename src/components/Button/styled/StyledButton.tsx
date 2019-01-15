@@ -15,6 +15,10 @@ const StyledButton = styled<{
   font-size: 16px;
   font-weight: bold;
   letter-spacing: 0.5px;
+  outline: none;
+  &:focus {
+    outline: none;
+  }
   color: ${({ disabled, primary, secondary, tertiary, theme }) => {
     if (disabled) {
       return theme.button.textColor.disabled;
