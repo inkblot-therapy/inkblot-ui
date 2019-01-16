@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../../utils/styled-components';
+import styled, { keyframes } from '../../../utils/styled-components';
 import { Props } from '../Modal';
 
 class StyledModal extends React.Component<Props> {
@@ -11,6 +11,15 @@ class StyledModal extends React.Component<Props> {
     );
   }
 }
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+`;
 
 const Backdrop = styled.div`
   display: ${({ open }) => (open ? 'block' : 'none')};
@@ -24,19 +33,21 @@ const Backdrop = styled.div`
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
   padding-top: 10%;
+  animation: ${fadeIn} 0.4s ease-in;
 `;
 
 const Modal = styled.div`
   padding: 4em 2em;
   margin: auto;
   min-width: 100px;
-  max-width: 80vw;
+  max-width: 60vw;
   min-height: 50px;
   max-height: 60vh;
   overflow-y: auto;
   border-radius: 3px;
   box-shadow: 0 0 10px 0 rgba(99, 150, 177, 0.2);
   background-color: #ffffff;
+  animation: ${fadeIn} 0.4s ease-in;
 `;
 
 export default StyledModal;

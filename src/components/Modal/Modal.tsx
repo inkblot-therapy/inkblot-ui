@@ -29,7 +29,7 @@ class Modal extends React.Component<Props, State> {
 
   public render(): JSX.Element {
     return (
-      <StyledModal open={this.props.open}>{this.props.children}</StyledModal>
+      <StyledModal open={this.state.open}>{this.props.children}</StyledModal>
     );
   }
 }
