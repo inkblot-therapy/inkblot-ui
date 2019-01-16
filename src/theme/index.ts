@@ -1,10 +1,15 @@
 interface Colors {
-  disabledColor: string;
-  primaryColor: string;
+  disabled: string;
+  primary: string;
+  secondary: string;
+  tertiary: string;
 }
 
 export interface ThemeInterface {
-  colors: Colors;
+  button: {
+    backgroundColor: Colors;
+    textColor: Colors;
+  };
 }
 
 const theme: ThemeInterface = {
@@ -21,9 +26,6 @@ const theme: ThemeInterface = {
       secondary: '#ffffff',
       tertiary: '#2e5fca',
     },
-  },
-  colors: {
-    disabledColor: '#ecf2f4',
   },
 };
 

@@ -65,18 +65,3 @@ stories.add(
     />
   )),
 );
-
-stories.add(
-  'disabled',
-  wInfo()(() => (
-    <Button
-      label={text('Label', 'RIP X, HE WAS A VISONARY')}
-      primary={boolean('Primary', false)}
-      secondary={boolean('Secondary', false)}
-      tertiary={boolean('Tertiary', false)}
-      disabled={boolean('Disabled', true)}
-      singleClick={boolean('Single Click', true)}
-      onClick={action('clicked')}
-    />
-  )),
-);
