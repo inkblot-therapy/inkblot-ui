@@ -9,5 +9,10 @@ stories.addDecorator(withKnobs);
 
 stories.add(
   'default',
-  wInfo()(() => <TextInput label="hello">{text('Label', 'Default')}</TextInput>),
+  wInfo()(() => (
+    <TextInput
+      label={text('Label', 'Input')}
+      placeholder={text('value', 'RIP X, HE WAS A VISONARY')}
+    />
+  )),
 );

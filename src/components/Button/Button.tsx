@@ -19,6 +19,8 @@ export interface ButtonProps {
   label: string;
   /** Extra styles */
   style?: object;
+  /** className */
+  className?: string;
 }
 
 interface ButtonState {

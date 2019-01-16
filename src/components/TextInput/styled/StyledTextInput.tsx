@@ -7,24 +7,30 @@ const Input = styled.input`
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 2px;
-  font-family: SourceSansPro;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 8px;
   color: #0f2045;
   border: none;
-  background-color: #red;
+  background-color: #fafafa;
 `;
 
 const Label = styled.label`
   color: red;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  color: #0f2045;
+  display: block;
+  margin-bottom: 10px;
 `;
 
-class TextInput extends React.Component<> {
+class TextInput extends React.Component<Props> {
   public render() {
-    console.log(this.props);
     return (
-      <div>
+      <div className={this.props.className}>
         <Label>{this.props.label}</Label>
-        <Input {...this.props}>{this.props.children}</Input>
+        <Input {...this.props} />
       </div>
     );
   }
