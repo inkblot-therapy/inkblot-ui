@@ -3,7 +3,7 @@ import StyledButton from './styled/StyledButton';
 
 export interface ButtonProps {
   /** Callback function to be called when user clicks on button */
-  onClick: () => void;
+  onClick: () => {};
   children: React.ReactNode;
   /** Renders a disabled button and prevents onClick */
   disabled?: boolean;

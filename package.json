@@ -4,7 +4,7 @@
   "description": "Component Library for Inkblot",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc",
+    "compile": "tsc -w",
     "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "generate": "plop --plopfile ./.plop/plop.config.js",
