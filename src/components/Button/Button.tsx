@@ -29,31 +29,31 @@ class Button extends React.Component<ButtonProps, ButtonState> {
   public static defaultProps: ButtonProps = {
     disabled: false,
     label: 'default',
-    onClick: f => f,
+    onClick: (f) => f,
     primary: false,
     secondary: false,
     singleClick: true,
     style: {},
     tertiary: true,
   };
-  state: ButtonState = {
+  public state: ButtonState = {
     disableClick: false,
   };
 
-  click = () => {
+  public click = (a: string) => {
     if (this.state.disableClick && this.props.singleClick) {
       return;
     }
     this.props.onClick();
-    this.setState(state => ({
+    this.setState((state) => ({
       disableClick: true,
     }));
   }
 
-  render() {
+  public render() {
     const { disabled, label } = this.props;
     return (
-      <StyledButton {...this.props} onClick={!disabled ? this.click : f => f}>
+      <StyledButton {...this.props} onClick={!disabled ? this.click : (f) => f}>
         {label}
       </StyledButton>
     );
