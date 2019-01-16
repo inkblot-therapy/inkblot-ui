@@ -1,11 +1,14 @@
+import * as React from 'react';
 import styled from '../../../utils/styled-components';
+import { ButtonProps } from '../Button';
 
-const StyledButton = styled<{
-  disabled: boolean;
-  primary: boolean;
-  secondary: boolean;
-  tertiary: boolean;
-}>('button')`
+class Button extends React.Component<ButtonProps> {
+  public render() {
+    return <button {...this.props}>{this.props.children}</button>;
+  }
+}
+
+const StyledButton = styled(Button)`
   border-radius: 20px;
   cursor: ${({ disabled }) => (!disabled ? 'pointer' : 'not-allowed')};
   height: 40px;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import StyledButton from './styled/StyledButton';
 
-interface ButtonProps {
+export interface ButtonProps {
   /** Callback function to be called when user clicks on button */
   onClick: () => {};
   children?: React.ReactNode;
