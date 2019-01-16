@@ -22,7 +22,7 @@ export interface ButtonProps {
 }
 
 interface MyState {
-  click: number; // like this
+  disableClick: boolean; // like this
 }
 
 class Button extends React.Component<ButtonProps, MyState> {
@@ -36,11 +36,11 @@ class Button extends React.Component<ButtonProps, MyState> {
     style: {},
     tertiary: true,
   };
-  public state: MyState = {
+  state: MyState = {
     disableClick: false,
   };
 
-  public click = () => {
+  click = () => {
     if (this.state.disableClick && this.props.singleClick) {
       return;
     }
@@ -50,7 +50,7 @@ class Button extends React.Component<ButtonProps, MyState> {
     }));
   }
 
-  public render(): JSX.Element {
+  render() {
     const { disabled, label } = this.props;
     return (
       <StyledButton {...this.props} onClick={!disabled ? this.click : f => f}>
