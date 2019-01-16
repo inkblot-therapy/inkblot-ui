@@ -21,12 +21,12 @@ export interface ButtonProps {
   style?: object;
 }
 
-interface MyState {
+interface ButtonState {
   disableClick: boolean; // like this
 }
 
-class Button extends React.Component<ButtonProps, MyState> {
-  public static defaultProps = {
+class Button extends React.Component<ButtonProps, ButtonState> {
+  public static defaultProps: ButtonProps = {
     disabled: false,
     label: 'default',
     onClick: f => f,
