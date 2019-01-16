@@ -3,8 +3,8 @@ import StyledButton from './styled/StyledButton';
 
 export interface ButtonProps {
   /** Callback function to be called when user clicks on button */
-  onClick: () => void;
-  children: React.ReactNode;
+  onClick: () => {};
+  children?: React.ReactNode;
   /** Renders a disabled button and prevents onClick */
   disabled?: boolean;
   /** Primary Button */
@@ -21,39 +21,43 @@ export interface ButtonProps {
   style?: object;
 }
 
-interface MyState {
+interface ButtonState {
   disableClick: boolean; // like this
 }
 
-class Button extends React.Component<ButtonProps, MyState> {
-  public static defaultProps = {
+class Button extends React.Component<ButtonProps, ButtonState> {
+  public static defaultProps: ButtonProps = {
     disabled: false,
     label: 'default',
-    onClick: f => f,
+    onClick: () => false,
     primary: false,
     secondary: false,
     singleClick: true,
     style: {},
     tertiary: true,
   };
-  state: MyState = {
+  public state: ButtonState = {
     disableClick: false,
   };
 
-  click = () => {
+  public click = () => {
     if (this.state.disableClick && this.props.singleClick) {
-      return;
+      return false;
     }
     this.props.onClick();
-    this.setState(state => ({
+    this.setState((state) => ({
       disableClick: true,
     }));
+    return false;
   }
 
-  render() {
+  public render() {
     const { disabled, label } = this.props;
     return (
-      <StyledButton {...this.props} onClick={!disabled ? this.click : f => f}>
+      <StyledButton
+        {...this.props}
+        onClick={!disabled ? this.click : () => false}
+      >
         {label}
       </StyledButton>
     );
