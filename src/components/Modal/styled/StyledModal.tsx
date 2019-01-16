@@ -5,7 +5,7 @@ import { Props } from '../Modal';
 class StyledModal extends React.Component<Props> {
   public render(): JSX.Element {
     return (
-      <Backdrop {...this.props}>
+      <Backdrop open={this.props.open}>
         <Modal>{this.props.children}</Modal>
       </Backdrop>
     );
@@ -21,7 +21,7 @@ const fadeIn = keyframes`
   }
 `;
 
-const Backdrop = styled.div`
+const Backdrop = styled<{ open: boolean }, 'div'>('div')`
   display: ${({ open }) => (open ? 'block' : 'none')};
   position: fixed;
   z-index: 1;
