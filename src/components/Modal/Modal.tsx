@@ -1,7 +1,7 @@
 import * as React from 'react';
 import StyledModal from './styled/StyledModal';
 
-interface Props {
+export interface Props {
   children: React.ReactNode;
   /** Controls whether the modal is open or not */
   open: boolean;
@@ -28,11 +28,9 @@ class Modal extends React.Component<Props, State> {
   }
 
   public render(): JSX.Element {
-    if (this.state.open === true) {
-      return <StyledModal>{this.props.children}</StyledModal>;
-    }
-
-    return <div />;
+    return (
+      <StyledModal open={this.props.open}>{this.props.children}</StyledModal>
+    );
   }
 }
 
