@@ -36,7 +36,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     style: {},
     tertiary: true,
   };
-  state: MyState = {
+  state: ButtonState = {
     disableClick: false,
   };
 
