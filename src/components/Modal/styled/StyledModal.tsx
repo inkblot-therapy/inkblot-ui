@@ -46,6 +46,7 @@ const Backdrop = styled<{ open: boolean }, 'div'>('div')`
 `;
 
 const Modal = styled.div`
+  position: relative;
   padding: 4em 2em;
   margin: auto;
   max-width: 768px;
