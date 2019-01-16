@@ -14,15 +14,25 @@ class StyledModal extends React.Component<Props> {
 
 const fadeIn = keyframes`
   from {
-    opacity: 0
+    opacity: 0;
   }
   to {
-    opacity: 1
+    opacity: 1;
+  }
+`;
+
+const slideIn = keyframes`
+  from {
+    top: -100px;
+  }
+  to {
+    top: 0px;
   }
 `;
 
 const Backdrop = styled<{ open: boolean }, 'div'>('div')`
-  display: ${({ open }) => (open ? 'block' : 'none')};
+  display: ${({ open }) => (open ? 'flex' : 'none')};
+  align-items: center;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -32,22 +42,21 @@ const Backdrop = styled<{ open: boolean }, 'div'>('div')`
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
-  padding-top: 10%;
-  animation: ${fadeIn} 0.4s ease-in;
+  animation: ${fadeIn} 250ms ease-in;
 `;
 
 const Modal = styled.div`
   padding: 4em 2em;
   margin: auto;
-  min-width: 100px;
-  max-width: 60vw;
+  max-width: 768px;
+  width: 75%;
   min-height: 50px;
   max-height: 60vh;
   overflow-y: auto;
   border-radius: 3px;
   box-shadow: 0 0 10px 0 rgba(99, 150, 177, 0.2);
   background-color: #ffffff;
-  animation: ${fadeIn} 0.4s ease-in;
+  animation: ${slideIn} 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
 `;
 
 export default StyledModal;
