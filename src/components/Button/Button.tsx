@@ -25,11 +25,11 @@ interface MyState {
   click: number; // like this
 }
 
-class Button extends React.Component<ButtonProps, {}> {
+class Button extends React.Component<ButtonProps, MyState> {
   public static defaultProps = {
     disabled: false,
     label: 'default',
-    onClick: (f) => f,
+    onClick: f => f,
     primary: false,
     secondary: false,
     singleClick: true,
@@ -45,7 +45,7 @@ class Button extends React.Component<ButtonProps, {}> {
       return;
     }
     this.props.onClick();
-    this.setState((state) => ({
+    this.setState(state => ({
       disableClick: true,
     }));
   }
@@ -53,7 +53,7 @@ class Button extends React.Component<ButtonProps, {}> {
   public render(): JSX.Element {
     const { disabled, label } = this.props;
     return (
-      <StyledButton {...this.props} onClick={!disabled ? this.click : (f) => f}>
+      <StyledButton {...this.props} onClick={!disabled ? this.click : f => f}>
         {label}
       </StyledButton>
     );
