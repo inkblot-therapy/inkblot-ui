@@ -9,39 +9,16 @@ export interface TextInputProps {
   error?: boolean;
   className?: string;
   value?: string;
+  onChange?: () => void;
 }
 
-export interface TextInputState {
-  value: string;
-}
-
-export default class TextInput extends React.Component<
-  TextInputProps,
-  TextInputState
-> {
+export default class TextInput extends React.Component<TextInputProps> {
   public static defaultProps: TextInputProps = {
     disabled: false,
     label: 'Label',
   };
-  constructor(props: TextInputProps) {
-    super(props);
-
-    this.state = {
-      value: '',
-    };
-  }
-
-  public handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ value: event.target.value });
-  }
 
   public render() {
-    return (
-      <StyledTextInput
-        {...this.props}
-        onChange={this.handleChange}
-        value={this.state.value}
-      />
-    );
+    return <StyledTextInput {...this.props} />;
   }
 }

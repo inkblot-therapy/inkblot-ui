@@ -36,7 +36,23 @@ const Label = styled.label`
   margin-bottom: 20px;
 `;
 
-class StyledTextInput extends React.Component<TextInputProps> {
+export interface TextInputState {
+  value: string;
+}
+
+class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
+  constructor(props: TextInputProps) {
+    super(props);
+
+    this.state = {
+      value: '',
+    };
+  }
+
+  public handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ value: event.target.value });
+  }
+
   public render() {
     const {
       className,
@@ -45,17 +61,17 @@ class StyledTextInput extends React.Component<TextInputProps> {
       disabled,
       placeholder,
       value,
-      onChange,
     } = this.props;
+
     return (
       <div className={className}>
         <Label>{label}</Label>
         <Input
           placeholder={placeholder}
           error={error}
-          value={value}
+          value={value && this.state.value}
           disabled={disabled}
-          onChange={onChange}
+          onChange={this.handleChange}
         />
       </div>
     );
