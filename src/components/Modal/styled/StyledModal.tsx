@@ -1,13 +1,19 @@
 import * as React from 'react';
 import styled, { keyframes } from '../../../utils/styled-components';
-import { ModalProps } from '../Modal';
 
-class StyledModal extends React.Component<ModalProps> {
+interface StyledModalProps {
+  children: React.ReactNode;
+  /** Controls whether the modal is open or not */
+  open: boolean;
+  close: () => void;
+}
+
+class StyledModal extends React.Component<StyledModalProps> {
   public render(): JSX.Element {
     const { open, close, children } = this.props;
 
     return (
-      <Container open={open}>
+      <Container>
         <Overlay open={open} onClick={close} />
         <ModalBody open={open}>
           <ModalContent>{children}</ModalContent>
@@ -35,7 +41,7 @@ const slideIn = keyframes`
   }
 `;
 
-const Container = styled<{ open: boolean }, 'div'>('div')`
+const Container = styled.div`
   display: flex;
   align-items: center;
   position: fixed;
@@ -47,7 +53,7 @@ const Container = styled<{ open: boolean }, 'div'>('div')`
 
 const Overlay = styled<{ open: boolean }, 'div'>('div')`
   display: ${({ open }) => (open ? 'flex' : 'none')};
-  z-index: 1;
+  z-index: 9000;
   position: fixed;
   left: 0;
   top: 0;
@@ -61,7 +67,7 @@ const Overlay = styled<{ open: boolean }, 'div'>('div')`
 const ModalBody = styled<{ open: boolean }, 'div'>('div')`
   display: ${({ open }) => (open ? 'flex' : 'none')}
   position: relative;
-  z-index: 2;
+  z-index: 9001;
   opacity: 1;
   margin: 0 auto;
   max-width: 768px;
