@@ -10,7 +10,7 @@ stories.addDecorator(withKnobs);
 stories.add(
   'default',
   wInfo()(() => (
-    <Modal open={boolean('open', false)}>
+    <Modal open={boolean('open', false)} onRequestClose={undefined}>
       <p>{text('Label', 'Default')}</p>
     </Modal>
   )),

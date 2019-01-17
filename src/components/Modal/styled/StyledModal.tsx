@@ -1,20 +1,14 @@
 import * as React from 'react';
 import styled, { keyframes } from '../../../utils/styled-components';
+import { ModalProps } from '../Modal';
 
-interface StyledModalProps {
-  children: React.ReactNode;
-  /** Controls whether the modal is open or not */
-  open: boolean;
-  close: () => void;
-}
-
-class StyledModal extends React.Component<StyledModalProps> {
+class StyledModal extends React.Component<ModalProps> {
   public render(): JSX.Element {
-    const { open, close, children } = this.props;
+    const { open, onRequestClose, children } = this.props;
 
     return (
       <Container>
-        <Overlay open={open} onClick={close} />
+        <Overlay open={open} onClick={onRequestClose} />
         <ModalBody open={open}>
           <ModalContent>{children}</ModalContent>
         </ModalBody>

@@ -1,10 +1,12 @@
 import * as React from 'react';
 import StyledModal from './styled/StyledModal';
 
-interface ModalProps {
+export interface ModalProps {
   children: React.ReactNode;
   /** Controls whether the modal is open or not */
   open: boolean;
+  /** Function to call upon requesting to close */
+  onRequestClose: () => void;
 }
 
 interface ModalState {
@@ -17,8 +19,6 @@ class Modal extends React.Component<ModalProps, ModalState> {
     this.state = {
       open: props.open,
     };
-
-    this.close = this.close.bind(this);
   }
 
   public componentDidUpdate(prevProps: ModalProps): void {
@@ -29,15 +29,12 @@ class Modal extends React.Component<ModalProps, ModalState> {
     }
   }
 
-  public close(): void {
-    this.setState({
-      open: false,
-    });
-  }
-
   public render(): JSX.Element {
     return (
-      <StyledModal open={this.state.open} close={this.close}>
+      <StyledModal
+        open={this.state.open}
+        onRequestClose={this.props.onRequestClose}
+      >
         {this.props.children}
       </StyledModal>
     );
