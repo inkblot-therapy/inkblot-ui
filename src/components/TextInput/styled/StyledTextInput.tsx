@@ -45,6 +45,7 @@ class StyledTextInput extends React.Component<TextInputProps> {
       disabled,
       placeholder,
       value,
+      onChange,
     } = this.props;
     return (
       <div className={className}>
@@ -54,6 +55,7 @@ class StyledTextInput extends React.Component<TextInputProps> {
           error={error}
           value={value}
           disabled={disabled}
+          onChange={onChange}
         />
       </div>
     );

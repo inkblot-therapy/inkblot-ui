@@ -36,6 +36,12 @@ export default class TextInput extends React.Component<
   }
 
   public render() {
-    return <StyledTextInput {...this.props} value={this.state.value} />;
+    return (
+      <StyledTextInput
+        {...this.props}
+        onChange={this.handleChange}
+        value={this.state.value}
+      />
+    );
   }
 }
