@@ -5,6 +5,10 @@ export interface TextInputProps {
   label: string;
   placeholder?: string;
   style?: object;
+  disabled?: boolean;
+  error?: boolean;
+  className?: string;
+  value?: string;
 }
 
 export interface TextInputState {
@@ -15,6 +19,10 @@ export default class TextInput extends React.Component<
   TextInputProps,
   TextInputState
 > {
+  public static defaultProps: TextInputProps = {
+    disabled: false,
+    label: 'Label',
+  };
   constructor(props: TextInputProps) {
     super(props);
 
@@ -28,14 +36,6 @@ export default class TextInput extends React.Component<
   }
 
   public render() {
-    return (
-      <StyledTextInput
-        label={this.props.label}
-        style={this.props.style}
-        placeholder={this.props.placeholder}
-        value={this.state.value}
-        onChange={this.handleChange}
-      />
-    );
+    return <StyledTextInput {...this.props} value={this.state.value} />;
   }
 }

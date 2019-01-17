@@ -38,11 +38,12 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     style: {},
     tertiary: true,
   };
+
   public state: ButtonState = {
     disableClick: false,
   };
 
-  public click = () => {
+  public click = (): boolean => {
     if (this.state.disableClick && this.props.singleClick) {
       return false;
     }

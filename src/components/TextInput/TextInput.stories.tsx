@@ -1,4 +1,4 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { wInfo } from '../../utils/wInfo';
@@ -11,8 +11,10 @@ stories.add(
   'default',
   wInfo()(() => (
     <TextInput
-      label={text('Label', 'Input')}
-      placeholder={text('value', 'RIP X, HE WAS A VISONARY')}
+      error={boolean('error', false)}
+      disabled={boolean('disabled', false)}
+      label={text('Label', 'Basic')}
+      placeholder={text('value', 'Placeholder')}
     />
   )),
 );
