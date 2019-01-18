@@ -18,7 +18,7 @@ export interface TextInputProps {
   type?: string;
   /** className of surrounding div .className > label, .className >input */
   className?: string;
-  /** inline message */
+  /** inline message, good for error text */
   inlineMessage?: string;
   /** default value */
   value?: string;
