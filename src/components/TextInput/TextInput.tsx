@@ -4,18 +4,19 @@ import StyledTextInput from './styled/StyledTextInput';
 export interface TextInputProps {
   label: string;
   placeholder?: string;
-  style?: object;
+  style?: {};
   disabled?: boolean;
   error?: boolean;
   className?: string;
   value?: string;
-  onChange?: () => void;
+  onChange?: (v?: {}) => void;
 }
 
 export default class TextInput extends React.Component<TextInputProps> {
   public static defaultProps: TextInputProps = {
     disabled: false,
     label: 'Label',
+    onChange: undefined,
   };
 
   public render() {

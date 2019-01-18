@@ -15,6 +15,7 @@ stories.add(
       disabled={boolean('disabled', false)}
       label={text('Label', 'Basic')}
       placeholder={text('value', 'Placeholder')}
+      onChange={(v) => console.log(v.target.value, 'hel')}
     />
   )),
 );

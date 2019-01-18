@@ -51,6 +51,9 @@ class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
 
   public handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ value: event.target.value });
+    if (this.props.onChange) {
+      this.props.onChange(event);
+    }
   }
 
   public render() {
@@ -62,7 +65,6 @@ class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
       placeholder,
       value,
     } = this.props;
-
     return (
       <div className={className}>
         <Label>{label}</Label>
