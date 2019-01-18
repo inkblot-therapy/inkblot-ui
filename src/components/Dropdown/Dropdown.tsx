@@ -3,7 +3,7 @@ import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
 /* TODO: Add name property
-         Only use intId when !== NaN
+         Fix when value is not number
 */
 
 interface DropdownProps {
@@ -15,8 +15,8 @@ interface DropdownProps {
 
 interface DropdownState {
   open: boolean;
-  selected: object[];
-  options: object[];
+  selected: any[];
+  options: any[];
 }
 
 class Dropdown extends React.Component<DropdownProps, DropdownState> {
@@ -57,30 +57,42 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   public selectOption(event: React.SyntheticEvent): void {
     event.stopPropagation();
     const { id } = event.currentTarget;
-    const intId = parseInt(id, 10);
+    const formattedId = parseInt(id, 10) || id;
 
     this.setState({
+      options: _.filter(
+        this.state.options,
+        (option: { value: any }) => option.value !== formattedId,
+      ),
       selected: [
         ...this.state.selected,
-        _.find(this.state.options, ({ value }) => value === intId),
+        _.find(
+          this.state.options,
+          (option: { value: any }) => option.value === formattedId,
+        ),
       ],
-      options: _.filter(this.state.options, ({ value }) => value !== intId),
     });
   }
 
   public deselectOption(event: React.SyntheticEvent): void {
     event.stopPropagation();
     const { id } = event.currentTarget;
-    const intId = parseInt(id, 10);
+    const formattedId = parseInt(id, 10) || id;
 
     this.setState({
-      selected: _.filter(this.state.selected, ({ value }) => value !== intId),
       options: _.sortBy(
         [
           ...this.state.options,
-          _.find(this.state.selected, ({ value }) => value === intId),
+          _.find(
+            this.state.selected,
+            (option: { value: any }) => option.value === formattedId,
+          ),
         ],
         ['value'],
+      ),
+      selected: _.filter(
+        this.state.selected,
+        (option: { value: any }) => option.value !== formattedId,
       ),
     });
   }

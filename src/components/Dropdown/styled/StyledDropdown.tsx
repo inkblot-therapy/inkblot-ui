@@ -91,9 +91,13 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
       return <span>{label}</span>;
     }
 
-    return _.map(selected, ({ value, label }) => (
-      <SelectedOption id={value} key={value} onClick={deselectOption}>
-        <span>{label}</span>
+    return _.map(selected, (option: { value: any; label: string }) => (
+      <SelectedOption
+        id={option.value}
+        key={option.value}
+        onClick={deselectOption}
+      >
+        <span>{option.label}</span>
       </SelectedOption>
     ));
   }
@@ -105,9 +109,9 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
       return <NoOptions>No options</NoOptions>;
     }
 
-    return _.map(options, ({ value, label }) => (
-      <Option id={value} key={value} onClick={selectOption}>
-        <span>{label}</span>
+    return _.map(options, (option: { value: any; label: string }) => (
+      <Option id={option.value} key={option.value} onClick={selectOption}>
+        <span>{option.label}</span>
       </Option>
     ));
   }
