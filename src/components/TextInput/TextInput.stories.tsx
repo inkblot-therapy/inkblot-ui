@@ -16,7 +16,7 @@ stories.add(
       name={text('name')}
       disabled={boolean('disabled', false)}
       label={text('Label', 'Basic')}
-      placeholder={text('value', 'Placeholder')}
+      placeholder={text('placeholder', 'Placeholder')}
       type={text('type', 'text')}
       inlineMessage={text('Inline Message', '')}
     />

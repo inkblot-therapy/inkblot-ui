@@ -2,7 +2,10 @@ import * as React from 'react';
 import styled from '../../../utils/styled-components';
 import { TextInputProps } from '../TextInput';
 
-const Input = styled<{ disabled?: boolean; error?: boolean }, 'input'>('input')`
+const Input = styled<
+  { disabled?: boolean; error?: boolean; type?: string },
+  'input'
+>('input')`
   min-width: 200px;
   height: 40px;
   padding-left: 10px;
@@ -11,6 +14,7 @@ const Input = styled<{ disabled?: boolean; error?: boolean }, 'input'>('input')`
   font-family: "Source Sans Pro", sans-serif;
   font-size: 16px;
   color: "#0f2045";
+  letter-spacing: ${({ type }) => (type === 'password' ? '2px' : 'normal')};
   border: ${({ error }) => (error ? 'solid #cf1a1a' : 'solid transparent')};
   background-color: #fafafa;
   transition: 0.25s;
@@ -21,6 +25,7 @@ const Input = styled<{ disabled?: boolean; error?: boolean }, 'input'>('input')`
   }
   cursor: ${({ disabled }) => (!disabled ? 'auto' : 'not-allowed')};
   ::placeholder {
+    letter-spacing: normal;
     color: ${({ disabled }) =>
       disabled ? 'rgba(15, 32, 69, 0.25)' : 'rgba(15, 32, 69, 0.75);'};
   }
