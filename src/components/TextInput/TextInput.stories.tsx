@@ -24,14 +24,24 @@ stories.add(
   'withStyles',
   wInfo()(() => (
     <TextInput
-      error={boolean('error', false)}
-      className={text('className')}
-      disabled={boolean('disabled', false)}
       label={text('Label', 'I got Styles')}
       placeholder={text('value', 'Placeholder')}
-      onChange={(v) => console.log(v.target.value, 'hel')}
       labelStyle={{ color: 'red' }}
       inputStyle={{ backgroundColor: '#dab420' }}
     />
+  )),
+);
+
+const onChange = (v: object) => {
+  console.log(
+    `%c ${v.target.value} `,
+    'font-weight: bold; font-size: 50px; color: #dab420;',
+  );
+};
+
+stories.add(
+  'optional callback ',
+  wInfo()(() => (
+    <TextInput label={text('Label', 'Check Console')} onChange={onChange} />
   )),
 );
