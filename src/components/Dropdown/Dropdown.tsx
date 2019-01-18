@@ -4,7 +4,6 @@ import StyledDropdown from './styled/StyledDropdown';
 
 /* TODO: Add name property
          Only use intId when !== NaN
-         Sort options
 */
 
 interface DropdownProps {
@@ -76,10 +75,13 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     this.setState({
       selected: _.filter(this.state.selected, ({ value }) => value !== intId),
-      options: [
-        ...this.state.options,
-        _.find(this.state.selected, ({ value }) => value === intId),
-      ],
+      options: _.sortBy(
+        [
+          ...this.state.options,
+          _.find(this.state.selected, ({ value }) => value === intId),
+        ],
+        ['value'],
+      ),
     });
   }
 
