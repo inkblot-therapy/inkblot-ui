@@ -53,7 +53,7 @@ const InlineMessage = styled<{ error?: boolean }, 'p'>('p')`
 `;
 
 export interface TextInputState {
-  value: string;
+  value?: string;
 }
 
 class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
