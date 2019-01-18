@@ -78,12 +78,14 @@ class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
       labelStyle,
       inputStyle,
       type,
+      name,
       inlineMessage,
     } = this.props;
     return (
       <div className={className}>
         <Label style={labelStyle}>{label}</Label>
         <Input
+          name={name}
           style={inputStyle}
           placeholder={placeholder}
           error={error}

@@ -4,6 +4,8 @@ import StyledTextInput from './styled/StyledTextInput';
 export interface TextInputProps {
   /** label */
   label: string;
+  /** name */
+  name: string;
   /** placeholder */
   placeholder?: string;
   /** label style */
@@ -30,6 +32,7 @@ export default class TextInput extends React.Component<TextInputProps> {
   public static defaultProps: TextInputProps = {
     disabled: false,
     label: 'Label',
+    name: '',
     type: 'text',
   };
 

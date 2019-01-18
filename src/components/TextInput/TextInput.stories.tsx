@@ -13,6 +13,7 @@ stories.add(
     <TextInput
       error={boolean('error', false)}
       className={text('className')}
+      name={text('name')}
       disabled={boolean('disabled', false)}
       label={text('Label', 'Basic')}
       placeholder={text('value', 'Placeholder')}
