@@ -1,14 +1,20 @@
 import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
+// TODO: Clicking on dropdown when open
+//       Add name property
+
 interface DropdownProps {
-  children: React.ReactNode;
   /** Label for the dropdown */
   label: string;
+  /** Options to be displayed in the dropdown */
+  options: object[];
 }
 
 interface DropdownState {
   open: boolean;
+  selected: object[];
+  options: object[];
 }
 
 class Dropdown extends React.Component<DropdownProps, DropdownState> {
@@ -16,6 +22,8 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     super(props);
     this.state = {
       open: false,
+      options: props.options,
+      selected: [],
     };
 
     this.openDropdown = this.openDropdown.bind(this);
@@ -49,9 +57,8 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         open={this.state.open}
         openDropdown={this.openDropdown}
         closeDropdown={this.closeDropdown}
-      >
-        {this.props.children}
-      </StyledDropdown>
+        options={this.state.options}
+      />
     );
   }
 }
