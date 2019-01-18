@@ -29,10 +29,7 @@ stories.add(
     <Button
       label={text('Label', 'RIP X, HE WAS A VISONARY')}
       primary={boolean('Primary', true)}
-      secondary={boolean('Secondary', false)}
-      tertiary={boolean('Tertiary', false)}
       disabled={boolean('Disabled', false)}
-      singleClick={boolean('Single Click', true)}
       onClick={action('clicked')}
     />
   )),
@@ -44,9 +41,6 @@ stories.add(
       label={text('Label', 'RIP X, HE WAS A VISONARY')}
       primary={boolean('Primary', false)}
       secondary={boolean('Secondary', true)}
-      tertiary={boolean('Tertiary', false)}
-      disabled={boolean('Disabled', false)}
-      singleClick={boolean('Single Click', true)}
       onClick={action('clicked')}
     />
   )),
@@ -58,7 +52,6 @@ stories.add(
       label={text('Label', 'RIP X, HE WAS A VISONARY')}
       primary={boolean('Primary', false)}
       secondary={boolean('Secondary', false)}
-      tertiary={boolean('Tertiary', false)}
       disabled={boolean('Disabled', true)}
       singleClick={boolean('Single Click', true)}
       onClick={action('clicked')}
