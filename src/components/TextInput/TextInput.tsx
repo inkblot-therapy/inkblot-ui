@@ -10,7 +10,7 @@ export interface TextInputProps {
   placeholder?: string;
   /** label style */
   labelStyle?: object;
-  /** label style */
+  /** input style */
   inputStyle?: object;
   /** disabled */
   disabled?: boolean;
