@@ -17,12 +17,13 @@ stories.add(
       label={text('Label', 'Basic')}
       placeholder={text('value', 'Placeholder')}
       type={text('type', 'text')}
+      inlineMessage={text('Inline Message', '')}
     />
   )),
 );
 
 stories.add(
-  'withStyles',
+  'optional styles',
   wInfo()(() => (
     <TextInput
       label={text('Label', 'I got Styles')}
@@ -44,5 +45,17 @@ stories.add(
   'optional callback ',
   wInfo()(() => (
     <TextInput label={text('Label', 'Check Console')} onChange={onChange} />
+  )),
+);
+
+stories.add(
+  'inline message',
+  wInfo()(() => (
+    <TextInput
+      error={boolean('error', false)}
+      label={text('Label', 'Inline Message')}
+      placeholder={text('value', 'Placeholder')}
+      inlineMessage={text('Inline Message', 'This is an Inline Message')}
+    />
   )),
 );

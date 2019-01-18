@@ -18,6 +18,8 @@ export interface TextInputProps {
   type?: string;
   /** className of surrounding div .className > label, .className >input */
   className?: string;
+  /** inline message */
+  inlineMessage?: string;
   /** default value */
   value?: string;
   /** onChange  */

@@ -13,6 +13,7 @@ const Input = styled<{ disabled?: boolean; error?: boolean }, 'input'>('input')`
   color: "#0f2045";
   border: ${({ error }) => (error ? 'solid #cf1a1a' : 'solid transparent')};
   background-color: #fafafa;
+  transition: 0.25s;
   &:focus {
     outline: none;
     box-shadow: 0 0 10px 0 rgba(99, 140, 177, 0.2);
@@ -34,6 +35,16 @@ const Label = styled.label`
   color: #0f2045;
   display: block;
   margin-bottom: 20px;
+`;
+
+const InlineMessage = styled<{ error?: boolean }, 'p'>('p')`
+  font-family: "Source Sans Pro", sans-serif;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  transition: 0.25s;
+  color: ${({ error }) => (error ? '#cf1a1a' : 'rgba(15, 32, 69, 0.75)')};
 `;
 
 export interface TextInputState {
@@ -67,6 +78,7 @@ class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
       labelStyle,
       inputStyle,
       type,
+      inlineMessage,
     } = this.props;
     return (
       <div className={className}>
@@ -80,6 +92,7 @@ class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
           onChange={this.handleChange}
           type={type}
         />
+        <InlineMessage error={error}>{inlineMessage}</InlineMessage>
       </div>
     );
   }
