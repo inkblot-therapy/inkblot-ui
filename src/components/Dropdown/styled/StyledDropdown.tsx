@@ -35,26 +35,31 @@ const DropdownContainer = styled<{ open: boolean }, 'div'>('div')`
   outline: none;
 `;
 
-class StyledDropdown extends React.Component<{
+interface StyledDropdownProps {
   children: React.ReactNode;
   label: string;
   open: boolean;
   openDropdown: () => void;
   closeDropdown: () => void;
-}> {
+}
+
+class StyledDropdown extends React.Component<StyledDropdownProps> {
   public render(): JSX.Element {
+    const { children, label, open, openDropdown, closeDropdown } = this.props;
+
     return (
       <div>
-        <Dropdown onClick={this.props.openDropdown}>
-          <Label>{this.props.label}</Label>
+        <Dropdown onClick={openDropdown}>
+          <Label>{label}</Label>
         </Dropdown>
         <DropdownContainer
           id="dropdown-container"
-          open={this.props.open}
-          onBlur={this.props.closeDropdown}
+          open={open}
+          onClick={closeDropdown}
+          onBlur={closeDropdown}
           tabIndex={0}
         >
-          {this.props.children}
+          {children}
         </DropdownContainer>
       </div>
     );

@@ -27,7 +27,12 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
       {
         open: true,
       },
-      () => document.getElementById('dropdown-container').focus(),
+      () => {
+        const dropdownContainer = document.getElementById('dropdown-container');
+        if (dropdownContainer) {
+          dropdownContainer.focus();
+        }
+      },
     );
   }
 
