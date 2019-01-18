@@ -61,7 +61,7 @@ class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
     super(props);
 
     this.state = {
-      value: '',
+      value: this.props.value,
     };
   }
 
@@ -79,7 +79,6 @@ class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
       error,
       disabled,
       placeholder,
-      value,
       labelStyle,
       inputStyle,
       type,
@@ -94,7 +93,7 @@ class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
           style={inputStyle}
           placeholder={placeholder}
           error={error}
-          value={value && this.state.value}
+          value={this.state.value}
           disabled={disabled}
           onChange={this.handleChange}
           type={type}
