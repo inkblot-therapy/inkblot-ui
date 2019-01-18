@@ -14,6 +14,8 @@ export interface TextInputProps {
   disabled?: boolean;
   /** error */
   error?: boolean;
+  /** type */
+  type?: string;
   /** className of surrounding div .className > label, .className >input */
   className?: string;
   /** default value */
@@ -26,6 +28,7 @@ export default class TextInput extends React.Component<TextInputProps> {
   public static defaultProps: TextInputProps = {
     disabled: false,
     label: 'Label',
+    type: 'text',
   };
 
   public render() {

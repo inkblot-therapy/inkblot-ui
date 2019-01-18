@@ -16,6 +16,7 @@ stories.add(
       disabled={boolean('disabled', false)}
       label={text('Label', 'Basic')}
       placeholder={text('value', 'Placeholder')}
+      type={text('type', 'text')}
     />
   )),
 );
