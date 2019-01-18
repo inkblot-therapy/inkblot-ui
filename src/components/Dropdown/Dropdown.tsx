@@ -2,9 +2,9 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
-/* TODO: Clicking on dropdown when open
-         Add name property
+/* TODO: Add name property
          Only use intId when !== NaN
+         Sort options
 */
 
 interface DropdownProps {
@@ -56,6 +56,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 
   public selectOption(event: React.SyntheticEvent): void {
+    event.stopPropagation();
     const { id } = event.currentTarget;
     const intId = parseInt(id, 10);
 
@@ -69,6 +70,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 
   public deselectOption(event: React.SyntheticEvent): void {
+    event.stopPropagation();
     const { id } = event.currentTarget;
     const intId = parseInt(id, 10);
 

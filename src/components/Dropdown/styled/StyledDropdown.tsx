@@ -6,6 +6,7 @@ const DropdownContainer = styled.div`
   min-width: 200px;
   display: inline-block;
   max-width: 300px;
+  outline: none;
 `;
 
 const Dropdown = styled.div`
@@ -34,7 +35,6 @@ const OptionsContainer = styled<{ open: boolean }, 'div'>('div')`
   border-radius: 4px;
   box-shadow: 0 0 10px 0 rgba(99, 140, 177, 0.2);
   margin-top: 10px;
-  outline: none;
 `;
 
 const Option = styled.div`
@@ -43,6 +43,7 @@ const Option = styled.div`
   padding-left: 10px;
   display: flex;
   align-items: center;
+  cursor: pointer;
   :hover {
     opacity: 0.9;
     background-color: #ecf9f9;
@@ -115,18 +116,15 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
     const { open, openDropdown, closeDropdown } = this.props;
 
     return (
-      <DropdownContainer>
-        <Dropdown onClick={openDropdown}>
+      <DropdownContainer
+        id="dropdown-container"
+        tabIndex={0}
+        onBlur={closeDropdown}
+      >
+        <Dropdown onClick={open ? closeDropdown : openDropdown}>
           <Label>{this.renderSelectedOptions()}</Label>
         </Dropdown>
-        <OptionsContainer
-          id="dropdown-container"
-          open={open}
-          onBlur={closeDropdown}
-          tabIndex={0}
-        >
-          {this.renderOptions()}
-        </OptionsContainer>
+        <OptionsContainer open={open}>{this.renderOptions()}</OptionsContainer>
       </DropdownContainer>
     );
   }
