@@ -5,7 +5,6 @@ import StyledDropdown from './styled/StyledDropdown';
 /* TODO: Clicking on dropdown when open
          Add name property
          Only use intId when !== NaN
-         Make width of options same as dropdown
 */
 
 interface DropdownProps {

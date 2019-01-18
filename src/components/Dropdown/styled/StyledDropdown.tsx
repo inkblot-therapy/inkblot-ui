@@ -2,9 +2,15 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import styled from '../../../utils/styled-components';
 
+const DropdownContainer = styled.div`
+  min-width: 200px;
+  display: inline-block;
+  max-width: 300px;
+`;
+
 const Dropdown = styled.div`
   min-width: 180px;
-  height: 40px;
+  min-height: 40px;
   display: inline-flex;
   padding-left: 10px;
   padding-right: 10px;
@@ -20,7 +26,10 @@ const Label = styled.div`
 
 const OptionsContainer = styled<{ open: boolean }, 'div'>('div')`
   min-width: 200px;
-  display: ${({ open }) => (open ? 'table' : 'none')};
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  display: ${({ open }) => (open ? 'block' : 'none')};
   background-color: #ffffff;
   border-radius: 4px;
   box-shadow: 0 0 10px 0 rgba(99, 140, 177, 0.2);
@@ -52,6 +61,8 @@ const SelectedOption = styled.div`
   padding-left: 10px;
   padding-right: 20px;
   margin-right: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 `;
 
 const NoOptions = styled.div`
@@ -104,7 +115,7 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
     const { open, openDropdown, closeDropdown } = this.props;
 
     return (
-      <div>
+      <DropdownContainer>
         <Dropdown onClick={openDropdown}>
           <Label>{this.renderSelectedOptions()}</Label>
         </Dropdown>
@@ -116,7 +127,7 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
         >
           {this.renderOptions()}
         </OptionsContainer>
-      </div>
+      </DropdownContainer>
     );
   }
 }
