@@ -2,21 +2,30 @@ import * as React from 'react';
 import StyledTextInput from './styled/StyledTextInput';
 
 export interface TextInputProps {
+  /** label */
   label: string;
+  /** placeholder */
   placeholder?: string;
-  style?: {};
+  /** label style */
+  labelStyle?: object;
+  /** label style */
+  inputStyle?: object;
+  /** disabled */
   disabled?: boolean;
+  /** error */
   error?: boolean;
+  /** className of surrounding div .className > label, .className >input */
   className?: string;
+  /** default value */
   value?: string;
-  onChange?: (v?: {}) => void;
+  /** onChange  */
+  onChange?: (event: object) => void;
 }
 
 export default class TextInput extends React.Component<TextInputProps> {
   public static defaultProps: TextInputProps = {
     disabled: false,
     label: 'Label',
-    onChange: undefined,
   };
 
   public render() {

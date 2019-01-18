@@ -64,11 +64,14 @@ class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
       disabled,
       placeholder,
       value,
+      labelStyle,
+      inputStyle,
     } = this.props;
     return (
       <div className={className}>
-        <Label>{label}</Label>
+        <Label style={labelStyle}>{label}</Label>
         <Input
+          style={inputStyle}
           placeholder={placeholder}
           error={error}
           value={value && this.state.value}
