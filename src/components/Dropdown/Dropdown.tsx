@@ -18,13 +18,23 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
       open: false,
     };
 
-    this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.openDropdown = this.openDropdown.bind(this);
+    this.closeDropdown = this.closeDropdown.bind(this);
   }
 
-  public toggleDropdown(): void {
-    this.setState((prevState: Readonly<DropdownState>) => ({
-      open: !prevState.open,
-    }));
+  public openDropdown(): void {
+    this.setState(
+      {
+        open: true,
+      },
+      () => document.getElementById('dropdown-container').focus(),
+    );
+  }
+
+  public closeDropdown(): void {
+    this.setState({
+      open: false,
+    });
   }
 
   public render(): JSX.Element {
@@ -32,7 +42,8 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
       <StyledDropdown
         label={this.props.label}
         open={this.state.open}
-        toggleDropdown={this.toggleDropdown}
+        openDropdown={this.openDropdown}
+        closeDropdown={this.closeDropdown}
       >
         {this.props.children}
       </StyledDropdown>

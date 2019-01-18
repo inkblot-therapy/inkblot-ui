@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '../../../utils/styled-components';
 
 const Dropdown = styled.div`
-  min-width: 200px;
+  min-width: 180px;
   height: 40px;
   display: inline-flex;
   padding-left: 10px;
@@ -25,18 +25,38 @@ const Label = styled.p`
   margin: 0;
 `;
 
+const DropdownContainer = styled<{ open: boolean }, 'div'>('div')`
+  min-width: 200px;
+  display: ${({ open }) => (open ? 'table' : 'none')};
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 0 rgba(99, 140, 177, 0.2);
+  margin-top: 10px;
+  outline: none;
+`;
+
 class StyledDropdown extends React.Component<{
   children: React.ReactNode;
   label: string;
   open: boolean;
-  toggleDropdown: () => void;
+  openDropdown: () => void;
+  closeDropdown: () => void;
 }> {
   public render(): JSX.Element {
     return (
-      <Dropdown onClick={this.props.toggleDropdown}>
-        <Label>{this.props.label}</Label>
-        {this.props.children}
-      </Dropdown>
+      <div>
+        <Dropdown onClick={this.props.openDropdown}>
+          <Label>{this.props.label}</Label>
+        </Dropdown>
+        <DropdownContainer
+          id="dropdown-container"
+          open={this.props.open}
+          onBlur={this.props.closeDropdown}
+          tabIndex={0}
+        >
+          {this.props.children}
+        </DropdownContainer>
+      </div>
     );
   }
 }
