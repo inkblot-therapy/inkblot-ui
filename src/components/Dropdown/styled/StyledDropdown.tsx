@@ -65,12 +65,13 @@ interface StyledDropdownProps {
   openDropdown: () => void;
   closeDropdown: () => void;
   options: object[];
+  selectOption: (event: React.SyntheticEvent) => void;
 }
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
   public renderOptions(): object[] {
-    return _.map(this.props.options, ({ label }) => (
-      <Option>
+    return _.map(this.props.options, ({ value, label }) => (
+      <Option id={value} key={value} onClick={this.props.selectOption}>
         <p>{label}</p>
       </Option>
     ));

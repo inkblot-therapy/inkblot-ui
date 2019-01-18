@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
@@ -28,6 +29,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     this.openDropdown = this.openDropdown.bind(this);
     this.closeDropdown = this.closeDropdown.bind(this);
+    this.selectOption = this.selectOption.bind(this);
   }
 
   public openDropdown(): void {
@@ -50,6 +52,19 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     });
   }
 
+  public selectOption(event: React.SyntheticEvent): void {
+    const { id } = event.currentTarget;
+    const intId = parseInt(id, 10);
+
+    this.setState({
+      selected: [
+        ...this.state.selected,
+        _.find(this.state.options, ({ value }) => value === intId),
+      ],
+      options: _.filter(this.state.options, ({ value }) => value !== intId),
+    });
+  }
+
   public render(): JSX.Element {
     return (
       <StyledDropdown
@@ -58,6 +73,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         openDropdown={this.openDropdown}
         closeDropdown={this.closeDropdown}
         options={this.state.options}
+        selectOption={this.selectOption}
       />
     );
   }
