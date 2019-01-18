@@ -59,17 +59,23 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     const { id } = event.currentTarget;
     const intId = parseInt(id, 10);
 
-    this.setState({
-      selected: [
-        ...this.state.selected,
-        _.find(this.state.options, ({ value }) => value === intId),
-      ],
-      options: _.filter(this.state.options, ({ value }) => value !== intId),
-    });
+    this.setState(
+      {
+        selected: [
+          ...this.state.selected,
+          _.find(this.state.options, ({ value }) => value === intId),
+        ],
+        options: _.filter(this.state.options, ({ value }) => value !== intId),
+      },
+      () => {
+        if (this.state.options.length === 0) {
+          this.closeDropdown();
+        }
+      },
+    );
   }
 
   public render(): JSX.Element {
-    console.log(this.state);
     return (
       <StyledDropdown
         label={this.props.label}
