@@ -84,6 +84,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         closeDropdown={this.closeDropdown}
         options={this.state.options}
         selectOption={this.selectOption}
+        selected={this.state.selected}
       />
     );
   }

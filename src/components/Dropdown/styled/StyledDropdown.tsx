@@ -14,7 +14,7 @@ const Dropdown = styled.div`
   cursor: pointer;
 `;
 
-const Label = styled.p`
+const Label = styled.div`
   font-family: "Source Sans Pro", sans-serif;
   font-size: 16px;
   font-weight: normal;
@@ -23,7 +23,9 @@ const Label = styled.p`
   line-height: normal;
   letter-spacing: normal;
   color: #0f2045;
-  margin: 0;
+  p {
+    margin: 0;
+  }
 `;
 
 const OptionsContainer = styled<{ open: boolean }, 'div'>('div')`
@@ -59,6 +61,27 @@ const Option = styled.div`
   }
 `;
 
+const SelectedOption = styled.div`
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px 0 rgba(99, 140, 177, 0.2);
+  background-color: #ffffff;
+  padding-left: 10px;
+  padding-right: 20px;
+  margin-right: 10px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  text-align: center;
+  color: #2e5fca;
+`;
+
 interface StyledDropdownProps {
   label: string;
   open: boolean;
@@ -66,24 +89,41 @@ interface StyledDropdownProps {
   closeDropdown: () => void;
   options: object[];
   selectOption: (event: React.SyntheticEvent) => void;
+  selected: object[];
 }
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
+  public renderSelectedOptions(): object[] | JSX.Element {
+    const { label, selected } = this.props;
+
+    if (selected.length === 0) {
+      return <p>{label}</p>;
+    }
+
+    return _.map(selected, ({ value, label }) => (
+      <SelectedOption id={value} key={value}>
+        <p>{label}</p>
+      </SelectedOption>
+    ));
+  }
+
   public renderOptions(): object[] {
-    return _.map(this.props.options, ({ value, label }) => (
-      <Option id={value} key={value} onClick={this.props.selectOption}>
+    const { options, selectOption } = this.props;
+
+    return _.map(options, ({ value, label }) => (
+      <Option id={value} key={value} onClick={selectOption}>
         <p>{label}</p>
       </Option>
     ));
   }
 
   public render(): JSX.Element {
-    const { label, open, openDropdown, closeDropdown } = this.props;
+    const { open, openDropdown, closeDropdown } = this.props;
 
     return (
       <div>
         <Dropdown onClick={openDropdown}>
-          <Label>{label}</Label>
+          <Label>{this.renderSelectedOptions()}</Label>
         </Dropdown>
         <OptionsContainer
           id="dropdown-container"
