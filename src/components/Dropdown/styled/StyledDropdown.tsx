@@ -15,17 +15,7 @@ const Dropdown = styled.div`
 `;
 
 const Label = styled.div`
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #0f2045;
-  p {
-    margin: 0;
-  }
+  ${({ theme }) => theme.input.text.standard}
 `;
 
 const OptionsContainer = styled<{ open: boolean }, 'div'>('div')`
@@ -39,14 +29,7 @@ const OptionsContainer = styled<{ open: boolean }, 'div'>('div')`
 `;
 
 const Option = styled.div`
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #0f2045;
+  ${({ theme }) => theme.input.text.standard}
   height: 40px;
   padding-left: 10px;
   display: flex;
@@ -56,12 +39,10 @@ const Option = styled.div`
     background-color: #ecf9f9;
     font-weight: 600;
   }
-  p {
-    margin: 0;
-  }
 `;
 
 const SelectedOption = styled.div`
+  ${({ theme }) => theme.input.text.selectedOption}
   display: inline-flex;
   align-items: center;
   height: 30px;
@@ -71,14 +52,12 @@ const SelectedOption = styled.div`
   padding-left: 10px;
   padding-right: 20px;
   margin-right: 10px;
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: 0.1px;
-  color: #2e5fca;
+`;
+
+const NoOptions = styled.div`
+  ${({ theme }) => theme.input.text.standard}
+  text-align: center;
+  padding: 10px 0px;
 `;
 
 interface StyledDropdownProps {
@@ -97,22 +76,26 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
     const { label, selected, deselectOption } = this.props;
 
     if (selected.length === 0) {
-      return <p>{label}</p>;
+      return <span>{label}</span>;
     }
 
     return _.map(selected, ({ value, label }) => (
       <SelectedOption id={value} key={value} onClick={deselectOption}>
-        <p>{label}</p>
+        <span>{label}</span>
       </SelectedOption>
     ));
   }
 
-  public renderOptions(): object[] {
+  public renderOptions(): object[] | JSX.Element {
     const { options, selectOption } = this.props;
+
+    if (options.length === 0) {
+      return <NoOptions>No options</NoOptions>;
+    }
 
     return _.map(options, ({ value, label }) => (
       <Option id={value} key={value} onClick={selectOption}>
-        <p>{label}</p>
+        <span>{label}</span>
       </Option>
     ));
   }

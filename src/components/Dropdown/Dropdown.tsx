@@ -2,8 +2,11 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
-// TODO: Clicking on dropdown when open
-//       Add name property
+/* TODO: Clicking on dropdown when open
+         Add name property
+         Only use intId when !== NaN
+         Make width of options same as dropdown
+*/
 
 interface DropdownProps {
   /** Label for the dropdown */
@@ -34,9 +37,6 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 
   public openDropdown(): void {
-    if (this.state.open) {
-      return;
-    }
     this.setState(
       {
         open: true,
@@ -60,40 +60,26 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     const { id } = event.currentTarget;
     const intId = parseInt(id, 10);
 
-    this.setState(
-      {
-        selected: [
-          ...this.state.selected,
-          _.find(this.state.options, ({ value }) => value === intId),
-        ],
-        options: _.filter(this.state.options, ({ value }) => value !== intId),
-      },
-      () => {
-        if (this.state.options.length === 0) {
-          this.closeDropdown();
-        }
-      },
-    );
+    this.setState({
+      selected: [
+        ...this.state.selected,
+        _.find(this.state.options, ({ value }) => value === intId),
+      ],
+      options: _.filter(this.state.options, ({ value }) => value !== intId),
+    });
   }
 
   public deselectOption(event: React.SyntheticEvent): void {
     const { id } = event.currentTarget;
     const intId = parseInt(id, 10);
 
-    this.setState(
-      {
-        selected: _.filter(this.state.selected, ({ value }) => value !== intId),
-        options: [
-          ...this.state.options,
-          _.find(this.state.selected, ({ value }) => value === intId),
-        ],
-      },
-      () => {
-        if (this.state.options.length === 0) {
-          this.closeDropdown();
-        }
-      },
-    );
+    this.setState({
+      selected: _.filter(this.state.selected, ({ value }) => value !== intId),
+      options: [
+        ...this.state.options,
+        _.find(this.state.selected, ({ value }) => value === intId),
+      ],
+    });
   }
 
   public render(): JSX.Element {
