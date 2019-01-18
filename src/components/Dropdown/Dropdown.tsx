@@ -30,6 +30,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     this.openDropdown = this.openDropdown.bind(this);
     this.closeDropdown = this.closeDropdown.bind(this);
     this.selectOption = this.selectOption.bind(this);
+    this.deselectOption = this.deselectOption.bind(this);
   }
 
   public openDropdown(): void {
@@ -75,6 +76,26 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     );
   }
 
+  public deselectOption(event: React.SyntheticEvent): void {
+    const { id } = event.currentTarget;
+    const intId = parseInt(id, 10);
+
+    this.setState(
+      {
+        selected: _.filter(this.state.selected, ({ value }) => value !== intId),
+        options: [
+          ...this.state.options,
+          _.find(this.state.selected, ({ value }) => value === intId),
+        ],
+      },
+      () => {
+        if (this.state.options.length === 0) {
+          this.closeDropdown();
+        }
+      },
+    );
+  }
+
   public render(): JSX.Element {
     return (
       <StyledDropdown
@@ -85,6 +106,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         options={this.state.options}
         selectOption={this.selectOption}
         selected={this.state.selected}
+        deselectOption={this.deselectOption}
       />
     );
   }

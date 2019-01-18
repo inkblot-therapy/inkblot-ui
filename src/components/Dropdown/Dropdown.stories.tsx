@@ -8,9 +8,9 @@ const stories = storiesOf('Components/Dropdown', module);
 stories.addDecorator(withKnobs);
 
 const options = [
-  { value: 1, label: 'Option' },
-  { value: 2, label: 'Option' },
-  { value: 3, label: 'Option' },
+  { value: 1, label: 'Option 1' },
+  { value: 2, label: 'Option 2' },
+  { value: 3, label: 'Option 3' },
 ];
 
 stories.add(

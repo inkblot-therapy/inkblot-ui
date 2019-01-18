@@ -78,7 +78,6 @@ const SelectedOption = styled.div`
   font-stretch: normal;
   line-height: normal;
   letter-spacing: 0.1px;
-  text-align: center;
   color: #2e5fca;
 `;
 
@@ -90,18 +89,19 @@ interface StyledDropdownProps {
   options: object[];
   selectOption: (event: React.SyntheticEvent) => void;
   selected: object[];
+  deselectOption: (event: React.SyntheticEvent) => void;
 }
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
   public renderSelectedOptions(): object[] | JSX.Element {
-    const { label, selected } = this.props;
+    const { label, selected, deselectOption } = this.props;
 
     if (selected.length === 0) {
       return <p>{label}</p>;
     }
 
     return _.map(selected, ({ value, label }) => (
-      <SelectedOption id={value} key={value}>
+      <SelectedOption id={value} key={value} onClick={deselectOption}>
         <p>{label}</p>
       </SelectedOption>
     ));
