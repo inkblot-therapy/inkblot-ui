@@ -6,7 +6,7 @@ interface ModalProps {
   /** Controls whether the modal is open or not */
   open: boolean;
   /** Function to call upon requesting to close */
-  onRequestClose: () => void;
+  onRequestClose?: () => void;
 }
 
 interface ModalState {
