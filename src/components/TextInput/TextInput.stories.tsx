@@ -29,7 +29,7 @@ stories.add(
   wInfo()(() => (
     <TextInput
       label={text('Label', 'I got Styles')}
-      placeholder={text('value', 'Placeholder')}
+      placeholder={text('placeholder', 'Placeholder')}
       labelStyle={{ color: 'red' }}
       inputStyle={{ backgroundColor: '#dab420' }}
     />
@@ -60,7 +60,7 @@ stories.add(
     <TextInput
       error={boolean('error', false)}
       label={text('Label', 'Inline Message')}
-      placeholder={text('value', 'Placeholder')}
+      placeholder={text('placeholder', 'Placeholder')}
       inlineMessage={text('Inline Message', 'This is an Inline Message')}
     />
   )),
