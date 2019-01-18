@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '../../../utils/styled-components';
-import { DropdownProps } from '../Dropdown';
 
 const Dropdown = styled.div`
   min-width: 200px;
@@ -26,7 +25,12 @@ const Label = styled.p`
   margin: 0;
 `;
 
-class StyledDropdown extends React.Component<DropdownProps> {
+class StyledDropdown extends React.Component<{
+  children: React.ReactNode;
+  label: string;
+  open: boolean;
+  toggleDropdown: () => void;
+}> {
   public render(): JSX.Element {
     return (
       <Dropdown onClick={this.props.toggleDropdown}>

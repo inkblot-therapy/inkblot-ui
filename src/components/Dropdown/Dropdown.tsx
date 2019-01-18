@@ -1,12 +1,10 @@
 import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
-export interface DropdownProps {
+interface DropdownProps {
   children: React.ReactNode;
   /** Label for the dropdown */
   label: string;
-  toggleDropdown?: () => void;
-  open: boolean;
 }
 
 interface DropdownState {
@@ -29,7 +27,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     }));
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <StyledDropdown
         label={this.props.label}
