@@ -23,6 +23,9 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 
   public openDropdown(): void {
+    if (this.state.open) {
+      return;
+    }
     this.setState(
       {
         open: true,
@@ -43,6 +46,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 
   public render(): JSX.Element {
+    console.log(this.state);
     return (
       <StyledDropdown
         label={this.props.label}
