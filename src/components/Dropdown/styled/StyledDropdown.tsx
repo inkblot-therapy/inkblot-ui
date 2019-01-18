@@ -1,3 +1,4 @@
+import * as _ from 'lodash';
 import * as React from 'react';
 import styled from '../../../utils/styled-components';
 
@@ -25,7 +26,7 @@ const Label = styled.p`
   margin: 0;
 `;
 
-const DropdownContainer = styled<{ open: boolean }, 'div'>('div')`
+const OptionsContainer = styled<{ open: boolean }, 'div'>('div')`
   min-width: 200px;
   display: ${({ open }) => (open ? 'table' : 'none')};
   background-color: #ffffff;
@@ -35,32 +36,62 @@ const DropdownContainer = styled<{ open: boolean }, 'div'>('div')`
   outline: none;
 `;
 
+const Option = styled.div`
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #0f2045;
+  height: 40px;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  :hover {
+    opacity: 0.9;
+    background-color: #ecf9f9;
+    font-weight: 600;
+  }
+  p {
+    margin: 0;
+  }
+`;
+
 interface StyledDropdownProps {
-  children: React.ReactNode;
   label: string;
   open: boolean;
   openDropdown: () => void;
   closeDropdown: () => void;
+  options: object[];
 }
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
+  public renderOptions(): object[] {
+    return _.map(this.props.options, ({ label }) => (
+      <Option>
+        <p>{label}</p>
+      </Option>
+    ));
+  }
+
   public render(): JSX.Element {
-    const { children, label, open, openDropdown, closeDropdown } = this.props;
+    const { label, open, openDropdown, closeDropdown } = this.props;
 
     return (
       <div>
         <Dropdown onClick={openDropdown}>
           <Label>{label}</Label>
         </Dropdown>
-        <DropdownContainer
+        <OptionsContainer
           id="dropdown-container"
           open={open}
-          onClick={closeDropdown}
           onBlur={closeDropdown}
           tabIndex={0}
         >
-          {children}
-        </DropdownContainer>
+          {this.renderOptions()}
+        </OptionsContainer>
       </div>
     );
   }
