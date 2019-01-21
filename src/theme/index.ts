@@ -5,10 +5,22 @@ interface Colors {
   tertiary: string;
 }
 
+interface StringMap {
+  [s: string]: string;
+}
+
+interface Text {
+  standard: StringMap;
+  selectedOption: StringMap;
+}
+
 export interface ThemeInterface {
   button: {
     backgroundColor: Colors;
     textColor: Colors;
+  };
+  input: {
+    text: Text;
   };
 }
 
@@ -25,6 +37,30 @@ const theme: ThemeInterface = {
       primary: '#ffffff',
       secondary: '#ffffff',
       tertiary: '#2e5fca',
+    },
+  },
+  input: {
+    text: {
+      selectedOption: {
+        color: '#2e5fca',
+        fontFamily: '"Source Sans Pro", sans-serif',
+        fontSize: '12px',
+        fontStretch: 'normal',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        letterSpacing: '0.1px',
+        lineHeight: 'normal',
+      },
+      standard: {
+        color: '#0f2045',
+        fontFamily: '"Source Sans Pro", sans-serif',
+        fontSize: '16px',
+        fontStretch: 'normal',
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        letterSpacing: 'normal',
+        lineHeight: 'normal',
+      },
     },
   },
 };

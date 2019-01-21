@@ -30,5 +30,6 @@
     "src/internal",
     "src/**/*.test.tsx",
     "src/**/*.stories.tsx"
-  ]
+  ],
+  "files": ["custom.d.ts"]
 }

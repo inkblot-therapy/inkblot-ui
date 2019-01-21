@@ -1,12 +1,12 @@
 import * as React from 'react';
 import StyledModal from './styled/StyledModal';
 
-export interface ModalProps {
+interface ModalProps {
   children: React.ReactNode;
   /** Controls whether the modal is open or not */
   open: boolean;
   /** Function to call upon requesting to close */
-  onRequestClose: () => void;
+  onRequestClose?: () => void;
 }
 
 interface ModalState {

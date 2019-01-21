@@ -1,21 +1,7 @@
 import * as React from 'react';
 import styled, { keyframes } from '../../../utils/styled-components';
-import { ModalProps } from '../Modal';
 
-class StyledModal extends React.Component<ModalProps> {
-  public render(): JSX.Element {
-    const { open, onRequestClose, children } = this.props;
-
-    return (
-      <Container>
-        <Overlay open={open} onClick={onRequestClose} />
-        <ModalBody open={open}>
-          <ModalContent>{children}</ModalContent>
-        </ModalBody>
-      </Container>
-    );
-  }
-}
+// TODO: Animation for closing
 
 const fadeIn = keyframes`
   from {
@@ -35,8 +21,8 @@ const slideIn = keyframes`
   }
 `;
 
-const Container = styled.div`
-  display: flex;
+const Container = styled<{ open: boolean }, 'div'>('div')`
+  display: ${({ open }) => (open ? 'flex' : 'none')};
   align-items: center;
   position: fixed;
   left: 0;
@@ -79,5 +65,24 @@ const ModalContent = styled.div`
   background-color: #ffffff;
   width: 100%;
 `;
+
+class StyledModal extends React.Component<{
+  children: React.ReactNode;
+  open: boolean;
+  onRequestClose?: () => void;
+}> {
+  public render(): JSX.Element {
+    const { open, onRequestClose, children } = this.props;
+
+    return (
+      <Container open={open}>
+        <Overlay open={open} onClick={onRequestClose} />
+        <ModalBody open={open}>
+          <ModalContent>{children}</ModalContent>
+        </ModalBody>
+      </Container>
+    );
+  }
+}
 
 export default StyledModal;
