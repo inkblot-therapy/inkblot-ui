@@ -57,14 +57,13 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   public selectOption(event: React.SyntheticEvent): void {
     event.stopPropagation();
     const { id } = event.currentTarget;
-    const formattedId = parseInt(id, 10) || id;
     const newOption = _.find(
       this.state.options,
-      (option: { value: any }) => option.value === formattedId,
+      (option: { value: any }) => option.value.toString() === id.toString(),
     );
     const filteredOptions = _.filter(
       this.state.options,
-      (option: { value: any }) => option.value !== formattedId,
+      (option: { value: any }) => option.value.toString() !== id.toString(),
     );
 
     if (newOption) {
@@ -78,14 +77,13 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   public deselectOption(event: React.SyntheticEvent): void {
     event.stopPropagation();
     const { id } = event.currentTarget;
-    const formattedId = parseInt(id, 10) || id;
     const newOption = _.find(
       this.state.selected,
-      (option: { value: any }) => option.value === formattedId,
+      (option: { value: any }) => option.value.toString() === id.toString(),
     );
     const filteredOptions = _.filter(
       this.state.selected,
-      (option: { value: any }) => option.value !== formattedId,
+      (option: { value: any }) => option.value.toString() !== id.toString(),
     );
 
     if (newOption) {
