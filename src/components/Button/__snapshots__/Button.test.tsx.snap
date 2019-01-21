@@ -2,19 +2,40 @@
 
 exports[`Button should render correctly 1`] = `
 .c0 {
-  border-radius: 3px;
-  padding: 0.25em 1em;
-  margin: 0 1em;
-  background: transparent;
-  color: #27ae60;
-  border: 2px solid #27ae60;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 40px;
+  padding: 10px 40px;
+  font-family: "Barlow",sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
+  outline: none;
+  color: #2e5fca;
+  background-color: #ffffff;
+  background-image: none;
+  border: none;
+  box-shadow: 0 0 10px 0 rgba(99,140,177,0.2);
+}
+
+.c0:focus {
+  outline: none;
 }
 
 <button
   className="c0"
   disabled={false}
+  label="default"
   onClick={[Function]}
+  primary={false}
+  secondary={false}
+  singleClick={true}
+  style={Object {}}
+  tertiary={true}
 >
-  Test
+  default
 </button>
 `;
