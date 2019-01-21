@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextInput should render correctly 1`] = `
+.c1 {
+  min-width: 200px;
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 4px;
+  font-family: "Source Sans Pro",sans-serif;
+  font-size: 16px;
+  color: "#0f2045";
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  border: solid transparent;
+  background-color: #fafafa;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  cursor: auto;
+}
+
+.c1:focus {
+  outline: none;
+  box-shadow: 0 0 10px 0 rgba(99,140,177,0.2);
+  background-color: #ffffff;
+}
+
+.c1::-webkit-input-placeholder {
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  color: rgba(15,32,69,0.75);
+}
+
+.c1::-moz-placeholder {
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  color: rgba(15,32,69,0.75);
+}
+
+.c1:-ms-input-placeholder {
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  color: rgba(15,32,69,0.75);
+}
+
+.c1::placeholder {
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  color: rgba(15,32,69,0.75);
+}
+
+.c0 {
+  color: red;
+  font-family: "Source Sans Pro",sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  -webkit-letter-spacing: 0.1px;
+  -moz-letter-spacing: 0.1px;
+  -ms-letter-spacing: 0.1px;
+  letter-spacing: 0.1px;
+  color: #0f2045;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.c2 {
+  font-family: "Source Sans Pro",sans-serif;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  -webkit-letter-spacing: 0.1px;
+  -moz-letter-spacing: 0.1px;
+  -ms-letter-spacing: 0.1px;
+  letter-spacing: 0.1px;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  color: rgba(15,32,69,0.75);
+}
+
+<div>
+  <label
+    className="c0"
+  >
+    Label
+  </label>
+  <input
+    className="c1"
+    disabled={false}
+    name=""
+    onChange={[Function]}
+    type="text"
+  />
+  <p
+    className="c2"
+  />
+</div>
+`;
