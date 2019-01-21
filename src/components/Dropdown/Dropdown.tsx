@@ -15,8 +15,8 @@ interface DropdownProps {
 
 interface DropdownState {
   open: boolean;
-  selected: any[];
-  options: any[];
+  selected: object[];
+  options: object[];
 }
 
 class Dropdown extends React.Component<DropdownProps, DropdownState> {
@@ -58,43 +58,40 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     event.stopPropagation();
     const { id } = event.currentTarget;
     const formattedId = parseInt(id, 10) || id;
+    const newOption = _.find(
+      this.state.options,
+      (option: { value: any }) => option.value === formattedId,
+    );
 
-    this.setState({
-      options: _.filter(
-        this.state.options,
-        (option: { value: any }) => option.value !== formattedId,
-      ),
-      selected: [
-        ...this.state.selected,
-        _.find(
+    if (newOption) {
+      this.setState({
+        options: _.filter(
           this.state.options,
-          (option: { value: any }) => option.value === formattedId,
+          (option: { value: any }) => option.value !== formattedId,
         ),
-      ],
-    });
+        selected: [...this.state.selected, newOption],
+      });
+    }
   }
 
   public deselectOption(event: React.SyntheticEvent): void {
     event.stopPropagation();
     const { id } = event.currentTarget;
     const formattedId = parseInt(id, 10) || id;
+    const newOption = _.find(
+      this.state.selected,
+      (option: { value: any }) => option.value === formattedId,
+    );
 
-    this.setState({
-      options: _.sortBy(
-        [
-          ...this.state.options,
-          _.find(
-            this.state.selected,
-            (option: { value: any }) => option.value === formattedId,
-          ),
-        ],
-        ['value'],
-      ),
-      selected: _.filter(
-        this.state.selected,
-        (option: { value: any }) => option.value !== formattedId,
-      ),
-    });
+    if (newOption) {
+      this.setState({
+        options: _.sortBy([...this.state.options, newOption], ['value']),
+        selected: _.filter(
+          this.state.selected,
+          (option: { value: any }) => option.value !== formattedId,
+        ),
+      });
+    }
   }
 
   public render(): JSX.Element {
