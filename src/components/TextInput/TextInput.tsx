@@ -23,7 +23,7 @@ export interface TextInputProps {
   /** inline message, good for error text */
   inlineMessage?: string;
   /** default value of the input */
-  value?: string;
+  defaultValue?: string;
   /** onChange  */
   onChange?: (event: object) => void;
 }
@@ -34,7 +34,6 @@ export default class TextInput extends React.Component<TextInputProps> {
     label: 'Label',
     name: '',
     type: 'text',
-    value: '',
   };
 
   public render() {
