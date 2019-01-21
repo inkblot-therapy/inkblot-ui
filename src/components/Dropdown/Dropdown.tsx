@@ -62,13 +62,14 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
       this.state.options,
       (option: { value: any }) => option.value === formattedId,
     );
+    const filteredOptions = _.filter(
+      this.state.options,
+      (option: { value: any }) => option.value !== formattedId,
+    );
 
     if (newOption) {
       this.setState({
-        options: _.filter(
-          this.state.options,
-          (option: { value: any }) => option.value !== formattedId,
-        ),
+        options: filteredOptions,
         selected: [...this.state.selected, newOption],
       });
     }
@@ -82,14 +83,15 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
       this.state.selected,
       (option: { value: any }) => option.value === formattedId,
     );
+    const filteredOptions = _.filter(
+      this.state.selected,
+      (option: { value: any }) => option.value !== formattedId,
+    );
 
     if (newOption) {
       this.setState({
         options: _.sortBy([...this.state.options, newOption], ['value']),
-        selected: _.filter(
-          this.state.selected,
-          (option: { value: any }) => option.value !== formattedId,
-        ),
+        selected: filteredOptions,
       });
     }
   }
