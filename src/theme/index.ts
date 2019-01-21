@@ -5,9 +5,13 @@ interface Colors {
   tertiary: string;
 }
 
+interface StringMap {
+  [s: string]: string;
+}
+
 interface Text {
-  standard: object;
-  selectedOption: object;
+  standard: StringMap;
+  selectedOption: StringMap;
 }
 
 export interface ThemeInterface {
