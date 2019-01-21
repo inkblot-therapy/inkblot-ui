@@ -3,7 +3,7 @@ import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
 /* TODO: Add name property
-         Fix when value is not number
+         Add in SVGs
 */
 
 interface DropdownProps {
