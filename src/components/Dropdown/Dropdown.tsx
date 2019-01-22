@@ -11,6 +11,8 @@ interface DropdownProps {
   label: string;
   /** Options to be displayed in the dropdown */
   options: object[];
+  /** Name of the input in the form */
+  name?: string;
 }
 
 interface DropdownState {
@@ -96,16 +98,29 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
   public render(): JSX.Element {
     return (
-      <StyledDropdown
-        label={this.props.label}
-        open={this.state.open}
-        openDropdown={this.openDropdown}
-        closeDropdown={this.closeDropdown}
-        options={this.state.options}
-        selectOption={this.selectOption}
-        selected={this.state.selected}
-        deselectOption={this.deselectOption}
-      />
+      <div>
+        <input
+          style={{ display: 'none' }}
+          name={this.props.name}
+          value={this.value()}
+        />
+        <StyledDropdown
+          label={this.props.label}
+          open={this.state.open}
+          openDropdown={this.openDropdown}
+          closeDropdown={this.closeDropdown}
+          options={this.state.options}
+          selectOption={this.selectOption}
+          selected={this.state.selected}
+          deselectOption={this.deselectOption}
+        />
+      </div>
+    );
+  }
+
+  private value(): string[] {
+    return _.map(this.state.selected, (option: { value: any }) =>
+      option.value.toString(),
     );
   }
 }
