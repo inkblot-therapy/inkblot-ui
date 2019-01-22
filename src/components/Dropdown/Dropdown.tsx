@@ -2,9 +2,8 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
-/* TODO: Add name property
-         Add in SVGs
-*/
+/* TODO: Add in SVGs
+ */
 
 interface DropdownProps {
   /** Label for the dropdown */
@@ -13,6 +12,8 @@ interface DropdownProps {
   options: object[];
   /** Name of the input in the form */
   name?: string;
+  /** Default options that are selected */
+  defaultValue?: object[];
 }
 
 interface DropdownState {
@@ -26,8 +27,11 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     super(props);
     this.state = {
       open: false,
-      options: props.options,
-      selected: [],
+      options: this.removeDefaultValues(
+        props.options,
+        props.defaultValue || [],
+      ),
+      selected: props.defaultValue || [],
     };
 
     this.openDropdown = this.openDropdown.bind(this);
@@ -122,6 +126,27 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     return _.map(this.state.selected, (option: { value: any }) =>
       option.value.toString(),
     );
+  }
+
+  private removeDefaultValues(
+    options: object[],
+    defaultValue: object[],
+  ): object[] {
+    if (defaultValue.length === 0) {
+      return options;
+    }
+    const optionsWithoutDefault = options;
+
+    _.forEach(defaultValue, (defaultOption: { value: any }) => {
+      const index = optionsWithoutDefault.findIndex(
+        (option: { value: any }) => option.value === defaultOption.value,
+      );
+      if (index >= 0) {
+        optionsWithoutDefault.splice(index, 1);
+      }
+    });
+
+    return optionsWithoutDefault;
   }
 }
 

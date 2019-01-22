@@ -17,10 +17,27 @@ const options = [
   { value: 7, label: 'Option 7' },
 ];
 
+const defaultValue = [
+  { value: 4, label: 'Option 4' },
+  { value: 5, label: 'Option 5' },
+];
+
 stories.add(
-  'default',
+  'No default value given',
   wInfo()(() => (
     <Dropdown
+      label={text('Label', 'Text')}
+      name={text('Name', '')}
+      options={options}
+    />
+  )),
+);
+
+stories.add(
+  'Default value',
+  wInfo()(() => (
+    <Dropdown
+      defaultValue={defaultValue}
       label={text('Label', 'Text')}
       name={text('Name', '')}
       options={options}

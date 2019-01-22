@@ -124,7 +124,6 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
         id="dropdown-container"
         tabIndex={0}
         onBlur={closeDropdown}
-        data-value={this.props.selected}
       >
         <Dropdown onClick={open ? closeDropdown : openDropdown}>
           <Label>{this.renderSelectedOptions()}</Label>
