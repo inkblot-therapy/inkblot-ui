@@ -32,6 +32,8 @@ const defaultValue = [
   { value: 11, label: 'Option 11' },
 ];
 
+const handleChange = (o: object) => console.log(o);
+
 stories.add(
   'No default value given',
   wInfo()(() => (
@@ -42,6 +44,8 @@ stories.add(
       options={options}
       inlineMessage={text('inlineMessage', '')}
       error={boolean('error', false)}
+      onChange={handleChange}
+      value={['1']}
     />
   )),
 );

@@ -19,7 +19,7 @@ interface DropdownProps {
   /** Default options that are selected */
   defaultValue?: object[];
   /** Handler function when input changes */
-  onChange?: (event: React.SyntheticEvent) => void;
+  onChange?: (option: object) => void;
   /** Control the current input value (e.g. ["1", "4", "7"]) */
   value?: string[];
   /** Inline message below the dropdown */
@@ -87,6 +87,9 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     );
 
     if (newOption) {
+      if (this.props.onChange) {
+        this.props.onChange(newOption);
+      }
       this.setState(
         {
           options: filteredOptions,
@@ -118,6 +121,9 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     );
 
     if (newOption) {
+      if (this.props.onChange) {
+        this.props.onChange(newOption);
+      }
       this.setState(
         {
           options: _.sortBy([...this.state.options, newOption], ['value']),
@@ -142,12 +148,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     return (
       <div>
-        <input
-          style={{ display: 'none' }}
-          name={name}
-          value={value}
-          onChange={this.handleChange}
-        />
+        <input style={{ display: 'none' }} name={name} value={value} />
         <StyledDropdown
           label={label}
           placeholder={placeholder}
@@ -163,12 +164,6 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         />
       </div>
     );
-  }
-
-  private handleChange(event: React.SyntheticEvent): void {
-    if (this.props.onChange) {
-      this.props.onChange(event);
-    }
   }
 
   private removeDefaultValues(
