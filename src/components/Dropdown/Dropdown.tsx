@@ -159,7 +159,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     if (newOption) {
       if (this.props.onChange) {
-        const action = deselect ? 'deslect' : 'select';
+        const action = deselect ? 'deselect' : 'select';
         this.props.onChange(newOption, action);
       }
 
