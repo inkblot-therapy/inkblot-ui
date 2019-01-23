@@ -1,5 +1,7 @@
 import * as _ from 'lodash';
 import * as React from 'react';
+import Down from '../../../svg/Down';
+import X from '../../../svg/X';
 import styled from '../../../utils/styled-components';
 
 const DropdownContainer = styled.div`
@@ -66,10 +68,11 @@ const SelectedOption = styled.div`
   box-shadow: 0 0 10px 0 rgba(99, 140, 177, 0.2);
   background-color: #ffffff;
   padding-left: 10px;
-  padding-right: 20px;
+  padding-right: 10px;
   margin-right: 10px;
   margin-bottom: 5px;
   margin-top: 5px;
+  cursor: auto;
 `;
 
 const NoOptions = styled.div`
@@ -107,11 +110,13 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
 
     return _.map(selected, (option: { value: any; label: string }) => (
       <SelectedOption
-        id={option.value}
         key={option.value}
-        onClick={deselectOption}
+        onClick={(event) => event.stopPropagation()}
       >
         <span>{option.label}</span>
+        <div style={{ marginLeft: '10px', cursor: 'pointer' }}>
+          <X id={option.value} onClick={deselectOption} />
+        </div>
       </SelectedOption>
     ));
   }
@@ -150,6 +155,9 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
         >
           <Dropdown error={error} onClick={open ? closeDropdown : openDropdown}>
             <Placeholder>{this.renderSelectedOptions()}</Placeholder>
+            <div style={{ marginLeft: 'auto' }}>
+              <Down />
+            </div>
           </Dropdown>
           <OptionsContainer open={open}>
             {this.renderOptions()}

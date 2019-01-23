@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 const SvgDown = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width={9} height={4} {...props}>

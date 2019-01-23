@@ -2,7 +2,10 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
-/* TODO: Add in SVGs
+/* TODO: Single/multi prop
+         Down arrow SVG
+         Width when many options selected
+         Scroll bar remove border-radius
  */
 
 interface DropdownProps {
