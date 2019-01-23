@@ -58,5 +58,21 @@
     "tslint": "^5.11.0",
     "tslint-react": "^3.6.0",
     "typescript": "^3.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inkblot-therapy/inkblot-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/inkblot-therapy/inkblot-ui/issues"
+  },
+  "homepage": "https://github.com/inkblot-therapy/inkblot-ui#readme",
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.ts",
+    "*.tsx"
+  ]
 }
