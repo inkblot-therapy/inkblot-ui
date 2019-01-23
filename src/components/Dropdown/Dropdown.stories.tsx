@@ -36,7 +36,8 @@ stories.add(
   'No default value given',
   wInfo()(() => (
     <Dropdown
-      label={text('Label', 'Text')}
+      label={text('Label', 'Dropdown')}
+      placeholder={text('Placeholder', 'Text')}
       name={text('Name', '')}
       options={options}
     />
@@ -48,7 +49,7 @@ stories.add(
   wInfo()(() => (
     <Dropdown
       defaultValue={defaultValue}
-      label={text('Label', 'Text')}
+      label={text('Label', 'Dropdown')}
       name={text('Name', '')}
       options={optionsWithDefault}
     />

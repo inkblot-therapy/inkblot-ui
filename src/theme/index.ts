@@ -10,6 +10,7 @@ interface StringMap {
 }
 
 interface Text {
+  label: StringMap;
   standard: StringMap;
   selectedOption: StringMap;
 }
@@ -41,6 +42,16 @@ const theme: ThemeInterface = {
   },
   input: {
     text: {
+      label: {
+        color: '#0f2045',
+        fontFamily: '"Source Sans Pro", sans-serif',
+        fontSize: '16px',
+        fontStretch: 'normal',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        letterSpacing: '0.2px',
+        lineHeight: 'normal',
+      },
       selectedOption: {
         color: '#2e5fca',
         fontFamily: '"Source Sans Pro", sans-serif',

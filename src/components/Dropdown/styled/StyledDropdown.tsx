@@ -21,7 +21,11 @@ const Dropdown = styled.div`
   cursor: pointer;
 `;
 
-const Label = styled.div`
+const Label = styled.p`
+  ${({ theme }) => theme.input.text.label}
+`;
+
+const Placeholder = styled.div`
   ${({ theme }) => theme.input.text.standard}
 `;
 
@@ -73,7 +77,8 @@ const NoOptions = styled.div`
 `;
 
 interface StyledDropdownProps {
-  label: string;
+  label?: string;
+  placeholder?: string;
   open: boolean;
   openDropdown: () => void;
   closeDropdown: () => void;
@@ -85,10 +90,10 @@ interface StyledDropdownProps {
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
   public renderSelectedOptions(): object[] | JSX.Element {
-    const { label, selected, deselectOption } = this.props;
+    const { placeholder, selected, deselectOption } = this.props;
 
     if (selected.length === 0) {
-      return <span>{label}</span>;
+      return <span>{placeholder}</span>;
     }
 
     return _.map(selected, (option: { value: any; label: string }) => (
@@ -117,19 +122,24 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
   }
 
   public render(): JSX.Element {
-    const { open, openDropdown, closeDropdown } = this.props;
+    const { open, openDropdown, closeDropdown, label } = this.props;
 
     return (
-      <DropdownContainer
-        id="dropdown-container"
-        tabIndex={0}
-        onBlur={closeDropdown}
-      >
-        <Dropdown onClick={open ? closeDropdown : openDropdown}>
-          <Label>{this.renderSelectedOptions()}</Label>
-        </Dropdown>
-        <OptionsContainer open={open}>{this.renderOptions()}</OptionsContainer>
-      </DropdownContainer>
+      <div>
+        <Label>{label}</Label>
+        <DropdownContainer
+          id="dropdown-container"
+          tabIndex={0}
+          onBlur={closeDropdown}
+        >
+          <Dropdown onClick={open ? closeDropdown : openDropdown}>
+            <Placeholder>{this.renderSelectedOptions()}</Placeholder>
+          </Dropdown>
+          <OptionsContainer open={open}>
+            {this.renderOptions()}
+          </OptionsContainer>
+        </DropdownContainer>
+      </div>
     );
   }
 }

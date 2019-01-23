@@ -6,13 +6,14 @@ import StyledDropdown from './styled/StyledDropdown';
          Fix onChange/value
          Error (required)
          Disabled
-         Title
          Reformat (de)selectOption
  */
 
 interface DropdownProps {
   /** Label for the dropdown */
-  label: string;
+  label?: string;
+  /** Placeholder for the dropdown */
+  placeholder?: string;
   /** Options to be displayed in the dropdown */
   options: object[];
   /** Name of the input in the form */
@@ -144,6 +145,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         />
         <StyledDropdown
           label={this.props.label}
+          placeholder={this.props.placeholder}
           open={this.state.open}
           openDropdown={this.openDropdown}
           closeDropdown={this.closeDropdown}
