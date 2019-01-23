@@ -1,3 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="9" height="4" viewBox="0 0 9 4">
-    <path fill="none" fill-rule="evenodd" stroke="#2E5FCA" stroke-linecap="round" stroke-width="2" d="M8.439.386c-2.532 2.328-3.89 3.493-4.073 3.493-.183 0-1.58-1.165-4.19-3.493"/>
+<svg width="13" height="11" xmlns="http://www.w3.org/2000/svg">
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="13" width="15" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path transform="rotate(-90 6.431999683380128,5.444499969482422) " id="svg_1" d="m8.179,9.5765c-2.329,-2.532 -3.494,-3.89 -3.494,-4.074c0,-0.183 1.164,-1.58 3.493,-4.19" stroke-width="2" stroke-linecap="round" stroke="#2E5FCA" fill-rule="evenodd" fill="none"/>
+ </g>
 </svg>
