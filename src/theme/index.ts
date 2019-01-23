@@ -10,6 +10,8 @@ interface StringMap {
 }
 
 interface Text {
+  inline: StringMap;
+  label: StringMap;
   standard: StringMap;
   selectedOption: StringMap;
 }
@@ -41,6 +43,25 @@ const theme: ThemeInterface = {
   },
   input: {
     text: {
+      inline: {
+        fontFamily: '"Source Sans Pro", sans-serif',
+        fontSize: '12px',
+        fontStretch: 'normal',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        letterSpacing: '0.1px',
+        lineHeight: 'normal',
+      },
+      label: {
+        color: '#0f2045',
+        fontFamily: '"Source Sans Pro", sans-serif',
+        fontSize: '16px',
+        fontStretch: 'normal',
+        fontStyle: 'normal',
+        fontWeight: '600',
+        letterSpacing: '0.2px',
+        lineHeight: 'normal',
+      },
       selectedOption: {
         color: '#2e5fca',
         fontFamily: '"Source Sans Pro", sans-serif',

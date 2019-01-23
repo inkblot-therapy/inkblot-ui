@@ -1,8 +1,9 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { wInfo } from '../../utils/wInfo';
 import Dropdown from './Dropdown';
+import ControlledDropdown from './stories/ControlledDropdown';
 
 const stories = storiesOf('Components/Dropdown', module);
 stories.addDecorator(withKnobs);
@@ -18,6 +19,20 @@ const options = [
 ];
 
 stories.add(
-  'default',
-  wInfo()(() => <Dropdown label={text('Label', 'Text')} options={options} />),
+  'Uncontrolled component without defaults',
+  wInfo()(() => (
+    <Dropdown
+      label={text('label', 'Uncontrolled Dropdown')}
+      placeholder={text('placeholder', 'Text')}
+      name={text('name', '')}
+      options={options}
+      inlineMessage={text('inlineMessage', '')}
+      error={boolean('error', false)}
+    />
+  )),
+);
+
+stories.add(
+  'Controlled component with defaults',
+  wInfo()(() => <ControlledDropdown />),
 );

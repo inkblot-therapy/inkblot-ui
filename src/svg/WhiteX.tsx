@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 const SvgWhiteX = (props: React.SVGProps<SVGSVGElement>) => (
   <svg width={22} height={20} {...props}>

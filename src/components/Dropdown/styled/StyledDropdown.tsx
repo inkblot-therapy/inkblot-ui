@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import * as React from 'react';
-import Down from '../../../svg/Down.tsx';
+import Down from '../../../svg/Down';
+import X from '../../../svg/X';
 import styled from '../../../utils/styled-components';
 
 const DropdownContainer = styled.div`
@@ -10,7 +11,7 @@ const DropdownContainer = styled.div`
   outline: none;
 `;
 
-const Dropdown = styled.div`
+const Dropdown = styled<{ error?: boolean }, 'div'>('div')`
   min-width: 180px;
   min-height: 40px;
   display: inline-flex;
@@ -20,9 +21,15 @@ const Dropdown = styled.div`
   border-radius: 4px;
   background-color: #fafafa;
   cursor: pointer;
+  border: ${({ error }) =>
+    error ? 'solid 2px #cf1a1a' : 'solid 2px transparent'};
 `;
 
-const Label = styled.div`
+const Label = styled.p`
+  ${({ theme }) => theme.input.text.label}
+`;
+
+const Placeholder = styled.div`
   ${({ theme }) => theme.input.text.standard}
 `;
 
@@ -61,10 +68,11 @@ const SelectedOption = styled.div`
   box-shadow: 0 0 10px 0 rgba(99, 140, 177, 0.2);
   background-color: #ffffff;
   padding-left: 10px;
-  padding-right: 20px;
+  padding-right: 10px;
   margin-right: 10px;
   margin-bottom: 5px;
   margin-top: 5px;
+  cursor: auto;
 `;
 
 const NoOptions = styled.div`
@@ -73,32 +81,42 @@ const NoOptions = styled.div`
   padding: 10px 0px;
 `;
 
+const Inline = styled<{ error?: boolean }, 'p'>('p')`
+  ${({ theme }) => theme.input.text.inline}
+  color: ${({ error }) => (error ? '#cf1a1a' : 'rgba(15, 32, 69, 0.75)')}
+`;
+
 interface StyledDropdownProps {
-  label: string;
+  label?: string;
+  placeholder?: string;
   open: boolean;
+  options: object[];
+  selected: object[];
+  inlineMessage?: string;
+  error?: boolean;
   openDropdown: () => void;
   closeDropdown: () => void;
-  options: object[];
   selectOption: (event: React.SyntheticEvent) => void;
-  selected: object[];
   deselectOption: (event: React.SyntheticEvent) => void;
 }
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
   public renderSelectedOptions(): object[] | JSX.Element {
-    const { label, selected, deselectOption } = this.props;
+    const { placeholder, selected, deselectOption } = this.props;
 
     if (selected.length === 0) {
-      return <span>{label}</span>;
+      return <span>{placeholder}</span>;
     }
 
     return _.map(selected, (option: { value: any; label: string }) => (
       <SelectedOption
-        id={option.value}
         key={option.value}
-        onClick={deselectOption}
+        onClick={(event) => event.stopPropagation()}
       >
         <span>{option.label}</span>
+        <div style={{ marginLeft: '10px', cursor: 'pointer' }}>
+          <X id={option.value} onClick={deselectOption} />
+        </div>
       </SelectedOption>
     ));
   }
@@ -118,19 +136,35 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
   }
 
   public render(): JSX.Element {
-    const { open, openDropdown, closeDropdown } = this.props;
+    const {
+      open,
+      openDropdown,
+      closeDropdown,
+      label,
+      inlineMessage,
+      error,
+    } = this.props;
+
     return (
-      <DropdownContainer
-        id="dropdown-container"
-        tabIndex={0}
-        onBlur={closeDropdown}
-      >
-        <Dropdown onClick={open ? closeDropdown : openDropdown}>
-          <Label>{this.renderSelectedOptions()}</Label>
-        </Dropdown>
-        <OptionsContainer open={open}>{this.renderOptions()}</OptionsContainer>
-        <Down />
-      </DropdownContainer>
+      <div>
+        <Label>{label}</Label>
+        <DropdownContainer
+          id="dropdown-container"
+          tabIndex={0}
+          onBlur={closeDropdown}
+        >
+          <Dropdown error={error} onClick={open ? closeDropdown : openDropdown}>
+            <Placeholder>{this.renderSelectedOptions()}</Placeholder>
+            <div style={{ marginLeft: 'auto' }}>
+              <Down />
+            </div>
+          </Dropdown>
+          <OptionsContainer open={open}>
+            {this.renderOptions()}
+          </OptionsContainer>
+        </DropdownContainer>
+        <Inline error={error}>{inlineMessage}</Inline>
+      </div>
     );
   }
 }
