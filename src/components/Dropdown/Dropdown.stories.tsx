@@ -19,7 +19,7 @@ const options = [
 ];
 
 stories.add(
-  'No default value given',
+  'Uncontrolled component without defaults',
   wInfo()(() => (
     <Dropdown
       label={text('label', 'Dropdown')}
