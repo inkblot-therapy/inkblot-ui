@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
 import * as React from 'react';
+import Down from '../../../svg/Down.tsx';
 import styled from '../../../utils/styled-components';
 
 const DropdownContainer = styled.div`
@@ -118,7 +119,6 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
 
   public render(): JSX.Element {
     const { open, openDropdown, closeDropdown } = this.props;
-
     return (
       <DropdownContainer
         id="dropdown-container"
@@ -129,6 +129,7 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
           <Label>{this.renderSelectedOptions()}</Label>
         </Dropdown>
         <OptionsContainer open={open}>{this.renderOptions()}</OptionsContainer>
+        <Down />
       </DropdownContainer>
     );
   }
