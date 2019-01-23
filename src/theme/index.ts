@@ -61,6 +61,7 @@ const theme: ThemeInterface = {
         fontWeight: '600',
         letterSpacing: '0.2px',
         lineHeight: 'normal',
+        marginBottom: '20px',
       },
       selectedOption: {
         color: '#2e5fca',

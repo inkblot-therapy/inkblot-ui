@@ -2,10 +2,6 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
-/* TODO: Single/multi prop
-         Width when many options selected
- */
-
 interface DropdownProps {
   /** Options to be displayed in the dropdown */
   options: object[];
