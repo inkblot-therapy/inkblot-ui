@@ -87,14 +87,14 @@ interface StyledDropdownProps {
   label?: string;
   placeholder?: string;
   open: boolean;
-  openDropdown: () => void;
-  closeDropdown: () => void;
   options: object[];
-  selectOption: (event: React.SyntheticEvent) => void;
   selected: object[];
-  deselectOption: (event: React.SyntheticEvent) => void;
   inlineMessage?: string;
   error?: boolean;
+  openDropdown: () => void;
+  closeDropdown: () => void;
+  selectOption: (event: React.SyntheticEvent) => void;
+  deselectOption: (event: React.SyntheticEvent) => void;
 }
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {

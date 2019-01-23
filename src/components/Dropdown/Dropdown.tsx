@@ -3,8 +3,7 @@ import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
 /* TODO: Add in SVGs
-         Fix onChange/value
-         Reformat (de)selectOption
+         Fix value
  */
 
 interface DropdownProps {
@@ -75,71 +74,11 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 
   public selectOption(event: React.SyntheticEvent): void {
-    event.stopPropagation();
-    const { id } = event.currentTarget;
-    const newOption = _.find(
-      this.state.options,
-      (option: { value: any }) => option.value.toString() === id.toString(),
-    );
-    const filteredOptions = _.filter(
-      this.state.options,
-      (option: { value: any }) => option.value.toString() !== id.toString(),
-    );
-
-    if (newOption) {
-      if (this.props.onChange) {
-        this.props.onChange(newOption);
-      }
-      this.setState(
-        {
-          options: filteredOptions,
-          selected: [...this.state.selected, newOption],
-        },
-        () => {
-          const optionsStringArray = _.map(
-            this.state.selected,
-            (option: { value: any }) => option.value.toString(),
-          );
-          this.setState({
-            value: optionsStringArray,
-          });
-        },
-      );
-    }
+    this.changeOptions(event);
   }
 
   public deselectOption(event: React.SyntheticEvent): void {
-    event.stopPropagation();
-    const { id } = event.currentTarget;
-    const newOption = _.find(
-      this.state.selected,
-      (option: { value: any }) => option.value.toString() === id.toString(),
-    );
-    const filteredOptions = _.filter(
-      this.state.selected,
-      (option: { value: any }) => option.value.toString() !== id.toString(),
-    );
-
-    if (newOption) {
-      if (this.props.onChange) {
-        this.props.onChange(newOption);
-      }
-      this.setState(
-        {
-          options: _.sortBy([...this.state.options, newOption], ['value']),
-          selected: filteredOptions,
-        },
-        () => {
-          const optionsStringArray = _.map(
-            this.state.selected,
-            (option: { value: any }) => option.value.toString(),
-          );
-          this.setState({
-            value: optionsStringArray,
-          });
-        },
-      );
-    }
+    this.changeOptions(event, true);
   }
 
   public render(): JSX.Element {
@@ -153,14 +92,14 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
           label={label}
           placeholder={placeholder}
           open={open}
-          openDropdown={this.openDropdown}
-          closeDropdown={this.closeDropdown}
           options={options}
-          selectOption={this.selectOption}
           selected={selected}
-          deselectOption={this.deselectOption}
           inlineMessage={inlineMessage}
           error={error}
+          openDropdown={this.openDropdown}
+          closeDropdown={this.closeDropdown}
+          selectOption={this.selectOption}
+          deselectOption={this.deselectOption}
         />
       </div>
     );
@@ -186,6 +125,58 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     });
 
     return optionsWithoutDefaults;
+  }
+
+  private changeOptions(
+    event: React.SyntheticEvent,
+    deselect: boolean = false,
+  ): void {
+    event.stopPropagation();
+
+    const objectArray = deselect ? this.state.selected : this.state.options;
+    const { id } = event.currentTarget;
+    const newOption = _.find(
+      objectArray,
+      (option: { value: any }) => option.value.toString() === id.toString(),
+    );
+    const filteredOptions = _.filter(
+      objectArray,
+      (option: { value: any }) => option.value.toString() !== id.toString(),
+    );
+
+    if (newOption) {
+      if (this.props.onChange) {
+        this.props.onChange(newOption);
+      }
+
+      if (deselect) {
+        this.setState(
+          {
+            options: _.sortBy([...this.state.options, newOption], ['value']),
+            selected: filteredOptions,
+          },
+          () => this.updateFormValue(),
+        );
+      } else {
+        this.setState(
+          {
+            options: filteredOptions,
+            selected: [...this.state.selected, newOption],
+          },
+          () => this.updateFormValue(),
+        );
+      }
+    }
+  }
+
+  private updateFormValue(): void {
+    const optionsStringArray = _.map(
+      this.state.selected,
+      (option: { value: any }) => option.value.toString(),
+    );
+    this.setState({
+      value: optionsStringArray,
+    });
   }
 }
 
