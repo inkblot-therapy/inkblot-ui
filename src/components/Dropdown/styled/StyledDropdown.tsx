@@ -9,7 +9,7 @@ const DropdownContainer = styled.div`
   outline: none;
 `;
 
-const Dropdown = styled.div`
+const Dropdown = styled<{ error?: boolean }, 'div'>('div')`
   min-width: 180px;
   min-height: 40px;
   display: inline-flex;
@@ -19,6 +19,8 @@ const Dropdown = styled.div`
   border-radius: 4px;
   background-color: #fafafa;
   cursor: pointer;
+  border: ${({ error }) =>
+    error ? 'solid 2px #cf1a1a' : 'solid 2px transparent'};
 `;
 
 const Label = styled.p`
@@ -76,8 +78,9 @@ const NoOptions = styled.div`
   padding: 10px 0px;
 `;
 
-const Inline = styled.p`
+const Inline = styled<{ error?: boolean }, 'p'>('p')`
   ${({ theme }) => theme.input.text.inline}
+  color: ${({ error }) => (error ? '#cf1a1a' : 'rgba(15, 32, 69, 0.75)')}
 `;
 
 interface StyledDropdownProps {
@@ -91,6 +94,7 @@ interface StyledDropdownProps {
   selected: object[];
   deselectOption: (event: React.SyntheticEvent) => void;
   inlineMessage?: string;
+  error?: boolean;
 }
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
@@ -133,6 +137,7 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
       closeDropdown,
       label,
       inlineMessage,
+      error,
     } = this.props;
 
     return (
@@ -143,14 +148,14 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
           tabIndex={0}
           onBlur={closeDropdown}
         >
-          <Dropdown onClick={open ? closeDropdown : openDropdown}>
+          <Dropdown error={error} onClick={open ? closeDropdown : openDropdown}>
             <Placeholder>{this.renderSelectedOptions()}</Placeholder>
           </Dropdown>
           <OptionsContainer open={open}>
             {this.renderOptions()}
           </OptionsContainer>
         </DropdownContainer>
-        <Inline>{inlineMessage}</Inline>
+        <Inline error={error}>{inlineMessage}</Inline>
       </div>
     );
   }

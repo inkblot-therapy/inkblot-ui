@@ -44,7 +44,6 @@ const theme: ThemeInterface = {
   input: {
     text: {
       inline: {
-        color: 'rgba(15, 32, 69, 0.75)',
         fontFamily: '"Source Sans Pro", sans-serif',
         fontSize: '12px',
         fontStretch: 'normal',

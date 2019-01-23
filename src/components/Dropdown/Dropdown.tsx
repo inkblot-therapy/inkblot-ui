@@ -4,8 +4,6 @@ import StyledDropdown from './styled/StyledDropdown';
 
 /* TODO: Add in SVGs
          Fix onChange/value
-         Error (required)
-         Disabled
          Reformat (de)selectOption
  */
 
@@ -26,6 +24,8 @@ interface DropdownProps {
   value?: string[];
   /** Inline message below the dropdown */
   inlineMessage?: string;
+  /** Present if there is an error */
+  error?: boolean;
 }
 
 interface DropdownState {
@@ -137,25 +137,29 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 
   public render(): JSX.Element {
+    const { name, label, placeholder, inlineMessage, error } = this.props;
+    const { value, open, options, selected } = this.state;
+
     return (
       <div>
         <input
           style={{ display: 'none' }}
-          name={this.props.name}
-          value={this.state.value}
+          name={name}
+          value={value}
           onChange={this.handleChange}
         />
         <StyledDropdown
-          label={this.props.label}
-          placeholder={this.props.placeholder}
-          open={this.state.open}
+          label={label}
+          placeholder={placeholder}
+          open={open}
           openDropdown={this.openDropdown}
           closeDropdown={this.closeDropdown}
-          options={this.state.options}
+          options={options}
           selectOption={this.selectOption}
-          selected={this.state.selected}
+          selected={selected}
           deselectOption={this.deselectOption}
-          inlineMessage={this.props.inlineMessage}
+          inlineMessage={inlineMessage}
+          error={error}
         />
       </div>
     );
