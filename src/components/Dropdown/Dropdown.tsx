@@ -3,6 +3,11 @@ import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
 /* TODO: Add in SVGs
+         Fix onChange/value
+         Error (required)
+         Disabled
+         Title
+         Reformat (de)selectOption
  */
 
 interface DropdownProps {
@@ -14,12 +19,17 @@ interface DropdownProps {
   name?: string;
   /** Default options that are selected */
   defaultValue?: object[];
+  /** Handler function when input changes */
+  onChange?: (event: React.SyntheticEvent) => void;
+  /** Control the current input value (e.g. ["1", "4", "7"]) */
+  value?: string[];
 }
 
 interface DropdownState {
   open: boolean;
   selected: object[];
   options: object[];
+  value: string[] | undefined;
 }
 
 class Dropdown extends React.Component<DropdownProps, DropdownState> {
@@ -32,6 +42,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         props.defaultValue || [],
       ),
       selected: props.defaultValue || [],
+      value: props.value,
     };
 
     this.openDropdown = this.openDropdown.bind(this);
@@ -73,10 +84,21 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     );
 
     if (newOption) {
-      this.setState({
-        options: filteredOptions,
-        selected: [...this.state.selected, newOption],
-      });
+      this.setState(
+        {
+          options: filteredOptions,
+          selected: [...this.state.selected, newOption],
+        },
+        () => {
+          const optionsStringArray = _.map(
+            this.state.selected,
+            (option: { value: any }) => option.value.toString(),
+          );
+          this.setState({
+            value: optionsStringArray,
+          });
+        },
+      );
     }
   }
 
@@ -93,10 +115,21 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     );
 
     if (newOption) {
-      this.setState({
-        options: _.sortBy([...this.state.options, newOption], ['value']),
-        selected: filteredOptions,
-      });
+      this.setState(
+        {
+          options: _.sortBy([...this.state.options, newOption], ['value']),
+          selected: filteredOptions,
+        },
+        () => {
+          const optionsStringArray = _.map(
+            this.state.selected,
+            (option: { value: any }) => option.value.toString(),
+          );
+          this.setState({
+            value: optionsStringArray,
+          });
+        },
+      );
     }
   }
 
@@ -106,7 +139,8 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         <input
           style={{ display: 'none' }}
           name={this.props.name}
-          value={this.value()}
+          value={this.state.value}
+          onChange={this.handleChange}
         />
         <StyledDropdown
           label={this.props.label}
@@ -122,10 +156,10 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     );
   }
 
-  private value(): string[] {
-    return _.map(this.state.selected, (option: { value: any }) =>
-      option.value.toString(),
-    );
+  private handleChange(event: React.SyntheticEvent): void {
+    if (this.props.onChange) {
+      this.props.onChange(event);
+    }
   }
 
   private removeDefaultValues(
@@ -135,18 +169,19 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     if (defaultValue.length === 0) {
       return options;
     }
-    const optionsWithoutDefault = options;
+
+    const optionsWithoutDefaults = options;
 
     _.forEach(defaultValue, (defaultOption: { value: any }) => {
-      const index = optionsWithoutDefault.findIndex(
+      const index = optionsWithoutDefaults.findIndex(
         (option: { value: any }) => option.value === defaultOption.value,
       );
       if (index >= 0) {
-        optionsWithoutDefault.splice(index, 1);
+        optionsWithoutDefaults.splice(index, 1);
       }
     });
 
-    return optionsWithoutDefault;
+    return optionsWithoutDefaults;
   }
 }
 

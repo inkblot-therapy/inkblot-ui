@@ -17,9 +17,19 @@ const options = [
   { value: 7, label: 'Option 7' },
 ];
 
+const optionsWithDefault = [
+  { value: 8, label: 'Option 8' },
+  { value: 9, label: 'Option 9' },
+  { value: 10, label: 'Option 10' },
+  { value: 11, label: 'Option 11' },
+  { value: 12, label: 'Option 12' },
+  { value: 13, label: 'Option 13' },
+  { value: 14, label: 'Option 14' },
+];
+
 const defaultValue = [
-  { value: 4, label: 'Option 4' },
-  { value: 5, label: 'Option 5' },
+  { value: 10, label: 'Option 10' },
+  { value: 11, label: 'Option 11' },
 ];
 
 stories.add(
@@ -40,7 +50,7 @@ stories.add(
       defaultValue={defaultValue}
       label={text('Label', 'Text')}
       name={text('Name', '')}
-      options={options}
+      options={optionsWithDefault}
     />
   )),
 );
