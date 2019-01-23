@@ -35,8 +35,8 @@ class ControlledDropdown extends React.Component<{}, { value: object[] }> {
     );
   }
 
-  private handleChange(o: object, a: boolean): void {
-    console.log(a ? 'remove' : 'add');
+  private handleChange(o: object, a: string): void {
+    console.log(a);
     console.log(o);
   }
 }

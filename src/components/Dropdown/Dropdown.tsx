@@ -15,7 +15,7 @@ interface DropdownProps {
   /** Name of the input in the form */
   name?: string;
   /** Handler function when input changes */
-  onChange?: (option: object, deselect: boolean) => void;
+  onChange?: (option: object, action: string) => void;
   /** Control the current input value */
   value?: object[];
   /** Inline message below the dropdown */
@@ -35,10 +35,12 @@ interface DropdownState {
 class Dropdown extends React.Component<DropdownProps, DropdownState> {
   constructor(props: DropdownProps) {
     super(props);
+    // Map value to array of strings
+    const formValue = _.map(props.value, (option: { value: any }) =>
+      option.value.toString(),
+    );
     this.state = {
-      formValue: _.map(props.value, (option: { value: any }) =>
-        option.value.toString(),
-      ),
+      formValue,
       open: false,
       options: this.removeDefaultValues(props.options, props.value || []),
       selected: props.value || [],
@@ -118,6 +120,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     );
   }
 
+  // Remove any objects that are in defaultValue from options
   private removeDefaultValues(
     options: object[],
     defaultValue: object[],
@@ -140,6 +143,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     return optionsWithoutDefaults;
   }
 
+  // Actions to take for selecting and deselecting dropdown options
   private changeOptions(
     event: React.SyntheticEvent,
     deselect: boolean = false,
@@ -155,7 +159,8 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
 
     if (newOption) {
       if (this.props.onChange) {
-        this.props.onChange(newOption, deselect);
+        const action = deselect ? 'deslect' : 'select';
+        this.props.onChange(newOption, action);
       }
 
       // If this is an uncontrolled component, take care of the state of options and selected
