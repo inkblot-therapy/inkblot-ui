@@ -40,6 +40,7 @@ stories.add(
       placeholder={text('Placeholder', 'Text')}
       name={text('Name', '')}
       options={options}
+      inlineMessage={text('Inline Message', '')}
     />
   )),
 );

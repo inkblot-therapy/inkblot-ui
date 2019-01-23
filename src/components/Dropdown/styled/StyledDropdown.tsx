@@ -76,6 +76,10 @@ const NoOptions = styled.div`
   padding: 10px 0px;
 `;
 
+const Inline = styled.p`
+  ${({ theme }) => theme.input.text.inline}
+`;
+
 interface StyledDropdownProps {
   label?: string;
   placeholder?: string;
@@ -86,6 +90,7 @@ interface StyledDropdownProps {
   selectOption: (event: React.SyntheticEvent) => void;
   selected: object[];
   deselectOption: (event: React.SyntheticEvent) => void;
+  inlineMessage?: string;
 }
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
@@ -122,7 +127,13 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
   }
 
   public render(): JSX.Element {
-    const { open, openDropdown, closeDropdown, label } = this.props;
+    const {
+      open,
+      openDropdown,
+      closeDropdown,
+      label,
+      inlineMessage,
+    } = this.props;
 
     return (
       <div>
@@ -139,6 +150,7 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
             {this.renderOptions()}
           </OptionsContainer>
         </DropdownContainer>
+        <Inline>{inlineMessage}</Inline>
       </div>
     );
   }

@@ -10,7 +10,7 @@ import StyledDropdown from './styled/StyledDropdown';
  */
 
 interface DropdownProps {
-  /** Label for the dropdown */
+  /** Label above the dropdown */
   label?: string;
   /** Placeholder for the dropdown */
   placeholder?: string;
@@ -24,6 +24,8 @@ interface DropdownProps {
   onChange?: (event: React.SyntheticEvent) => void;
   /** Control the current input value (e.g. ["1", "4", "7"]) */
   value?: string[];
+  /** Inline message below the dropdown */
+  inlineMessage?: string;
 }
 
 interface DropdownState {
@@ -153,6 +155,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
           selectOption={this.selectOption}
           selected={this.state.selected}
           deselectOption={this.deselectOption}
+          inlineMessage={this.props.inlineMessage}
         />
       </div>
     );
