@@ -22,7 +22,7 @@ stories.add(
   'Uncontrolled component without defaults',
   wInfo()(() => (
     <Dropdown
-      label={text('label', 'Dropdown')}
+      label={text('label', 'Uncontrolled Dropdown')}
       placeholder={text('placeholder', 'Text')}
       name={text('name', '')}
       options={options}
