@@ -16,7 +16,7 @@ const options = [
 ];
 
 stories.add(
-  'default',
+  'No default value given',
   wInfo()(() => (
     <SearchDropdown
       label={text('label', 'Searchable Dropdown')}
@@ -26,6 +26,23 @@ stories.add(
       error={boolean('error', false)}
       inlineMessage={text('inlineMessage', '')}
       options={options}
+    />
+  )),
+);
+
+stories.add(
+  'Default value given',
+  wInfo()(() => (
+    <SearchDropdown
+      label={text('label', 'Searchable Dropdown')}
+      placeholder={text('placeholder', 'Search')}
+      name={text('name', '')}
+      disabled={boolean('disabled', false)}
+      error={boolean('error', false)}
+      inlineMessage={text('inlineMessage', '')}
+      options={options}
+      value={text('value', 'tor')}
+      onChange={(value) => console.log(value)}
     />
   )),
 );

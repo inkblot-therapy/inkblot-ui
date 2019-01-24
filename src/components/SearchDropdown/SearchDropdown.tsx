@@ -2,8 +2,13 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import StyledSearchDropdown from './styled/StyledSearchDropdown';
 
+/* TODO: Add in SVG
+         Make form value to value of the object
+         onClick
+*/
+
 interface SearchDropdownProps {
-  /** Optiions in the dropdown */
+  /** Options in the dropdown */
   options: object[];
   /** Name of the input in the form */
   name?: string;
@@ -17,12 +22,15 @@ interface SearchDropdownProps {
   label?: string;
   /** Placeholder for the input */
   placeholder?: string;
+  /** Control the current input value */
+  value?: string;
+  /** Handler function when input changes */
+  onChange?: (value: string) => void;
 }
 
 interface SearchDropdownState {
   filteredOptions: object[];
   open: boolean;
-  selected: object;
   value: string;
 }
 
@@ -33,10 +41,9 @@ class SearchDropdown extends React.Component<
   constructor(props: SearchDropdownProps) {
     super(props);
     this.state = {
-      filteredOptions: props.options,
+      filteredOptions: this.filterOptions(props.value || '', props.options),
       open: false,
-      selected: {},
-      value: '',
+      value: props.value || '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -45,20 +52,21 @@ class SearchDropdown extends React.Component<
     this.selectOption = this.selectOption.bind(this);
   }
 
-  public componentDidUpdate({}, prevState: SearchDropdownState): void {
+  public componentDidUpdate(
+    prevProps: SearchDropdownProps,
+    prevState: SearchDropdownState,
+  ): void {
     if (this.state.value !== prevState.value) {
       const { value } = this.state;
       const { options } = this.props;
-      const filteredOptions =
-        value === ''
-          ? options
-          : _.filter(options, (option: { label: string }) => {
-              const lowerCaseOption = option.label.toLowerCase();
-              const lowerCaseValue = value.toLowerCase();
-              return lowerCaseOption.includes(lowerCaseValue);
-            });
+      const filteredOptions = this.filterOptions(value, options);
       this.setState({
         filteredOptions,
+      });
+    }
+    if (this.props.value !== prevProps.value) {
+      this.setState({
+        value: this.props.value || '',
       });
     }
   }
@@ -68,6 +76,9 @@ class SearchDropdown extends React.Component<
     this.setState({
       value,
     });
+    if (this.props.onChange) {
+      this.props.onChange(value);
+    }
   }
 
   public openDropdown(): void {
@@ -88,6 +99,9 @@ class SearchDropdown extends React.Component<
       open: false,
       value: id,
     });
+    if (this.props.onChange) {
+      this.props.onChange(id);
+    }
   }
 
   public render(): JSX.Element {
@@ -118,6 +132,17 @@ class SearchDropdown extends React.Component<
         selectOption={this.selectOption}
       />
     );
+  }
+
+  // Filter the options based on the query
+  private filterOptions(query: string, options: object[]): object[] {
+    return query === ''
+      ? options
+      : _.filter(options, (option: { label: string }) => {
+          const lowerCaseOption = option.label.toLowerCase();
+          const lowerCaseValue = query.toLowerCase();
+          return lowerCaseOption.includes(lowerCaseValue);
+        });
   }
 }
 
