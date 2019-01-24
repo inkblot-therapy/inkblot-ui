@@ -35,6 +35,14 @@ class SearchDropdown extends React.Component<
     this.handleChange = this.handleChange.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
     this.closeDropdown = this.closeDropdown.bind(this);
+    this.selectOption = this.selectOption.bind(this);
+  }
+
+  public handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
+    const { value } = event.target;
+    this.setState({
+      value,
+    });
   }
 
   public openDropdown(): void {
@@ -49,16 +57,17 @@ class SearchDropdown extends React.Component<
     });
   }
 
-  public handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    const { value } = event.target;
+  public selectOption(event: React.MouseEvent<HTMLDivElement>): void {
+    const { id } = event.currentTarget;
     this.setState({
-      value,
+      open: false,
+      value: id,
     });
   }
 
   public render(): JSX.Element {
     const { name, disabled, error, inlineMessage, options } = this.props;
-    const { open } = this.state;
+    const { open, value } = this.state;
 
     return (
       <StyledSearchDropdown
@@ -66,13 +75,15 @@ class SearchDropdown extends React.Component<
         disabled={disabled}
         error={error}
         inlineMessage={inlineMessage}
-        handleChange={this.handleChange}
-        label="Searh"
-        placeholder="Searh"
         open={open}
         options={options}
+        value={value}
+        label="Searh"
+        placeholder="Searh"
+        handleChange={this.handleChange}
         openDropdown={this.openDropdown}
         closeDropdown={this.closeDropdown}
+        selectOption={this.selectOption}
       />
     );
   }

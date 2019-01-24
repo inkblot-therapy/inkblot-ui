@@ -68,27 +68,29 @@ const Inline = styled<{ error?: boolean }, 'p'>('p')`
 interface StyledSearchDropdownProps {
   label: string;
   placeholder: string;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   open: boolean;
   options: object[];
-  openDropdown: () => void;
-  closeDropdown: () => void;
+  value: string;
   name?: string;
   disabled?: boolean;
   error?: boolean;
   inlineMessage?: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  openDropdown: () => void;
+  closeDropdown: () => void;
+  selectOption: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
   public renderOptions(): object[] | JSX.Element {
-    const { options } = this.props;
+    const { options, selectOption } = this.props;
 
     if (options.length === 0) {
       return <NoOptions>No options</NoOptions>;
     }
 
     return _.map(options, (option: { value: any; label: string }) => (
-      <Option id={option.value} key={option.value}>
+      <Option id={option.label} key={option.value} onClick={selectOption}>
         <span>{option.label}</span>
       </Option>
     ));
@@ -106,6 +108,7 @@ class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
       open,
       openDropdown,
       closeDropdown,
+      value,
     } = this.props;
 
     return (
@@ -118,7 +121,7 @@ class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
           error={error}
           onChange={handleChange}
           onFocus={openDropdown}
-          onBlur={closeDropdown}
+          value={value}
         />
         <OptionsContainer open={open}>{this.renderOptions()}</OptionsContainer>
         <Inline error={error}>{inlineMessage}</Inline>
