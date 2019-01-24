@@ -12,13 +12,11 @@ interface SearchDropdownProps {
   error?: boolean;
   /** Inline message below the search */
   inlineMessage?: string;
-  /** Handler function when input changes */
-  onChange?: (option: object, action: string) => void;
-  /** Control the current input value */
-  value?: object[];
 }
 
 interface SearchDropdownState {
+  open: boolean;
+  selected: object;
   value: string;
 }
 
@@ -29,10 +27,26 @@ class SearchDropdown extends React.Component<
   constructor(props: SearchDropdownProps) {
     super(props);
     this.state = {
+      open: false,
+      selected: {},
       value: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.openDropdown = this.openDropdown.bind(this);
+    this.closeDropdown = this.closeDropdown.bind(this);
+  }
+
+  public openDropdown(): void {
+    this.setState({
+      open: true,
+    });
+  }
+
+  public closeDropdown(): void {
+    this.setState({
+      open: false,
+    });
   }
 
   public handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
@@ -44,6 +58,7 @@ class SearchDropdown extends React.Component<
 
   public render(): JSX.Element {
     const { name, disabled, error, inlineMessage, options } = this.props;
+    const { open } = this.state;
 
     return (
       <StyledSearchDropdown
@@ -54,6 +69,10 @@ class SearchDropdown extends React.Component<
         handleChange={this.handleChange}
         label="Searh"
         placeholder="Searh"
+        open={open}
+        options={options}
+        openDropdown={this.openDropdown}
+        closeDropdown={this.closeDropdown}
       />
     );
   }
