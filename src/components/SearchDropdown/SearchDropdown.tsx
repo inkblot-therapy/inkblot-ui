@@ -20,6 +20,7 @@ interface SearchDropdownProps {
 }
 
 interface SearchDropdownState {
+  filteredOptions: object[];
   open: boolean;
   selected: object;
   value: string;
@@ -32,6 +33,7 @@ class SearchDropdown extends React.Component<
   constructor(props: SearchDropdownProps) {
     super(props);
     this.state = {
+      filteredOptions: props.options,
       open: false,
       selected: {},
       value: '',
@@ -41,6 +43,24 @@ class SearchDropdown extends React.Component<
     this.openDropdown = this.openDropdown.bind(this);
     this.closeDropdown = this.closeDropdown.bind(this);
     this.selectOption = this.selectOption.bind(this);
+  }
+
+  public componentDidUpdate({}, prevState: SearchDropdownState): void {
+    if (this.state.value !== prevState.value) {
+      const { value } = this.state;
+      const { options } = this.props;
+      const filteredOptions =
+        value === ''
+          ? options
+          : _.filter(options, (option: { label: string }) => {
+              const lowerCaseOption = option.label.toLowerCase();
+              const lowerCaseValue = value.toLowerCase();
+              return lowerCaseOption.includes(lowerCaseValue);
+            });
+      this.setState({
+        filteredOptions,
+      });
+    }
   }
 
   public handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
@@ -76,11 +96,10 @@ class SearchDropdown extends React.Component<
       disabled,
       error,
       inlineMessage,
-      options,
       label,
       placeholder,
     } = this.props;
-    const { open, value } = this.state;
+    const { open, value, filteredOptions } = this.state;
 
     return (
       <StyledSearchDropdown
@@ -89,7 +108,7 @@ class SearchDropdown extends React.Component<
         error={error}
         inlineMessage={inlineMessage}
         open={open}
-        options={options}
+        options={filteredOptions}
         value={value}
         label={label}
         placeholder={placeholder}

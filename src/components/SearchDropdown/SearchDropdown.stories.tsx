@@ -8,13 +8,11 @@ const stories = storiesOf('Components/SearchDropdown', module);
 stories.addDecorator(withKnobs);
 
 const options = [
-  { value: 1, label: 'Option 1' },
-  { value: 2, label: 'Option 2' },
-  { value: 3, label: 'Option 3' },
-  { value: 4, label: 'Option 4' },
-  { value: 5, label: 'Option 5' },
-  { value: 6, label: 'Option 6' },
-  { value: 7, label: 'Option 7' },
+  { value: 1, label: 'Toronto' },
+  { value: 2, label: 'Montreal' },
+  { value: 3, label: 'Calgary' },
+  { value: 4, label: 'Winnipeg' },
+  { value: 5, label: 'Vancouver' },
 ];
 
 stories.add(
