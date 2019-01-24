@@ -21,6 +21,8 @@ stories.add(
   'default',
   wInfo()(() => (
     <SearchDropdown
+      label={text('label', 'Searchable Dropdown')}
+      placeholder={text('placeholder', 'Search')}
       name={text('name', '')}
       disabled={boolean('disabled', false)}
       error={boolean('error', false)}

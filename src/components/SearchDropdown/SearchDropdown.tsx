@@ -12,6 +12,10 @@ interface SearchDropdownProps {
   error?: boolean;
   /** Inline message below the search */
   inlineMessage?: string;
+  /** Label above the input */
+  label?: string;
+  /** Placeholder for the input */
+  placeholder?: string;
 }
 
 interface SearchDropdownState {
@@ -66,7 +70,15 @@ class SearchDropdown extends React.Component<
   }
 
   public render(): JSX.Element {
-    const { name, disabled, error, inlineMessage, options } = this.props;
+    const {
+      name,
+      disabled,
+      error,
+      inlineMessage,
+      options,
+      label,
+      placeholder,
+    } = this.props;
     const { open, value } = this.state;
 
     return (
@@ -78,8 +90,8 @@ class SearchDropdown extends React.Component<
         open={open}
         options={options}
         value={value}
-        label="Searh"
-        placeholder="Searh"
+        label={label}
+        placeholder={placeholder}
         handleChange={this.handleChange}
         openDropdown={this.openDropdown}
         closeDropdown={this.closeDropdown}

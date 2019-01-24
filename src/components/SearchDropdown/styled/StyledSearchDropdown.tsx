@@ -66,11 +66,11 @@ const Inline = styled<{ error?: boolean }, 'p'>('p')`
 `;
 
 interface StyledSearchDropdownProps {
-  label: string;
-  placeholder: string;
   open: boolean;
   options: object[];
   value: string;
+  label?: string;
+  placeholder?: string;
   name?: string;
   disabled?: boolean;
   error?: boolean;
