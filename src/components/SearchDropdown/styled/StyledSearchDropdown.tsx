@@ -90,7 +90,7 @@ class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
     }
 
     return _.map(options, (option: { value: any; label: string }) => (
-      <Option id={option.label} key={option.value} onClick={selectOption}>
+      <Option id={option.label} key={option.value} onMouseDown={selectOption}>
         <span>{option.label}</span>
       </Option>
     ));
@@ -112,18 +112,22 @@ class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
     } = this.props;
 
     return (
-      <div style={{ maxWidth: '225px' }}>
+      <div style={{ maxWidth: '225px' }} onBlur={closeDropdown}>
         <Label>{label}</Label>
-        <Input
-          placeholder={placeholder}
-          name={name}
-          disabled={disabled}
-          error={error}
-          onChange={handleChange}
-          onFocus={openDropdown}
-          value={value}
-        />
-        <OptionsContainer open={open}>{this.renderOptions()}</OptionsContainer>
+        <div>
+          <Input
+            placeholder={placeholder}
+            name={name}
+            disabled={disabled}
+            error={error}
+            onChange={handleChange}
+            onFocus={openDropdown}
+            value={value}
+          />
+          <OptionsContainer open={open}>
+            {this.renderOptions()}
+          </OptionsContainer>
+        </div>
         <Inline error={error}>{inlineMessage}</Inline>
       </div>
     );
