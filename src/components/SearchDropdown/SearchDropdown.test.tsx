@@ -1,14 +1,14 @@
 import * as React from "react";
 
 import themed from "../../utils/themed";
-import Search from "./Search";
+import SearchDropdown from "./SearchDropdown";
 
-describe("Search", () => {
+describe("SearchDropdown", () => {
   it("should render correctly", () => {
     const component = themed(
-      <Search>
+      <SearchDropdown>
         Test
-      </Search>,
+      </SearchDropdown>,
     ).toJSON();
 
     expect(component).toMatchSnapshot();

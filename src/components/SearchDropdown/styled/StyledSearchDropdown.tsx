@@ -33,16 +33,17 @@ const Inline = styled<{ error?: boolean }, 'p'>('p')`
   color: ${({ error }) => (error ? '#cf1a1a' : 'rgba(15, 32, 69, 0.75)')}
 `;
 
-interface StyledSearchProps {
+interface StyledSearchDropdownProps {
   label: string;
   placeholder: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   disabled?: boolean;
   error?: boolean;
   inlineMessage?: string;
 }
 
-class StyledSearch extends React.Component<StyledSearchProps> {
+class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
   public render(): JSX.Element {
     const {
       label,
@@ -51,6 +52,7 @@ class StyledSearch extends React.Component<StyledSearchProps> {
       disabled,
       error,
       inlineMessage,
+      handleChange,
     } = this.props;
 
     return (
@@ -61,6 +63,7 @@ class StyledSearch extends React.Component<StyledSearchProps> {
           name={name}
           disabled={disabled}
           error={error}
+          onChange={handleChange}
         />
         <Inline error={error}>{inlineMessage}</Inline>
       </div>
@@ -68,4 +71,4 @@ class StyledSearch extends React.Component<StyledSearchProps> {
   }
 }
 
-export default StyledSearch;
+export default StyledSearchDropdown;
