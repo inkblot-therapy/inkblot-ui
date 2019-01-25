@@ -99,12 +99,17 @@ class SearchDropdown extends React.Component<
 
   public selectOption(event: React.MouseEvent<HTMLDivElement>): void {
     const { id, innerText } = event.currentTarget;
+    const value = innerText.replace(/\n/, '');
 
     this.setState({
       formValue: id,
       open: false,
-      value: innerText,
+      value,
     });
+
+    if (this.props.onChange) {
+      this.props.onChange(innerText);
+    }
   }
 
   public render(): JSX.Element {
