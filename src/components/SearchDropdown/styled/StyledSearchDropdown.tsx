@@ -90,7 +90,7 @@ class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
     }
 
     return _.map(options, (option: { value: any; label: string }) => (
-      <Option id={option.label} key={option.value} onMouseDown={selectOption}>
+      <Option id={option.value} key={option.value} onMouseDown={selectOption}>
         <span>{option.label}</span>
       </Option>
     ));

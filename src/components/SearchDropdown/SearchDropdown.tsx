@@ -30,6 +30,7 @@ interface SearchDropdownProps {
 
 interface SearchDropdownState {
   filteredOptions: object[];
+  formValue: string;
   open: boolean;
   value: string;
 }
@@ -42,6 +43,7 @@ class SearchDropdown extends React.Component<
     super(props);
     this.state = {
       filteredOptions: this.filterOptions(props.value || '', props.options),
+      formValue: '',
       open: false,
       value: props.value || '',
     };
@@ -60,6 +62,7 @@ class SearchDropdown extends React.Component<
       const { value } = this.state;
       const { options } = this.props;
       const filteredOptions = this.filterOptions(value, options);
+
       this.setState({
         filteredOptions,
       });
@@ -76,6 +79,7 @@ class SearchDropdown extends React.Component<
     this.setState({
       value,
     });
+
     if (this.props.onChange) {
       this.props.onChange(value);
     }
@@ -94,14 +98,13 @@ class SearchDropdown extends React.Component<
   }
 
   public selectOption(event: React.MouseEvent<HTMLDivElement>): void {
-    const { id } = event.currentTarget;
+    const { id, innerText } = event.currentTarget;
+
     this.setState({
+      formValue: id,
       open: false,
-      value: id,
+      value: innerText,
     });
-    if (this.props.onChange) {
-      this.props.onChange(id);
-    }
   }
 
   public render(): JSX.Element {
@@ -113,24 +116,31 @@ class SearchDropdown extends React.Component<
       label,
       placeholder,
     } = this.props;
-    const { open, value, filteredOptions } = this.state;
+    const { open, value, filteredOptions, formValue } = this.state;
 
     return (
-      <StyledSearchDropdown
-        name={name}
-        disabled={disabled}
-        error={error}
-        inlineMessage={inlineMessage}
-        open={open}
-        options={filteredOptions}
-        value={value}
-        label={label}
-        placeholder={placeholder}
-        handleChange={this.handleChange}
-        openDropdown={this.openDropdown}
-        closeDropdown={this.closeDropdown}
-        selectOption={this.selectOption}
-      />
+      <div>
+        <input
+          style={{ display: 'none' }}
+          name={name}
+          value={formValue}
+          readOnly={true}
+        />
+        <StyledSearchDropdown
+          disabled={disabled}
+          error={error}
+          inlineMessage={inlineMessage}
+          open={open}
+          options={filteredOptions}
+          value={value}
+          label={label}
+          placeholder={placeholder}
+          handleChange={this.handleChange}
+          openDropdown={this.openDropdown}
+          closeDropdown={this.closeDropdown}
+          selectOption={this.selectOption}
+        />
+      </div>
     );
   }
 
