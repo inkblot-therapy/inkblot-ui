@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { wInfo } from '../../utils/wInfo';
 import Dropdown from './Dropdown';
-import ControlledDropdown from './stories/ControlledDropdown';
 
 const stories = storiesOf('Components/Dropdown', module);
 stories.addDecorator(withKnobs);
@@ -18,11 +17,31 @@ const options = [
   { value: 7, label: 'Option 7' },
 ];
 
+const defaultValue = [
+  { value: 10, label: 'Option 10' },
+  { value: 11, label: 'Option 11' },
+];
+
+const defaultOptions = [
+  { value: 8, label: 'Option 8' },
+  { value: 9, label: 'Option 9' },
+  { value: 10, label: 'Option 10' },
+  { value: 11, label: 'Option 11' },
+  { value: 12, label: 'Option 12' },
+  { value: 13, label: 'Option 13' },
+  { value: 14, label: 'Option 14' },
+];
+
+const handleChange = (o: object, a: string) => {
+  console.log(a);
+  console.log(o);
+};
+
 stories.add(
-  'Uncontrolled component without defaults',
+  'No default value given',
   wInfo()(() => (
     <Dropdown
-      label={text('label', 'Uncontrolled Dropdown')}
+      label={text('label', 'Dropdown')}
       placeholder={text('placeholder', 'Text')}
       name={text('name', '')}
       options={options}
@@ -33,6 +52,15 @@ stories.add(
 );
 
 stories.add(
-  'Controlled component with defaults',
-  wInfo()(() => <ControlledDropdown />),
+  'Default value given',
+  wInfo()(() => (
+    <Dropdown
+      label={text('label', 'Dropdown')}
+      placeholder={text('placeholder', 'Text')}
+      name={text('name', '')}
+      options={defaultOptions}
+      onChange={handleChange}
+      value={defaultValue}
+    />
+  )),
 );

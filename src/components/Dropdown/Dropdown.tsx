@@ -165,29 +165,26 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         this.props.onChange(newOption, action);
       }
 
-      // If this is an uncontrolled component, take care of the state of options and selected
-      if (!this.props.value) {
-        const filteredOptions = _.filter(
-          objectArray,
-          (option: { value: any }) => option.value.toString() !== id.toString(),
+      const filteredOptions = _.filter(
+        objectArray,
+        (option: { value: any }) => option.value.toString() !== id.toString(),
+      );
+      if (deselect) {
+        this.setState(
+          {
+            options: _.sortBy([...this.state.options, newOption], ['value']),
+            selected: filteredOptions,
+          },
+          () => this.updateFormValue(),
         );
-        if (deselect) {
-          this.setState(
-            {
-              options: _.sortBy([...this.state.options, newOption], ['value']),
-              selected: filteredOptions,
-            },
-            () => this.updateFormValue(),
-          );
-        } else {
-          this.setState(
-            {
-              options: filteredOptions,
-              selected: [...this.state.selected, newOption],
-            },
-            () => this.updateFormValue(),
-          );
-        }
+      } else {
+        this.setState(
+          {
+            options: filteredOptions,
+            selected: [...this.state.selected, newOption],
+          },
+          () => this.updateFormValue(),
+        );
       }
     }
   }
