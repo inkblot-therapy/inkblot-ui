@@ -13,7 +13,7 @@ const Input = styled<{ disabled?: boolean; error?: boolean }, 'input'>('input')`
   border: ${({ error }) =>
     error ? 'solid 2px #cf1a1a' : 'solid 2px transparent'};
   margin-bottom: 0;
-  min-width: 200px;
+  max-width: 180px;
   height: 40px;
   padding-left: 10px;
   padding-right: 10px;
@@ -112,7 +112,7 @@ class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
     } = this.props;
 
     return (
-      <div style={{ maxWidth: '225px' }} onBlur={closeDropdown}>
+      <div style={{ maxWidth: '200px' }} onBlur={closeDropdown}>
         <Label>{label}</Label>
         <div>
           <Input

@@ -13,6 +13,7 @@ const options = [
   { value: 3, label: 'Calgary' },
   { value: 4, label: 'Winnipeg' },
   { value: 5, label: 'Vancouver' },
+  { value: 6, label: 'Halifax' },
 ];
 
 stories.add(
