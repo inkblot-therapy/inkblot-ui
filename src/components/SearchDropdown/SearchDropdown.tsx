@@ -3,7 +3,6 @@ import * as React from 'react';
 import StyledSearchDropdown from './styled/StyledSearchDropdown';
 
 /* TODO: Add in SVG
-         Make form value to value of the object
          onClick
 */
 
@@ -92,8 +91,24 @@ class SearchDropdown extends React.Component<
   }
 
   public closeDropdown(): void {
+    const { options } = this.props;
+    const { formValue, value } = this.state;
+    const currentOption = _.find(
+      options,
+      (option: { label: string }) => option.label === value,
+    );
+    const previousOption = _.find(
+      options,
+      (option: { value: any }) => option.value.toString() === formValue,
+    );
+
     this.setState({
       open: false,
+      value: currentOption
+        ? currentOption.label
+        : previousOption
+        ? previousOption.label
+        : this.state.value,
     });
   }
 
