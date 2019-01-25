@@ -6,9 +6,14 @@ import StyledSearchDropdown from './styled/StyledSearchDropdown';
          onClick
 */
 
+interface Option {
+  label: string;
+  value: string | number;
+}
+
 interface SearchDropdownProps {
   /** Options in the dropdown */
-  options: object[];
+  options: Option[];
   /** Name of the input in the form */
   name?: string;
   /** Determines if the input is disabled or not */
@@ -28,7 +33,7 @@ interface SearchDropdownProps {
 }
 
 interface SearchDropdownState {
-  filteredOptions: object[];
+  filteredOptions: Option[];
   formValue: string;
   open: boolean;
   value: string;
@@ -91,39 +96,20 @@ class SearchDropdown extends React.Component<
   }
 
   public closeDropdown(): void {
-    const { options } = this.props;
-    const { formValue, value } = this.state;
-    const currentOption = _.find(
-      options,
-      (option: { label: string }) => option.label === value,
-    );
-    const previousOption = _.find(
-      options,
-      (option: { value: any }) => option.value.toString() === formValue,
-    );
-
-    this.setState({
-      open: false,
-      value: currentOption
-        ? currentOption.label
-        : previousOption
-        ? previousOption.label
-        : this.state.value,
-    });
+    this.setState({ open: false }, () => this.updateValue());
   }
 
   public selectOption(event: React.MouseEvent<HTMLDivElement>): void {
     const { id, innerText } = event.currentTarget;
-    const value = innerText.replace(/\n/, '');
+    const label = innerText.replace(/\n/, '');
 
     this.setState({
       formValue: id,
       open: false,
-      value,
     });
 
     if (this.props.onChange) {
-      this.props.onChange(innerText);
+      this.props.onChange(label);
     }
   }
 
@@ -165,14 +151,41 @@ class SearchDropdown extends React.Component<
   }
 
   // Filter the options based on the query
-  private filterOptions(query: string, options: object[]): object[] {
+  private filterOptions(query: string, options: Option[]): Option[] {
     return query === ''
       ? options
-      : _.filter(options, (option: { label: string }) => {
-          const lowerCaseOption = option.label.toLowerCase();
-          const lowerCaseValue = query.toLowerCase();
-          return lowerCaseOption.includes(lowerCaseValue);
-        });
+      : (_.filter(
+          options,
+          (option: { value: string | number; label: string }) => {
+            const lowerCaseOption = option.label.toLowerCase();
+            const lowerCaseValue = query.toLowerCase();
+            return lowerCaseOption.includes(lowerCaseValue);
+          },
+        ) as Option[]);
+  }
+
+  // Update value's state to a
+  private updateValue(): void {
+    const { options } = this.props;
+    const { formValue, value } = this.state;
+    const currentOption = _.find(
+      options,
+      (option: { label: string }) => option.label === value,
+    ) as Option;
+    const previousOption = _.find(
+      options,
+      (option: { value: string | number }) =>
+        option.value.toString() === formValue,
+    ) as Option;
+    const newValue = currentOption
+      ? currentOption.label
+      : previousOption
+      ? previousOption.label
+      : value;
+
+    this.setState({
+      value: newValue,
+    });
   }
 }
 
