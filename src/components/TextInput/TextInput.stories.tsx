@@ -18,7 +18,7 @@ stories.add(
       label={text('Label', 'Basic')}
       placeholder={text('placeholder', 'Placeholder')}
       type={text('type', 'text')}
-      defaultValue={text('default value', 'default')}
+      value={text('value', 'default')}
       inlineMessage={text('Inline Message', '')}
     />
   )),
@@ -47,7 +47,7 @@ stories.add(
   'optional callback ',
   wInfo()(() => (
     <TextInput
-      defaultValue={text('default value', 'default')}
+      value={text('value', 'default')}
       label={text('Label', 'Check Console')}
       onChange={onChange}
     />
