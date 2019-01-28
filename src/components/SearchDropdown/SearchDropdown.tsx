@@ -2,9 +2,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import StyledSearchDropdown from './styled/StyledSearchDropdown';
 
-/* TODO: Add in SVG
-         onClick
-*/
+/* TODO: onButtonClick */
 
 interface Option {
   label: string;

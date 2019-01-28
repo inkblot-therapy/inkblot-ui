@@ -1,5 +1,7 @@
 import * as _ from 'lodash';
 import * as React from 'react';
+import SearchActive from '../../../svg/SearchActive';
+import SearchInactive from '../../../svg/SearchInactive';
 import styled from '../../../utils/styled-components';
 
 const Label = styled.p`
@@ -13,10 +15,10 @@ const Input = styled<{ disabled?: boolean; error?: boolean }, 'input'>('input')`
   border: ${({ error }) =>
     error ? 'solid 2px #cf1a1a' : 'solid 2px transparent'};
   margin-bottom: 0;
-  max-width: 180px;
+  max-width: 156px;
   height: 40px;
   padding-left: 10px;
-  padding-right: 10px;
+  padding-right: 30px;
   border-radius: 4px;
   background-color: #fafafa;
   outline: none;
@@ -63,6 +65,16 @@ const NoOptions = styled.div`
 const Inline = styled<{ error?: boolean }, 'p'>('p')`
   ${({ theme }) => theme.input.text.inline}
   color: ${({ error }) => (error ? '#cf1a1a' : 'rgba(15, 32, 69, 0.75)')}
+`;
+
+const SearchContainer = styled<{ value: string; disabled?: boolean }, 'div'>(
+  'div',
+)`
+  cursor: ${({ value }) => (value === '' ? 'auto' : 'pointer')};
+  display: inline-block;
+  position: absolute;
+  left: 175px;
+  top: 11px;
 `;
 
 interface StyledSearchDropdownProps {
@@ -114,7 +126,7 @@ class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
     return (
       <div style={{ maxWidth: '200px' }} onBlur={closeDropdown}>
         <Label>{label}</Label>
-        <div>
+        <div style={{ position: 'relative' }}>
           <Input
             placeholder={placeholder}
             name={name}
@@ -124,10 +136,11 @@ class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
             onFocus={openDropdown}
             value={value}
           />
-          <OptionsContainer open={open}>
-            {this.renderOptions()}
-          </OptionsContainer>
+          <SearchContainer value={value}>
+            {value === '' || disabled ? <SearchInactive /> : <SearchActive />}
+          </SearchContainer>
         </div>
+        <OptionsContainer open={open}>{this.renderOptions()}</OptionsContainer>
         <Inline error={error}>{inlineMessage}</Inline>
       </div>
     );
