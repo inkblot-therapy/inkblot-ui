@@ -61,7 +61,7 @@ class StyledTextInput extends React.Component<TextInputProps, TextInputState> {
     super(props);
 
     this.state = {
-      value: this.props.defaultValue,
+      value: this.props.value || '',
     };
   }
 

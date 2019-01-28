@@ -23,7 +23,7 @@ export interface TextInputProps {
   /** inline message, good for error text */
   inlineMessage?: string;
   /** default value of the input */
-  defaultValue?: string;
+  value?: string;
   /** onChange  */
   onChange?: (event: object) => void;
 }
