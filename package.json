@@ -17,7 +17,9 @@
   "license": "MIT",
   "dependencies": {
     "@svgr/cli": "^4.1.0",
+    "moment-timezone": "^0.5.23",
     "react": "^16.5.2",
+    "react-dates": "^18.4.1",
     "react-dom": "^16.5.2",
     "styled-components": "^4.0.2",
     "url-loader": "^1.1.2"
