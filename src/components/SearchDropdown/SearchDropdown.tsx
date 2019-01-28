@@ -13,7 +13,7 @@ interface Option {
 
 interface SearchDropdownProps {
   /** Options in the dropdown */
-  options: Option[];
+  options: object[];
   /** Name of the input in the form */
   name?: string;
   /** Determines if the input is disabled or not */
@@ -151,9 +151,9 @@ class SearchDropdown extends React.Component<
   }
 
   // Filter the options based on the query
-  private filterOptions(query: string, options: Option[]): Option[] {
+  private filterOptions(query: string, options: object[]): Option[] {
     return query === ''
-      ? options
+      ? (options as Option[])
       : (_.filter(
           options,
           (option: { value: string | number; label: string }) => {
