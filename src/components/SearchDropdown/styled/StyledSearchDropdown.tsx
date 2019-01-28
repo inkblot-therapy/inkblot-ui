@@ -67,9 +67,7 @@ const Inline = styled<{ error?: boolean }, 'p'>('p')`
   color: ${({ error }) => (error ? '#cf1a1a' : 'rgba(15, 32, 69, 0.75)')}
 `;
 
-const SearchContainer = styled<{ value: string; disabled?: boolean }, 'div'>(
-  'div',
-)`
+const SearchContainer = styled<{ value: string }, 'div'>('div')`
   cursor: ${({ value }) => (value === '' ? 'auto' : 'pointer')};
   display: inline-block;
   position: absolute;
@@ -88,6 +86,7 @@ interface StyledSearchDropdownProps {
   error?: boolean;
   inlineMessage?: string;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleButtonClick: () => void;
   openDropdown: () => void;
   closeDropdown: () => void;
   selectOption: (event: React.MouseEvent<HTMLDivElement>) => void;
@@ -106,6 +105,16 @@ class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
         <span>{option.label}</span>
       </Option>
     ));
+  }
+
+  public renderSearchButton(): JSX.Element {
+    const { disabled, handleButtonClick, value } = this.props;
+
+    return value === '' || disabled ? (
+      <SearchInactive />
+    ) : (
+      <SearchActive onClick={handleButtonClick} />
+    );
   }
 
   public render(): JSX.Element {
@@ -137,7 +146,7 @@ class StyledSearchDropdown extends React.Component<StyledSearchDropdownProps> {
             value={value}
           />
           <SearchContainer value={value}>
-            {value === '' || disabled ? <SearchInactive /> : <SearchActive />}
+            {this.renderSearchButton()}
           </SearchContainer>
         </div>
         <OptionsContainer open={open}>{this.renderOptions()}</OptionsContainer>

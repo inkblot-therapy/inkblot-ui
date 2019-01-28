@@ -2,8 +2,6 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import StyledSearchDropdown from './styled/StyledSearchDropdown';
 
-/* TODO: onButtonClick */
-
 interface Option {
   label: string;
   value: string | number;
@@ -28,6 +26,8 @@ interface SearchDropdownProps {
   value?: string;
   /** Handler function when input changes */
   onChange?: (value: string) => void;
+  /** Handler function when search button is clicked */
+  onButtonClick?: () => void;
 }
 
 interface SearchDropdownState {
@@ -51,6 +51,7 @@ class SearchDropdown extends React.Component<
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
     this.openDropdown = this.openDropdown.bind(this);
     this.closeDropdown = this.closeDropdown.bind(this);
     this.selectOption = this.selectOption.bind(this);
@@ -84,6 +85,12 @@ class SearchDropdown extends React.Component<
 
     if (this.props.onChange) {
       this.props.onChange(value);
+    }
+  }
+
+  public handleButtonClick(): void {
+    if (this.props.onButtonClick) {
+      this.props.onButtonClick();
     }
   }
 
@@ -140,6 +147,7 @@ class SearchDropdown extends React.Component<
           label={label}
           placeholder={placeholder}
           handleChange={this.handleChange}
+          handleButtonClick={this.handleButtonClick}
           openDropdown={this.openDropdown}
           closeDropdown={this.closeDropdown}
           selectOption={this.selectOption}

@@ -44,6 +44,7 @@ stories.add(
       options={options}
       value={text('value', 'tor')}
       onChange={(value) => console.log(value)}
+      onButtonClick={() => console.log('Search!')}
     />
   )),
 );
