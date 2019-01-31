@@ -20,7 +20,9 @@ const ThemeDropdown = (props: DropdownProps) => (
 
 const InkblotTheme: React.StatelessComponent<{}> = ({children}) => (
   <ThemeProvider theme={theme}>
-    {children}
+    <div>
+      {children}
+    </div>
   </ThemeProvider>
 )
 export { default as BookingCalendar } from "./components/BookingCalendar";
