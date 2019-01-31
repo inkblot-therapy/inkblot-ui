@@ -18,9 +18,9 @@ const ThemeDropdown = (props: DropdownProps) => (
   </ThemeProvider>
 );
 
-const InkblotTheme = (props) => (
+const InkblotTheme = ({children}) => (
   <ThemeProvider theme={theme}>
-    {props.children}
+    {children}
   </ThemeProvider>
 );
 
