@@ -1,17 +1,5 @@
-interface StringValidator {
-  isAcceptable(s: string): boolean;
-}
-
-const numberRegexp = /^[0-9]+$/;
-
-class ZipCodeValidator implements StringValidator {
-  isAcceptable(s: string) {
-      return s.length === 5 && numberRegexp.test(s);
-  }
-}
-const helloMessage = 'Hello!!';
-
-export { ZipCodeValidator };
-export { ZipCodeValidator as mainValidator };
-export { helloMessage as HelloMsg };
-
+export * from "./components/BookingCalendar";
+export * from "./components/Button";
+export * from "./components/Dropdown";
+export * from "./components/Modal";
+export * from "./components/TextInput";
