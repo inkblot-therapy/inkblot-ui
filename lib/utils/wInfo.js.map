@@ -1,0 +1,1 @@
+{"version":3,"file":"wInfo.js","sourceRoot":"","sources":["../../src/utils/wInfo.ts"],"names":[],"mappings":";;AAAA,oDAAiD;AAEjD,IAAM,UAAU,GAAG,EAAE,CAAC;AAET,QAAA,KAAK,GAAG,UAAC,IAAa,IAAK,OAAA,CACtC,qBAAQ,CAAC;IACP,MAAM,EAAE,IAAI;IACZ,MAAM,EAAE,IAAI;IACZ,MAAM,EAAE,UAAU;IAClB,IAAI,MAAA;CACL,CAAC,CACH,EAPuC,CAOvC,CAAC"}
