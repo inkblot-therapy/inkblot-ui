@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "build/lib",
+    "outDir": "lib",
     "module": "commonjs",
     "target": "es5",
     "lib": ["es5", "es6", "es7", "es2017", "dom"],
@@ -8,20 +8,21 @@
     "allowJs": false,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDirs": ["src", ".storybook"],
-    "baseUrl": "./",
+    "rootDir": "src",
+    // "baseUrl": "./",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "declaration": true,
-    "allowSyntheticDefaultImports": false,
-    "experimentalDecorators": true
+    // "allowSyntheticDefaultImports": false,
+    // "experimentalDecorators": true
+    "skipLibCheck": true,
   },
-  "include": ["src/**/*", ".storybook/**/*"],
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "build",
@@ -31,5 +32,5 @@
     "src/**/*.test.tsx",
     "src/**/*.stories.tsx"
   ],
-  "files": ["custom.d.ts"]
+  // "files": ["custom.d.ts"]
 }

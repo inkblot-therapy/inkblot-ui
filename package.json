@@ -2,9 +2,10 @@
   "name": "inkblot-ui",
   "version": "1.0.0",
   "description": "Component Library for Inkblot",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "compile": "tsc -w",
+    "build": "tsc",
     "test": "jest",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "generate": "plop --plopfile ./.plop/plop.config.js",
