@@ -18,6 +18,12 @@ const ThemeDropdown = (props: DropdownProps) => (
   </ThemeProvider>
 );
 
+const InkblotTheme = (props) => (
+  <ThemeProvider theme={theme}>
+    {props.children}
+  </ThemeProvider>
+);
+
 export { default as BookingCalendar } from "./components/BookingCalendar";
 export { default as Button } from "./components/Button";
 export { default as Dropdown } from "./components/Dropdown";
@@ -26,3 +32,4 @@ export { default as SearchDropdown } from "./components/SearchDropdown";
 export { default as TextInput } from "./components/TextInput";
 export { ThemeButton };
 export { ThemeDropdown };
+export { InkblotTheme };
