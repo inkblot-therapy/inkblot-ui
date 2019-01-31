@@ -9,5 +9,9 @@ class ZipCodeValidator implements StringValidator {
       return s.length === 5 && numberRegexp.test(s);
   }
 }
+const helloMessage = 'Hello!!';
+
 export { ZipCodeValidator };
 export { ZipCodeValidator as mainValidator };
+export { helloMessage as HelloMsg };
+
