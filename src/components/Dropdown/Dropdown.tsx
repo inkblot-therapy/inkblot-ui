@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import StyledDropdown from './styled/StyledDropdown';
 
-interface DropdownProps {
+export interface DropdownProps {
   /** Options to be displayed in the dropdown */
   options: object[];
   /** Label above the dropdown */

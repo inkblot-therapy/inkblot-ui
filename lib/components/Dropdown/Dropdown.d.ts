@@ -1,5 +1,5 @@
 import * as React from 'react';
-interface DropdownProps {
+export interface DropdownProps {
     /** Options to be displayed in the dropdown */
     options: object[];
     /** Label above the dropdown */
