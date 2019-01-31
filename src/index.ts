@@ -1,5 +1,2 @@
-export * from "./components/BookingCalendar";
-export * from "./components/Button";
-export * from "./components/Dropdown";
-export * from "./components/Modal";
-export * from "./components/TextInput";
+export { default as Button } from "./components/Button";
+export { default as BookingCalendar } from "./components/BookingCalendar";
