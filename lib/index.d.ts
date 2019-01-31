@@ -1,7 +1,5 @@
 /// <reference types="react" />
-declare const ThemeButton: ({ children }: {
-    children: any;
-}) => JSX.Element;
+declare const ThemeButton: (props: any) => JSX.Element;
 export { default as BookingCalendar } from "./components/BookingCalendar";
 export { default as Button } from "./components/Button";
 export { default as Dropdown } from "./components/Dropdown";

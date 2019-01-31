@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { ThemeProvider } from 'styled-components';
 import theme from './theme';
+import Button from './components/Button';
 
-const ThemeButton = ({children}) => (
+const ThemeButton = (props) => (
   <ThemeProvider theme={theme}>
-    {children}
+    <Button {...props} />
   </ThemeProvider>
 );
 
