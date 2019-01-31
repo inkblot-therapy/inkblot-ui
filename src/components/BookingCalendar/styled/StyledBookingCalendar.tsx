@@ -6,7 +6,7 @@ const colorDarkSlateBlue = '#19336a';
 const colorBlack8 = 'rgba(51, 51, 51, 0.08)';
 const colorDarkIndigo25 = 'rgba(15, 32, 69, 0.25)';
 const colorDarkIndigo60 = 'rgba(15, 32, 69, 0.6)';
-const colorDarkIndigo75 = 'rgba(15, 32, 69, 0.6)';
+const colorDarkIndigo75 = 'rgba(15, 32, 69, 0.75)';
 
 const StyledBookingCalendar = styled<{}, "div">("div")`
   font-family: "Source Sans Pro", sans-serif;
