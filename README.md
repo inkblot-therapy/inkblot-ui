@@ -12,9 +12,9 @@ export { default as Dropdown } from "./components/Dropdown";
 ## Publish onto Github
 1. Build: `npm run build`
 2. Push a branch and merge it into master on Github
-## How to use
-1. Install: `npm install inkblot-therapy/inkblot-ui`
-2. Add fonts
+## How to use on projects
+1. Install UI Library: `npm install inkblot-therapy/inkblot-ui`
+2. Add fonts to a css file
 ```
 @import url('https://fonts.googleapis.com/css?family=Barlow:400,500,600,700,800');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
@@ -30,6 +30,8 @@ import { InkblotTheme, Button, Dropdown } from 'inkblot-ui';
   <Dropdown ... />
 </InkblotTheme>
 ```
+4. Update UI Library: `npm update inkblot-ui`
+5. Install Developing UI Library: `npm install inkblot-therapy/inkblot-ui#branch-name`
 
 <br/>
 <br/>
