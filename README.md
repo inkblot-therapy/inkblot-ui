@@ -4,7 +4,7 @@
 `npm run storybook`  
 ## Creating new components
 1. Generate codes: `npm run generate`
-2. Add the component to `index.tsx`
+2. Add the component to `src/index.tsx`
 ```
 export { default as Button } from "./components/Button";
 export { default as Dropdown } from "./components/Dropdown";
