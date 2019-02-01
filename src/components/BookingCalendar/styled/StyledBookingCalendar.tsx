@@ -35,6 +35,10 @@ const StyledBookingCalendar = styled<{}, "div">("div")`
     right: 32px;
   }
 
+  .CalendarMonthGrid {
+    background: none;
+  }
+
   .CalendarMonth_caption {
     font-family: "Barlow", sans-serif;
     color: ${colorDarkSlateBlue};
@@ -99,6 +103,10 @@ const StyledBookingCalendar = styled<{}, "div">("div")`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  strong, b {
+    font-weight: bold !important;
   }
 
 `;
