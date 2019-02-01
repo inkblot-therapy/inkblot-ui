@@ -1,3 +1,15 @@
+import * as React from 'react';
+import { ThemeProvider } from 'styled-components';
+import theme from './theme';
+
+export const InkblotTheme: React.StatelessComponent<{}> = ({children}) => (
+  <ThemeProvider theme={theme}>
+    <div>
+      {children}
+    </div>
+  </ThemeProvider>
+)
+
 export { default as BookingCalendar } from "./components/BookingCalendar";
 export { default as Button } from "./components/Button";
 export { default as Dropdown } from "./components/Dropdown";
