@@ -1,22 +1,40 @@
-# React UI Kit boilerplate
+# Inkblot UI Component Library 
 
-The perfect boilerplate to help you to create your own React UI Kit. 
+## Development with storybook
+`npm run storybook`  
+## Creating new components
+1. Generate codes: `npm run generate`
+2. Add the component to `index.tsx`
+```
+export { default as Button } from "./components/Button";
+export { default as Dropdown } from "./components/Dropdown";
+```
+## Publish onto Github
+1. Build: `npm run build`
+2. Push a branch and merge it into master on Github
+## How to use
+1. Install: `npm install inkblot-therapy/inkblot-ui`
+2. Add fonts
+```
+@import url('https://fonts.googleapis.com/css?family=Barlow:400,500,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
+```
+3. Sample codes
+```
+import { InkblotTheme, Button, Dropdown } from 'inkblot-ui';
 
-<div>
-  <!-- Dependency Status -->
-  <a href="https://david-dm.org/leandrooriente/react-ui-kit-boilerplate">
-    <img src="https://david-dm.org/leandrooriente/react-ui-kit-boilerplate.svg" alt="Dependency Status" />
-  </a>
-  <!-- devDependency Status -->
-  <a href="https://david-dm.org/leandrooriente/react-ui-kit-boilerplate#info=devDependencies">
-    <img src="https://david-dm.org/leandrooriente/react-ui-kit-boilerplate/dev-status.svg" alt="devDependency Status" />
-  </a>
-</div>
+...
 
-## Live Example
+<InkblotTheme>
+  <Button label="Hello" primary />
+  <Dropdown ... />
+</InkblotTheme>
+```
 
-[https://leandrooriente.github.io/react-ui-kit-boilerplate](https://leandrooriente.github.io/react-ui-kit-boilerplate/?selectedKind=Components%2FButton&selectedStory=default&full=0&addons=1&stories=1&panelRight=1&addonPanel=storybooks%2Fstorybook-addon-knobs&knob-Label=Default)
-
+<br/>
+<br/>
+<br/>
+<br/>
 ## Features
 
 - [Typescript](https://www.typescriptlang.org)

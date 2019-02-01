@@ -1,7 +1,7 @@
 {
   "name": "inkblot-ui",
-  "version": "0.5.1",
-  "description": "Component Library for Inkblot",
+  "version": "0.9.1",
+  "description": "Inkblot UI Component Library ",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
