@@ -1,6 +1,6 @@
-/// <reference types="styled-components" />
+import * as React from 'react';
 import { ButtonProps } from '../Button';
-declare const StyledButton: import("styled-components").StyledComponentClass<ButtonProps, import("../../../theme").ThemeInterface, Pick<ButtonProps, "label" | "style" | "children" | "className" | "onClick" | "disabled" | "primary" | "secondary" | "tertiary" | "singleClick"> & {
-    theme?: import("../../../theme").ThemeInterface | undefined;
-}>;
+declare class StyledButton extends React.Component<ButtonProps> {
+    render(): JSX.Element;
+}
 export default StyledButton;
