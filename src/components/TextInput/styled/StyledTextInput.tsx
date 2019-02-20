@@ -6,7 +6,7 @@ const Input = styled<
   { disabled?: boolean; error?: boolean; type?: string },
   'input'
 >('input')`
-  min-width: 200px;
+  min-width: 180px;
   height: 40px;
   padding-left: 10px;
   padding-right: 10px;
@@ -32,14 +32,18 @@ const Input = styled<
 `;
 
 const Label = styled.label`
-  color: red;
   font-family: "Source Sans Pro", sans-serif;
-  font-size: 16px;
   font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
   letter-spacing: 0.1px;
-  color: #0f2045;
+  color: rgba(15, 32, 69, 0.75);
+  font-size: 12px;
+  letter-spacing: 0.1px;
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  color: "rgba(15, 32, 69, 0.75)";
 `;
 
 const InlineMessage = styled<{ error?: boolean }, 'p'>('p')`
