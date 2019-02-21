@@ -5,11 +5,11 @@
             <feOffset in="SourceAlpha" result="shadowOffsetOuter1"/>
             <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="5"/>
             <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
-            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.388235294 0 0 0 0 0.547410486 0 0 0 0 0.694117647 0 0 0 0.2 0"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.388235294 0 0 0 0 0.549019608 0 0 0 0 0.694117647 0 0 0 0.1 0"/>
         </filter>
     </defs>
     <g fill="none" fill-rule="evenodd" transform="translate(10 10)">
         <use fill="#000" filter="url(#a)" xlink:href="#b"/>
-        <rect width="24" height="24" x="1" y="1" fill="#FFF" stroke="#2E5FCA" stroke-linejoin="square" stroke-width="2" rx="4"/>
+        <rect width="24" height="24" x="1" y="1" fill="#FFF" stroke="#2E5FCA" stroke-linejoin="square" stroke-opacity=".2" stroke-width="2" rx="4"/>
     </g>
 </svg>
