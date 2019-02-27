@@ -38,12 +38,11 @@ const Label = styled.label`
   font-stretch: normal;
   line-height: normal;
   letter-spacing: 0.1px;
-  color: rgba(15, 32, 69, 0.75);
+  color: #0f2045;
   font-size: 12px;
   letter-spacing: 0.1px;
   display: block;
   margin-bottom: 10px;
-  color: "rgba(15, 32, 69, 0.75)";
 `;
 
 const InlineMessage = styled<{ error?: boolean }, 'p'>('p')`
