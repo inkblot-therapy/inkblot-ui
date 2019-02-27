@@ -16,7 +16,7 @@ const Button = styled<
   border-radius: 20px;
   cursor: ${({ disabled }) => (!disabled ? 'pointer' : 'not-allowed')};
   height: 40px;
-  padding: 10px 40px;
+  padding: 0 40px;
   font-family: "Barlow", sans-serif;
   font-size: 16px;
   font-weight: bold;
