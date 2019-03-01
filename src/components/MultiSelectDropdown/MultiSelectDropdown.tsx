@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
 import * as React from 'react';
-import StyledDropdown from './styled/StyledDropdown';
+import StyledMultiSelectDropdown from './styled/StyledMultiSelectDropdown';
 
-export interface DropdownProps {
+export interface MultiSelectDropdownProps {
   /** Options to be displayed in the dropdown */
   options: object[];
   /** Label above the dropdown */
@@ -21,7 +21,7 @@ export interface DropdownProps {
   error?: boolean;
 }
 
-interface DropdownState {
+interface MultiSelectDropdownState {
   open: boolean;
   selected: object[];
   options: object[];
@@ -29,8 +29,11 @@ interface DropdownState {
   formValue: string[];
 }
 
-class Dropdown extends React.Component<DropdownProps, DropdownState> {
-  constructor(props: DropdownProps) {
+class MultiSelectDropdown extends React.Component<
+  MultiSelectDropdownProps,
+  MultiSelectDropdownState
+> {
+  constructor(props: MultiSelectDropdownProps) {
     super(props);
     // Map value to array of strings
     const formValue = _.map(props.value, (option: { value: any }) =>
@@ -50,7 +53,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     this.deselectOption = this.deselectOption.bind(this);
   }
 
-  public componentDidUpdate(prevProps: DropdownProps): void {
+  public componentDidUpdate(prevProps: MultiSelectDropdownProps): void {
     if (this.props.value !== prevProps.value) {
       this.setState(
         {
@@ -105,7 +108,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
           value={formValue}
           readOnly={true}
         />
-        <StyledDropdown
+        <StyledMultiSelectDropdown
           label={label}
           placeholder={placeholder}
           open={open}
@@ -201,4 +204,4 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 }
 
-export default Dropdown;
+export default MultiSelectDropdown;

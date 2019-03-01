@@ -2,9 +2,9 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { wInfo } from '../../utils/wInfo';
-import Dropdown from './Dropdown';
+import MultiSelectDropdown from './MultiSelectDropdown';
 
-const stories = storiesOf('Components/Dropdown', module);
+const stories = storiesOf('Components/MultiSelectDropdown', module);
 stories.addDecorator(withKnobs);
 
 const options = [
@@ -40,8 +40,8 @@ const handleChange = (o: object, a: string) => {
 stories.add(
   'No default value given',
   wInfo()(() => (
-    <Dropdown
-      label={text('label', 'Dropdown')}
+    <MultiSelectDropdown
+      label={text('label', 'MultiSelectDropdown')}
       placeholder={text('placeholder', 'Text')}
       name={text('name', '')}
       options={options}
@@ -54,8 +54,8 @@ stories.add(
 stories.add(
   'Default value given',
   wInfo()(() => (
-    <Dropdown
-      label={text('label', 'Dropdown')}
+    <MultiSelectDropdown
+      label={text('label', 'MultiSelectDropdown')}
       placeholder={text('placeholder', 'Text')}
       name={text('name', '')}
       options={defaultOptions}
