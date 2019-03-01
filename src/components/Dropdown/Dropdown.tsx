@@ -7,14 +7,12 @@ export interface DropdownProps {
   options: object[];
   /** Label above the dropdown */
   label?: string;
-  /** Placeholder for the dropdown */
-  placeholder?: string;
   /** Name of the input in the form */
   name?: string;
   /** Handler function when input changes */
-  onChange?: (option: object, action: string) => void;
+  onChange?: (option: object) => void;
   /** Control the current input value */
-  value?: object[];
+  value?: object;
   /** Inline message below the dropdown */
   inlineMessage?: string;
   /** Present if there is an error */
@@ -23,46 +21,27 @@ export interface DropdownProps {
 
 interface DropdownState {
   open: boolean;
-  selected: object[];
+  selected: string;
   options: object[];
-  value: object[] | undefined;
-  formValue: string[];
+  value: object | undefined;
+  formValue: string;
 }
 
 class Dropdown extends React.Component<DropdownProps, DropdownState> {
   constructor(props: DropdownProps) {
     super(props);
-    // Map value to array of strings
-    const formValue = _.map(props.value, (option: { value: any }) =>
-      option.value.toString(),
-    );
     this.state = {
-      formValue,
+      formValue:
+        _.get(props.value, 'value') || _.get(props.options[0], 'value'),
       open: false,
-      options: this.removeDefaultValues(props.options, props.value || []),
-      selected: props.value || [],
+      options: props.options,
+      selected: _.get(props.value, 'label') || _.get(props.options[0], 'label'),
       value: props.value,
     };
 
     this.openDropdown = this.openDropdown.bind(this);
     this.closeDropdown = this.closeDropdown.bind(this);
     this.selectOption = this.selectOption.bind(this);
-    this.deselectOption = this.deselectOption.bind(this);
-  }
-
-  public componentDidUpdate(prevProps: DropdownProps): void {
-    if (this.props.value !== prevProps.value) {
-      this.setState(
-        {
-          options: this.removeDefaultValues(
-            this.state.options,
-            this.props.value || [],
-          ),
-          selected: this.props.value || [],
-        },
-        () => this.updateFormValue(),
-      );
-    }
   }
 
   public openDropdown(): void {
@@ -86,15 +65,24 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 
   public selectOption(event: React.SyntheticEvent): void {
-    this.changeOptions(event);
-  }
+    const { options } = this.props;
+    const { id } = event.currentTarget;
+    const selected = _.find(
+      options,
+      (option: { value: any }) => option.value.toString() === id.toString(),
+    );
 
-  public deselectOption(event: React.SyntheticEvent): void {
-    this.changeOptions(event, true);
+    if (selected) {
+      this.setState({
+        formValue: _.get(selected, 'value'),
+        open: false,
+        selected: _.get(selected, 'label'),
+      });
+    }
   }
 
   public render(): JSX.Element {
-    const { name, label, placeholder, inlineMessage, error } = this.props;
+    const { name, label, inlineMessage, error } = this.props;
     const { open, options, selected, formValue } = this.state;
 
     return (
@@ -107,7 +95,6 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         />
         <StyledDropdown
           label={label}
-          placeholder={placeholder}
           open={open}
           options={options}
           selected={selected}
@@ -116,88 +103,9 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
           openDropdown={this.openDropdown}
           closeDropdown={this.closeDropdown}
           selectOption={this.selectOption}
-          deselectOption={this.deselectOption}
         />
       </div>
     );
-  }
-
-  // Remove any objects that are in defaultValue from options
-  private removeDefaultValues(
-    options: object[],
-    defaultValue: object[],
-  ): object[] {
-    if (defaultValue.length === 0) {
-      return options;
-    }
-
-    const optionsWithoutDefaults = options;
-
-    _.forEach(defaultValue, (defaultOption: { value: any }) => {
-      const index = optionsWithoutDefaults.findIndex(
-        (option: { value: any }) => option.value === defaultOption.value,
-      );
-      if (index >= 0) {
-        optionsWithoutDefaults.splice(index, 1);
-      }
-    });
-
-    return optionsWithoutDefaults;
-  }
-
-  // Actions to take for selecting and deselecting dropdown options
-  private changeOptions(
-    event: React.SyntheticEvent,
-    deselect: boolean = false,
-  ): void {
-    event.stopPropagation();
-
-    const objectArray = deselect ? this.state.selected : this.state.options;
-    const { id } = event.currentTarget;
-    const newOption = _.find(
-      objectArray,
-      (option: { value: any }) => option.value.toString() === id.toString(),
-    );
-
-    if (newOption) {
-      if (this.props.onChange) {
-        const action = deselect ? 'deselect' : 'select';
-        this.props.onChange(newOption, action);
-      }
-
-      const filteredOptions = _.filter(
-        objectArray,
-        (option: { value: any }) => option.value.toString() !== id.toString(),
-      );
-      if (deselect) {
-        this.setState(
-          {
-            options: _.sortBy([...this.state.options, newOption], ['value']),
-            selected: filteredOptions,
-          },
-          () => this.updateFormValue(),
-        );
-      } else {
-        this.setState(
-          {
-            options: filteredOptions,
-            selected: [...this.state.selected, newOption],
-          },
-          () => this.updateFormValue(),
-        );
-      }
-    }
-  }
-
-  private updateFormValue(): void {
-    const selectedStringArray = _.map(
-      this.state.selected,
-      (option: { value: any }) => option.value.toString(),
-    );
-
-    this.setState({
-      formValue: selectedStringArray,
-    });
   }
 }
 
