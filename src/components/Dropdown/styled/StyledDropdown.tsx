@@ -4,15 +4,12 @@ import Down from '../../../svg/Down';
 import styled from '../../../utils/styled-components';
 
 const DropdownContainer = styled.div`
-  min-width: 200px;
   display: inline-block;
-  max-width: 300px;
   outline: none;
 `;
 
 const Dropdown = styled<{ error?: boolean }, 'div'>('div')`
-  min-width: 180px;
-  min-height: 40px;
+  height: 40px;
   display: inline-flex;
   padding-left: 10px;
   padding-right: 10px;
@@ -28,13 +25,15 @@ const Label = styled.p`
   ${({ theme }) => theme.input.text.label}
 `;
 
-const Placeholder = styled.div`
+const SelectedText = styled.div`
   ${({ theme }) => theme.input.text.standard}
+  padding-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const OptionsContainer = styled<{ open: boolean }, 'div'>('div')`
-  min-width: 200px;
-  width: 100%;
   max-height: 200px;
   overflow-y: auto;
   display: ${({ open }) => (open ? 'block' : 'none')};
@@ -48,10 +47,11 @@ const Option = styled.div`
   ${({ theme }) => theme.input.text.standard}
   height: 40px;
   padding-left: 10px;
+  padding-right: 10px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  :hover {
+  &:hover {
     opacity: 0.9;
     background-color: #ecf9f9;
     font-weight: 600;
@@ -67,7 +67,7 @@ interface StyledDropdownProps {
   label?: string;
   open: boolean;
   options: object[];
-  selected: object;
+  selected: string;
   inlineMessage?: string;
   error?: boolean;
   openDropdown: () => void;
@@ -106,7 +106,7 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
           onBlur={closeDropdown}
         >
           <Dropdown error={error} onClick={open ? closeDropdown : openDropdown}>
-            <Placeholder>{_.get(selected, 'label')}</Placeholder>
+            <SelectedText>{selected}</SelectedText>
             <div style={{ marginLeft: 'auto' }}>
               <Down />
             </div>

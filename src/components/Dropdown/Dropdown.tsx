@@ -21,7 +21,7 @@ export interface DropdownProps {
 
 interface DropdownState {
   open: boolean;
-  selected: object;
+  selected: string;
   options: object[];
   value: object | undefined;
   formValue: string;
@@ -35,7 +35,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
         _.get(props.value, 'value') || _.get(props.options[0], 'value'),
       open: false,
       options: props.options,
-      selected: props.value || props.options[0],
+      selected: _.get(props.value, 'label') || _.get(props.options[0], 'label'),
       value: props.value,
     };
 
@@ -76,7 +76,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
       this.setState({
         formValue: _.get(selected, 'value'),
         open: false,
-        selected,
+        selected: _.get(selected, 'label'),
       });
     }
   }
