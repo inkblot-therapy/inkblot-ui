@@ -46,11 +46,7 @@ const onChange = (v: object) => {
 stories.add(
   'optional callback ',
   wInfo()(() => (
-    <TextInput
-      value={text('value', 'default')}
-      label={text('Label', 'Check Console')}
-      onChange={onChange}
-    />
+    <TextInput label={text('Label', 'Check Console')} onChange={onChange} />
   )),
 );
 
