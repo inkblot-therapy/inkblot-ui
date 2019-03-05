@@ -25,3 +25,12 @@ stories.add(
     </Dropdown>
   )),
 );
+
+stories.add(
+  'with name',
+  wInfo()(() => (
+    <Dropdown label="default" name="haha" options={options}>
+      {text('Label', 'Default')}
+    </Dropdown>
+  )),
+);

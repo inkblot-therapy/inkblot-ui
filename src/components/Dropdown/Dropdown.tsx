@@ -88,6 +88,7 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
     return (
       <div>
         <input
+          {...this.props}
           style={{ display: 'none' }}
           name={name}
           value={formValue}
