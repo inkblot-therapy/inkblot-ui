@@ -6,6 +6,12 @@ import styled from '../../../utils/styled-components';
 const DropdownContainer = styled.div`
   display: inline-block;
   outline: none;
+  #dropdown-container {
+    width: 100%;
+    & > div {
+      width: 100%;
+    }
+  }
 `;
 
 const Dropdown = styled<{ error?: boolean }, 'div'>('div')`
@@ -51,6 +57,9 @@ const Option = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  span {
+    white-space: nowrap;
+  }
   &:hover {
     opacity: 0.9;
     background-color: #ecf9f9;
