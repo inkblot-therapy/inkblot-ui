@@ -20,6 +20,8 @@ const options = [
 stories.add(
   'default',
   wInfo()(() => (
-    <Dropdown options={options}>{text('Label', 'Default')}</Dropdown>
+    <Dropdown label="test" options={options}>
+      {text('Label', 'Default')}
+    </Dropdown>
   )),
 );

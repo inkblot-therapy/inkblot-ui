@@ -29,6 +29,17 @@ const Dropdown = styled<{ error?: boolean }, 'div'>('div')`
 
 const Label = styled.p`
   ${({ theme }) => theme.input.text.label}
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.1px;
+  color: #0f2045;
+  font-size: 12px;
+  letter-spacing: 0.1px;
+  display: block;
+  margin-bottom: 10px;
 `;
 
 const SelectedText = styled.div`
