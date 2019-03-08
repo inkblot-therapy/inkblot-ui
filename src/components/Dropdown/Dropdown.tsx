@@ -17,6 +17,7 @@ export interface DropdownProps {
   inlineMessage?: string;
   /** Present if there is an error */
   error?: boolean;
+  input?: object;
 }
 
 interface DropdownState {
@@ -82,12 +83,13 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 
   public render(): JSX.Element {
-    const { name, label, inlineMessage, error } = this.props;
+    const { name, label, inlineMessage, error, input } = this.props;
     const { open, options, selected, formValue } = this.state;
 
     return (
       <div>
         <input
+          {...input}
           style={{ display: 'none' }}
           name={name}
           value={formValue}

@@ -14,6 +14,7 @@ export interface DropdownProps {
     inlineMessage?: string;
     /** Present if there is an error */
     error?: boolean;
+    input?: object;
 }
 interface DropdownState {
     open: boolean;
