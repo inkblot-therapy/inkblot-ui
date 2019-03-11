@@ -5,7 +5,7 @@ import styled from '../../../utils/styled-components';
 
 const Dropdown = styled<{ error?: boolean }, 'div'>('div')`
   background-color: #fafafa;
-  max-width: 200px;
+  max-width: 220px;
   height: 40px;
   overflow: hidden;
   border-radius: 4px;
@@ -16,7 +16,7 @@ const Dropdown = styled<{ error?: boolean }, 'div'>('div')`
   select {
     ${({ theme }) => theme.input.text.standard}
     background: transparent;
-    width: 220px;
+    width: 240px;
     height: 40px;
     outline: none;
     border: none;
