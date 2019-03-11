@@ -32,6 +32,7 @@ const Dropdown = styled<{ error?: boolean }, 'div'>('div')`
 
 const Label = styled.p`
   ${({ theme }) => theme.input.text.label}
+  margin-bottom: 10px;
 `;
 
 const Inline = styled<{ error?: boolean }, 'p'>('p')`
