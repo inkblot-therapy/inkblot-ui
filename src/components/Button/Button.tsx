@@ -19,6 +19,8 @@ export interface ButtonProps {
   label: string;
   /** Extra styles */
   style?: object;
+  /** Type */
+  type?: string;
   /** className */
   className?: string;
 }
@@ -59,6 +61,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     return (
       <StyledButton
         {...this.props}
+        type="button"
         onClick={!disabled ? this.click : () => undefined}
       >
         {label}
