@@ -9,10 +9,6 @@ export interface DropdownProps {
   label?: string;
   /** Name of the input in the form */
   name?: string;
-  /** Handler function when input changes */
-  onChange?: (option: object) => void;
-  /** Control the current input value */
-  value?: object;
   /** Inline message below the dropdown */
   inlineMessage?: string;
   /** Present if there is an error */
@@ -20,93 +16,34 @@ export interface DropdownProps {
   input?: object;
 }
 
-interface DropdownState {
-  open: boolean;
-  selected: string;
-  options: object[];
-  value: object | undefined;
-  formValue: string;
-}
-
-class Dropdown extends React.Component<DropdownProps, DropdownState> {
+class Dropdown extends React.Component<DropdownProps, {}> {
   constructor(props: DropdownProps) {
     super(props);
-    this.state = {
-      formValue:
-        _.get(props.value, 'value') || _.get(props.options[0], 'value'),
-      open: false,
-      options: props.options,
-      selected: _.get(props.value, 'label') || _.get(props.options[0], 'label'),
-      value: props.value,
-    };
-
-    this.openDropdown = this.openDropdown.bind(this);
-    this.closeDropdown = this.closeDropdown.bind(this);
-    this.selectOption = this.selectOption.bind(this);
+    this.state = {};
   }
 
-  public openDropdown(): void {
-    this.setState(
-      {
-        open: true,
-      },
-      () => {
-        const dropdownContainer = document.getElementById('dropdown-container');
-        if (dropdownContainer) {
-          dropdownContainer.focus();
-        }
-      },
-    );
-  }
-
-  public closeDropdown(): void {
-    this.setState({
-      open: false,
-    });
-  }
-
-  public selectOption(event: React.SyntheticEvent): void {
+  public renderOptions(): React.ReactNode {
     const { options } = this.props;
-    const { id } = event.currentTarget;
-    const selected = _.find(
-      options,
-      (option: { value: any }) => option.value.toString() === id.toString(),
-    );
 
-    if (selected) {
-      this.setState({
-        formValue: _.get(selected, 'value'),
-        open: false,
-        selected: _.get(selected, 'label'),
-      });
-    }
+    return _.map(options, (option: { value: any; label: string }) => (
+      <option value={option.value}>{option.label}</option>
+    ));
   }
 
   public render(): JSX.Element {
-    const { name, label, inlineMessage, error, input } = this.props;
-    const { open, options, selected, formValue } = this.state;
+    const { name, label, inlineMessage, error, input, options } = this.props;
 
     return (
-      <div>
-        <input
-          {...input}
-          style={{ display: 'none' }}
-          name={name}
-          value={formValue}
-          readOnly={true}
-        />
-        <StyledDropdown
-          label={label}
-          open={open}
-          options={options}
-          selected={selected}
-          inlineMessage={inlineMessage}
-          error={error}
-          openDropdown={this.openDropdown}
-          closeDropdown={this.closeDropdown}
-          selectOption={this.selectOption}
-        />
-      </div>
+      <StyledDropdown
+        name={name}
+        label={label}
+        options={options}
+        inlineMessage={inlineMessage}
+        error={error}
+        input={input}
+      >
+        {this.renderOptions()}
+      </StyledDropdown>
     );
   }
 }

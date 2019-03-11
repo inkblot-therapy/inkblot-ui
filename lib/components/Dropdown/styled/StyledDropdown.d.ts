@@ -1,17 +1,14 @@
 import * as React from 'react';
 interface StyledDropdownProps {
-    label?: string;
-    open: boolean;
+    children: React.ReactNode;
     options: object[];
-    selected: string;
+    name?: string;
+    label?: string;
     inlineMessage?: string;
     error?: boolean;
-    openDropdown: () => void;
-    closeDropdown: () => void;
-    selectOption: (event: React.SyntheticEvent) => void;
+    input?: object;
 }
 declare class StyledDropdown extends React.Component<StyledDropdownProps> {
-    renderOptions(): object[] | JSX.Element;
     render(): JSX.Element;
 }
 export default StyledDropdown;

@@ -6,28 +6,15 @@ export interface DropdownProps {
     label?: string;
     /** Name of the input in the form */
     name?: string;
-    /** Handler function when input changes */
-    onChange?: (option: object) => void;
-    /** Control the current input value */
-    value?: object;
     /** Inline message below the dropdown */
     inlineMessage?: string;
     /** Present if there is an error */
     error?: boolean;
     input?: object;
 }
-interface DropdownState {
-    open: boolean;
-    selected: string;
-    options: object[];
-    value: object | undefined;
-    formValue: string;
-}
-declare class Dropdown extends React.Component<DropdownProps, DropdownState> {
+declare class Dropdown extends React.Component<DropdownProps, {}> {
     constructor(props: DropdownProps);
-    openDropdown(): void;
-    closeDropdown(): void;
-    selectOption(event: React.SyntheticEvent): void;
+    renderOptions(): React.ReactNode;
     render(): JSX.Element;
 }
 export default Dropdown;

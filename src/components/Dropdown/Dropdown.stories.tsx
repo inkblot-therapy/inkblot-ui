@@ -1,4 +1,4 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/react';
 import * as React from 'react';
 import { wInfo } from '../../utils/wInfo';
@@ -20,6 +20,10 @@ const options = [
 stories.add(
   'default',
   wInfo()(() => (
-    <Dropdown options={options}>{text('Label', 'Default')}</Dropdown>
+    <Dropdown
+      label={text('Label', 'Default')}
+      error={boolean('Error', false)}
+      options={options}
+    />
   )),
 );
