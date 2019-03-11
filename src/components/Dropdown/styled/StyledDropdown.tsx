@@ -3,68 +3,35 @@ import * as React from 'react';
 import Down from '../../../svg/Down';
 import styled from '../../../utils/styled-components';
 
-const DropdownContainer = styled.div`
-  display: inline-block;
-  outline: none;
-  #dropdown-container {
-    width: 100%;
-    & > div {
-      width: 100%;
-    }
-  }
-`;
-
 const Dropdown = styled<{ error?: boolean }, 'div'>('div')`
-  height: 40px;
-  display: inline-flex;
-  padding-left: 10px;
-  padding-right: 10px;
-  align-items: center;
-  border-radius: 4px;
   background-color: #fafafa;
-  cursor: pointer;
+  max-width: 200px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 4px;
   border: ${({ error }) =>
     error ? 'solid 2px #cf1a1a' : 'solid 2px transparent'};
+  position: relative;
+
+  select {
+    ${({ theme }) => theme.input.text.standard}
+    background: transparent;
+    width: 220px;
+    height: 40px;
+    outline: none;
+    border: none;
+  }
+
+  svg {
+    pointer-events: none;
+    position: absolute;
+    right: 5px;
+    top: 15px;
+  }
 `;
 
 const Label = styled.p`
   ${({ theme }) => theme.input.text.label}
-`;
-
-const SelectedText = styled.div`
-  ${({ theme }) => theme.input.text.standard}
-  padding-right: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const OptionsContainer = styled<{ open: boolean }, 'div'>('div')`
-  max-height: 200px;
-  overflow-y: auto;
-  display: ${({ open }) => (open ? 'block' : 'none')};
-  background-color: #ffffff;
-  border-radius: 4px;
-  box-shadow: 0 0 10px 0 rgba(99, 140, 177, 0.2);
-  margin-top: 10px;
-`;
-
-const Option = styled.div`
-  ${({ theme }) => theme.input.text.standard}
-  height: 40px;
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  span {
-    white-space: nowrap;
-  }
-  &:hover {
-    opacity: 0.9;
-    background-color: #ecf9f9;
-    font-weight: 600;
-  }
 `;
 
 const Inline = styled<{ error?: boolean }, 'p'>('p')`
@@ -73,57 +40,28 @@ const Inline = styled<{ error?: boolean }, 'p'>('p')`
 `;
 
 interface StyledDropdownProps {
-  label?: string;
-  open: boolean;
+  children: React.ReactNode;
   options: object[];
-  selected: string;
+  name?: string;
+  label?: string;
   inlineMessage?: string;
   error?: boolean;
-  openDropdown: () => void;
-  closeDropdown: () => void;
-  selectOption: (event: React.SyntheticEvent) => void;
+  input?: object;
 }
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
-  public renderOptions(): object[] | JSX.Element {
-    const { options, selectOption } = this.props;
-
-    return _.map(options, (option: { value: any; label: string }) => (
-      <Option id={option.value} key={option.value} onClick={selectOption}>
-        <span>{option.label}</span>
-      </Option>
-    ));
-  }
-
   public render(): JSX.Element {
-    const {
-      open,
-      openDropdown,
-      closeDropdown,
-      label,
-      inlineMessage,
-      error,
-      selected,
-    } = this.props;
+    const { label, inlineMessage, error, children, name, input } = this.props;
 
     return (
       <div>
         <Label>{label}</Label>
-        <DropdownContainer
-          id="dropdown-container"
-          tabIndex={0}
-          onBlur={closeDropdown}
-        >
-          <Dropdown error={error} onClick={open ? closeDropdown : openDropdown}>
-            <SelectedText>{selected}</SelectedText>
-            <div style={{ marginLeft: 'auto' }}>
-              <Down />
-            </div>
-          </Dropdown>
-          <OptionsContainer open={open}>
-            {this.renderOptions()}
-          </OptionsContainer>
-        </DropdownContainer>
+        <Dropdown error={error}>
+          <select name={name} {...input}>
+            {children}
+          </select>
+          <Down />
+        </Dropdown>
         <Inline error={error}>{inlineMessage}</Inline>
       </div>
     );
