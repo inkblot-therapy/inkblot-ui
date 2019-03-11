@@ -83,17 +83,17 @@ class Dropdown extends React.Component<DropdownProps, DropdownState> {
   }
 
   public render(): JSX.Element {
-    const { name, label, inlineMessage, error, input } = this.props;
-    const { open, options, selected, formValue } = this.state;
+    const { label, inlineMessage, error, input } = this.props;
+    const { open, options, selected } = this.state;
 
     return (
       <div>
         <input
           {...input}
           style={{ display: 'none' }}
-          name={name}
-          value={formValue}
-          readOnly={true}
+          // name={name}
+          // value={formValue}
+          // readOnly={true}
         />
         <StyledDropdown
           label={label}
