@@ -25,8 +25,10 @@ class Dropdown extends React.Component<DropdownProps, {}> {
   public renderOptions(): React.ReactNode {
     const { options } = this.props;
 
-    return _.map(options, (option: { value: any; label: string }) => (
-      <option value={option.value}>{option.label}</option>
+    return _.map(options, (option: { value: any; label: string }, i) => (
+      <option key={i} value={option.value}>
+        {option.label}
+      </option>
     ));
   }
 
