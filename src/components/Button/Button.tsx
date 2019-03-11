@@ -57,11 +57,11 @@ class Button extends React.Component<ButtonProps, ButtonState> {
   }
 
   public render() {
-    const { disabled, label } = this.props;
+    const { disabled, label, type } = this.props;
     return (
       <StyledButton
         {...this.props}
-        type="button"
+        type={type || 'button'}
         onClick={!disabled ? this.click : () => undefined}
       >
         {label}
