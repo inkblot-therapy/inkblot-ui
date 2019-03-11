@@ -29,6 +29,9 @@ const Input = styled<
     color: ${({ disabled }) =>
       disabled ? 'rgba(15, 32, 69, 0.25)' : 'rgba(15, 32, 69, 0.75);'};
   }
+  &:disabled {
+    color: rgba(15, 32, 69, 0.25);
+  }
 `;
 
 const Label = styled.label`
