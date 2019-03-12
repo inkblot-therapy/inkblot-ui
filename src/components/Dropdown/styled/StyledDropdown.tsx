@@ -82,8 +82,8 @@ const customStyles = {
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
   public render(): JSX.Element {
-    const { label, inlineMessage, input, options, name, error } = this.props;
-
+    const { label, inlineMessage, input, options, error } = this.props;
+    console.log(input);
     return (
       <div>
         <Label>{label}</Label>
@@ -94,8 +94,6 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
             isSearchable={false}
             options={options}
             styles={customStyles}
-            name={name}
-            onBlur={() => input.onBlur(input.value)}
             {...input}
           />
         </Container>
