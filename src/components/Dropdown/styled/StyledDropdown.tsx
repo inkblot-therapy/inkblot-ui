@@ -82,7 +82,7 @@ const customStyles = {
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
   public render(): JSX.Element {
-    const { label, inlineMessage, input, options, error } = this.props;
+    const { label, inlineMessage, input, options, name, error } = this.props;
 
     return (
       <div>
@@ -92,6 +92,7 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
             isSearchable={false}
             options={options}
             styles={customStyles}
+            name={name}
             {...input}
           />
         </Container>
