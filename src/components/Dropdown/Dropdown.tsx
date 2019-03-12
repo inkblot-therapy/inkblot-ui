@@ -13,7 +13,7 @@ export interface DropdownProps {
   inlineMessage?: string;
   /** Present if there is an error */
   error?: boolean;
-  input: { value: any };
+  input?: object;
 }
 
 class Dropdown extends React.Component<DropdownProps, {}> {
@@ -23,13 +23,10 @@ class Dropdown extends React.Component<DropdownProps, {}> {
   }
 
   public renderOptions(): React.ReactNode {
-    const {
-      options,
-      input: { value },
-    } = this.props;
+    const { options } = this.props;
 
     return _.map(options, (option: { value: any; label: string }, i) => (
-      <option key={i} value={option.value} selected={value === option.value}>
+      <option key={i} value={option.value}>
         {option.label}
       </option>
     ));
