@@ -1,6 +1,5 @@
 import * as React from 'react';
 interface StyledDropdownProps {
-    children: React.ReactNode;
     options: object[];
     name?: string;
     label?: string;
