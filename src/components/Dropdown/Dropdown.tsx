@@ -13,7 +13,7 @@ export interface DropdownProps {
   inlineMessage?: string;
   /** Present if there is an error */
   error?: boolean;
-  input?: object;
+  input: { value: any };
 }
 
 class Dropdown extends React.Component<DropdownProps, {}> {
