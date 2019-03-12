@@ -37,7 +37,7 @@ const customStyles = {
     boxShadow: 'none',
     height: '40px',
   }),
-  dropdownIndicator: (provided, state) => ({
+  dropdownIndicator: (provided) => ({
     ...provided,
     color: '#2e5fca',
   }),
@@ -95,6 +95,7 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
             options={options}
             styles={customStyles}
             name={name}
+            onBlur={() => input.onBlur(input.value)}
             {...input}
           />
         </Container>
