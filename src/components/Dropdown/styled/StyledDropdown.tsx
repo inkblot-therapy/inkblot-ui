@@ -89,6 +89,8 @@ class StyledDropdown extends React.Component<StyledDropdownProps> {
         <Label>{label}</Label>
         <Container error={error}>
           <Select
+            onBlurResetsInput={false}
+            onSelectResetsInput={false}
             isSearchable={false}
             options={options}
             styles={customStyles}
