@@ -81,19 +81,64 @@ const customStyles = {
 };
 
 class StyledDropdown extends React.Component<StyledDropdownProps> {
+  /**
+   * onChange from Redux Form Field has to be called explicity.
+   */
+  public singleChangeHandler(func) {
+    return function handleSingleChange(value) {
+      func(value ? value.value : '');
+    };
+  }
+
+  /**
+   * onBlur from Redux Form Field has to be called explicity.
+   */
+  public multiChangeHandler(func) {
+    return function handleMultiHandler(values) {
+      func(values.map((value) => value.value));
+    };
+  }
+
+  /**
+   * For single select, Redux Form keeps the value as a string, while React Select
+   * wants the value in the form { value: "grape", label: "Grape" }
+   *
+   * * For multi select, Redux Form keeps the value as array of strings, while React Select
+   * wants the array of values in the form [{ value: "grape", label: "Grape" }]
+   */
+  public transformValue(value, options, multi) {
+    if (multi && typeof value === 'string') {
+      return [];
+    }
+
+    const filteredOptions = options.filter((option) => {
+      return multi
+        ? value.indexOf(option.value) !== -1
+        : option.value === value;
+    });
+
+    return multi ? filteredOptions : filteredOptions[0];
+  }
+
   public render(): JSX.Element {
     const { label, inlineMessage, input, options, error } = this.props;
+    const { name, value, onBlur, onChange, onFocus } = input;
+    const transformedValue = this.transformValue(value, options, false);
 
     return (
       <div>
         <Label>{label}</Label>
         <Container error={error}>
           <Select
+            valueKey="value"
+            name={name}
             isSearchable={false}
+            value={transformedValue}
             options={options}
+            onChange={this.singleChangeHandler(onChange)}
+            onBlur={() => onBlur(value)}
+            onFocus={onFocus}
             styles={customStyles}
-            {...input}
-            value={input.value.value}
           />
         </Container>
         <Inline error={error}>{inlineMessage}</Inline>
