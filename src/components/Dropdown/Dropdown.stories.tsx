@@ -24,6 +24,7 @@ stories.add(
       label={text('Label', 'Default')}
       error={boolean('Error', false)}
       options={options}
+      inlineMessage={text('Inline message', '')}
     />
   )),
 );

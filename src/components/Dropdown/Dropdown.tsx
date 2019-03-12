@@ -43,9 +43,7 @@ class Dropdown extends React.Component<DropdownProps, {}> {
         inlineMessage={inlineMessage}
         error={error}
         input={input}
-      >
-        {this.renderOptions()}
-      </StyledDropdown>
+      />
     );
   }
 }
