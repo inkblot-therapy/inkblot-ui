@@ -19,7 +19,7 @@ const Button = styled<
   padding: 0 40px;
   font-family: "Barlow", sans-serif;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   letter-spacing: 0.5px;
   outline: none;
   &:focus {
