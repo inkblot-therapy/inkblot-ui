@@ -19,7 +19,7 @@ const Dropdown = styled<{ error?: boolean }, 'div'>('div')`
   padding-right: 10px;
   align-items: center;
   border-radius: 4px;
-  background-color: #fafafa;
+  background-color: rgba(240, 242, 245, 0.79);
   cursor: pointer;
   border: ${({ error }) =>
     error ? 'solid 2px #cf1a1a' : 'solid 2px transparent'};
