@@ -1,6 +1,5 @@
 import * as React from 'react';
 export declare const InkblotTheme: React.StatelessComponent<{}>;
-export { default as BookingCalendar } from './components/BookingCalendar';
 export { default as Button } from './components/Button';
 export { default as MultiSelectDropdown, } from './components/MultiSelectDropdown';
 export { default as Modal } from './components/Modal';
