@@ -16,7 +16,7 @@ const Input = styled<
   color: "#0f2045";
   letter-spacing: ${({ type }) => (type === 'password' ? '2px' : 'normal')};
   border: ${({ error }) => (error ? 'solid #cf1a1a' : 'solid transparent')};
-  background-color: #fafafa;
+  background-color: rgba(240, 242, 245, 0.79);
   transition: 0.25s;
   &:focus {
     outline: none;

@@ -8,7 +8,6 @@ export const InkblotTheme: React.StatelessComponent<{}> = ({ children }) => (
   </ThemeProvider>
 );
 
-export { default as BookingCalendar } from './components/BookingCalendar';
 export { default as Button } from './components/Button';
 export {
   default as MultiSelectDropdown,

@@ -20,7 +20,7 @@ const Input = styled<{ disabled?: boolean; error?: boolean }, 'input'>('input')`
   padding-left: 10px;
   padding-right: 30px;
   border-radius: 4px;
-  background-color: #fafafa;
+  background-color: rgba(240, 242, 245, 0.79);
   outline: none;
   ::placeholder {
     color: ${({ disabled }) =>
