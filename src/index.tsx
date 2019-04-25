@@ -15,3 +15,4 @@ export {
 export { default as Modal } from './components/Modal';
 export { default as SearchDropdown } from './components/SearchDropdown';
 export { default as TextInput } from './components/TextInput';
+export { default as IconButton } from './components/IconButton';
