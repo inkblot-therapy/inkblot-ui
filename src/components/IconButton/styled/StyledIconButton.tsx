@@ -2,10 +2,6 @@ import * as React from 'react';
 import styled from '../../../utils/styled-components';
 import { IconButtonProps } from '../IconButton';
 
-const label = {
-
-};
-
 const IconButton = styled<
   {
     disabled?: boolean;

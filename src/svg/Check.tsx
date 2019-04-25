@@ -14,7 +14,7 @@ const SvgCheck = (props: React.SVGProps<SVGSVGElement>) => (
       <g fill="none" fillRule="evenodd">
           <g transform="translate(10 10)">
               <use fill="#000" filter="url(#a)" />
-              <rect width="24" height="24" x="1" y="1" fill="#FFF" stroke="#2E5FCA" strokeLinejoin="square" strokeWidth="2" rx="4"/>
+              <rect width="24" height="24" x="1" y="1" fill="#FFF" stroke="#2E5FCA" strokeWidth="2" rx="4"/>
           </g>
           <path stroke="#2E5FCA" strokeLinecap="round" strokeWidth="2" d="M18 23.894L21.84 27l6.97-7"/>
       </g>
