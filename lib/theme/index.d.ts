@@ -3,6 +3,7 @@ interface Colors {
     primary: string;
     secondary: string;
     tertiary: string;
+    people: string;
 }
 interface StringMap {
     [s: string]: string;
