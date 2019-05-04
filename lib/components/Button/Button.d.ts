@@ -11,6 +11,8 @@ export interface ButtonProps {
     secondary?: boolean;
     /** Tertiary Button */
     tertiary?: boolean;
+    /** Tertiary Button */
+    people?: boolean;
     /** You Only Click Once (YOCO) */
     singleClick?: boolean;
     /** Label of the Button */

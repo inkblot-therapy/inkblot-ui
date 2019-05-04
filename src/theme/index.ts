@@ -3,6 +3,7 @@ interface Colors {
   primary: string;
   secondary: string;
   tertiary: string;
+  people: string;
 }
 
 interface StringMap {
@@ -33,12 +34,14 @@ const theme: ThemeInterface = {
       primary: 'linear-gradient(to left, #e938cc, #fc587f)',
       secondary: 'linear-gradient(to left, #24a47a, #41ddcc)',
       tertiary: '#ffffff',
+      people: 'linear-gradient(to left, #7a7cc1, #5e9ad3)',
     },
     textColor: {
       disabled: 'rgba(15, 32, 69, 0.25)',
       primary: '#ffffff',
       secondary: '#ffffff',
       tertiary: '#2e5fca',
+      people: '#ffffff',
     },
   },
   input: {
