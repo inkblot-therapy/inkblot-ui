@@ -19,7 +19,7 @@ const Button = styled<
   height: 40px;
   padding: 0 40px;
   font-family: ${({ people }) => (!people ? '"Barlow", sans-serif;' : '"Montserrat", sans-serif;')}
-  font-size: 16px;
+  font-size: ${({ people }) => (!people ? '16px' : '12px')};
   font-weight: 600;
   letter-spacing: 0.5px;
   outline: none;
