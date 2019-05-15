@@ -34,7 +34,7 @@ const theme: ThemeInterface = {
       primary: 'linear-gradient(to left, #e938cc, #fc587f)',
       secondary: 'linear-gradient(to left, #24a47a, #41ddcc)',
       tertiary: '#ffffff',
-      people: 'linear-gradient(to left, #7a7cc1, #5e9ad3)',
+      people: 'linear-gradient(to left, #e3546f, #ff6b8a)',
     },
     textColor: {
       disabled: 'rgba(15, 32, 69, 0.25)',
